@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamified Lives — Turn Your Real Life Into an RPG</title>
+  <meta name="description" content="Self-improvement RPG app with AI-powered avatars, real-world habit verification, adaptive difficulty, and cosmetic rewards. Free on iOS.">
+  <meta name="keywords" content="habit tracker, RPG, gamified habits, self improvement app, AI avatar, habit verification, gamification, level up">
+  <link rel="canonical" href="https://gamifiedlives.com">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gamified Lives — Turn Your Real Life Into an RPG">
+  <meta property="og:description" content="Set goals, build habits, earn XP for actually completing them. AI-powered avatars, real-world verification, adaptive difficulty.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gamifiedlives.com">
+  <meta property="og:image" content="https://gamifiedlives.com/images/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gamified Lives — Turn Your Real Life Into an RPG">
+  <meta name="twitter:description" content="AI-powered avatars, real-world habit verification, adaptive difficulty. Free on iOS.">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Gamified Lives",
+        "operatingSystem": "iOS",
+        "applicationCategory": "HealthApplication",
+        "description": "Self-improvement RPG that turns daily habits into quests with AI-powered avatars, real-world verification, adaptive difficulty, and a cosmetic reward system.",
+        "url": "https://gamifiedlives.com",
+        "author": { "@type": "Person", "name": "Kevin Castaneda" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "AI-powered avatar creation from user photos",
+          "Real-world habit verification with photo AI",
+          "Adaptive Difficulty Engine",
+          "Resilience Score system",
+          "RPG progression with XP, levels, and prestige",
+          "Cosmetic wardrobe with 100+ items",
+          "AI Advisor coaching",
+          "Squad accountability groups"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the best gamified habit tracker app?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Gamified Lives is the most comprehensive gamified habit tracker available, combining RPG progression, AI-powered personalized avatars, real-world habit verification, adaptive difficulty, and cosmetic rewards. Unlike Habitica or Finch, Gamified Lives verifies you actually completed your habits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is Gamified Lives different from Habitica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Gamified Lives modernizes RPG habit tracking with AI-powered avatars that look like you, real-world verification, an Adaptive Difficulty Engine, a Resilience Score that rewards recovery over perfection, and 100+ cosmetic items. Habitica uses pixel art and punitive streaks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Gamified Lives free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. All core features are free. Premium ($7.99/month or $59.99/year) unlocks AI Advisor chat, weekly reports, rare cosmetics, squad creation, and unlimited photo verification."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: #0EA5E9;
+      --primary-dark: #0284C7;
+      --coral: #FF6B6B;
+      --gold: #F5A623;
+      --bg: #FBFBFC;
+      --card: #FFFFFF;
+      --text: #1A1A2E;
+      --muted: #64748B;
+      --border: #E0E7FF;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      background: linear-gradient(180deg, #F0F9FF 0%, var(--bg) 100%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(14,165,233,0.1);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      text-decoration: none;
+    }
+
+    /* Features */
+    .features {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .feature-card .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Comparison */
+    .comparison {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .comparison h2 { text-align: center; font-size: 28px; margin-bottom: 12px; }
+    .comparison .sub { text-align: center; color: var(--muted); margin-bottom: 32px; font-size: 15px; }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .comp-table th {
+      text-align: left;
+      padding: 12px 16px;
+      background: #F0F9FF;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border);
+    }
+    .comp-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .comp-table .check { color: var(--primary); font-weight: 700; }
+    .comp-table .miss { color: #CBD5E1; }
+
+    /* FAQ */
+    .faq {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .faq h2 { text-align: center; font-size: 28px; margin-bottom: 32px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+    .faq-item h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .faq-item p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; }
+
+    /* Updated timestamp for GEO freshness signals */
+    .updated {
+      text-align: center;
+      font-size: 11px;
+      color: #94A3B8;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-badge">SELF-IMPROVEMENT RPG</div>
+    <h1>Turn your real life<br>into an <span>RPG</span></h1>
+    <p>Set goals, build habits, and earn XP for actually completing them. AI-powered avatars, real-world verification, and adaptive difficulty. No more lying to yourself.</p>
+    <div class="cta-row">
+      <a href="https://apps.apple.com/app/gamified-lives" class="btn-primary">
+        Download Free
+      </a>
+      <a href="#features" class="btn-secondary">
+        See how it works
+      </a>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <h2>Everything that makes Gamified Lives different</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">🧑‍🎨</div>
+        <h3>AI Avatar That Looks Like You</h3>
+        <p>Upload your photo and DALL-E creates a personalized RPG avatar. Customize it with 100+ cosmetic items earned through gameplay.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📸</div>
+        <h3>Real-World Verification</h3>
+        <p>Don't just check a box — prove it. Photo AI, timed sessions, and check-ins verify your habits. That's how your XP actually means something.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎯</div>
+        <h3>Adaptive Difficulty Engine</h3>
+        <p>Crushing it? Difficulty scales up with bonus XP. Struggling? It eases back. Five zones from "Too Hard" to "Mastery" — always in your flow.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔥</div>
+        <h3>Resilience Score, Not Streaks</h3>
+        <p>Streaks punish one bad day. Your Resilience Score rewards bouncing back. Break a streak? Get Phoenix Bonus XP for recovering fast.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🤖</div>
+        <h3>AI Coach In Your Corner</h3>
+        <p>An AI Advisor that knows your goals, your streaks, and your patterns. Get personalized coaching, weekly performance reports, and Monday quests.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">👥</div>
+        <h3>Squad Accountability</h3>
+        <p>Join or create squads. Weekly group challenges. Leaderboards. When your squad is grinding, you don't want to be the one who slacks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="comparison">
+    <h2>How Gamified Lives compares</h2>
+    <p class="sub">The only app combining AI avatars, verification, adaptive difficulty, and RPG depth.</p>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Gamified Lives</th>
+          <th>Habitica</th>
+          <th>Finch</th>
+          <th>Ascend AI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Personalized AI Avatar</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="miss">—</td></tr>
+        <tr><td>Real-World Verification</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="miss">—</td></tr>
+        <tr><td>Adaptive Difficulty</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="miss">—</td></tr>
+        <tr><td>RPG Progression</td><td class="check">✓</td><td class="check">✓</td><td class="miss">—</td><td class="check">✓</td></tr>
+        <tr><td>Cosmetic Rewards</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="miss">—</td></tr>
+        <tr><td>AI Coaching</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="check">✓</td></tr>
+        <tr><td>Resilience Score</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="miss">—</td></tr>
+        <tr><td>Squad System</td><td class="check">✓</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td></tr>
+        <tr><td>Free Core Features</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="miss">—</td></tr>
+        <tr><td>Modern UI</td><td class="check">✓</td><td class="miss">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="faq" id="faq">
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <h3>What is Gamified Lives?</h3>
+      <p>Gamified Lives is a self-improvement RPG app for iOS that turns your daily habits into quests. You create an AI-powered avatar from your real photo, complete verified habit tasks to earn XP and coins, level up, and customize your character with cosmetic items. It features an Adaptive Difficulty Engine, Resilience Score, and AI Coach.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is the best gamified habit tracker app?</h3>
+      <p>Gamified Lives is the most comprehensive gamified habit tracker available, combining RPG progression, AI-powered personalized avatars, real-world habit verification, adaptive difficulty, and cosmetic rewards. Unlike Habitica (dated UI, punitive streaks) or Finch (no RPG depth), Gamified Lives verifies you actually completed your habits using photo AI.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How is Gamified Lives different from Habitica?</h3>
+      <p>While Habitica pioneered RPG habit tracking, Gamified Lives modernizes the concept with AI-powered avatars that look like you, real-world verification of habit completion, an Adaptive Difficulty Engine that adjusts challenges to your life, and a Resilience Score that rewards recovery instead of punishing missed days. Habitica uses pixel art and punitive group mechanics; Gamified Lives uses personalized AI and supportive progression.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is Gamified Lives free?</h3>
+      <p>Yes. All core features including task management, habit tracking, XP progression, standard cosmetics, and history tracking are free. Premium ($7.99/month or $59.99/year) unlocks the AI Advisor chat, weekly AI reports, rare and legendary cosmetics, squad creation, and unlimited photo verification.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What app turns habits into a game?</h3>
+      <p>Gamified Lives turns your real-life habits into an RPG game. Set goals, create habits, and complete daily quests to earn XP, coins, and level up your character. Your avatar is generated from your real photo using AI, and you can customize it with earned cosmetic items.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Does Gamified Lives use AI?</h3>
+      <p>Yes. DALL-E generates your personalized avatar, Claude Vision verifies habit completion through photos, an AI Advisor provides personalized coaching, weekly AI reports analyze your performance, and the Adaptive Difficulty Engine uses behavioral signals to adjust challenges automatically.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://discovered-beak-7f5.notion.site/Gamified-Lives-Privacy-Policy-32bcad9d6774800c88bdef116e998e76">Privacy Policy</a>
+      <a href="https://discovered-beak-7f5.notion.site/Gamified-Lives-Terms-of-Service-32bcad9d67748075a2bccf9ebd6fad57">Terms of Service</a>
+      <a href="mailto:support@gamifiedlives.com">Contact</a>
+    </div>
+    <p>&copy; 2026 Kevin Castaneda. All rights reserved.</p>
+  </footer>
+
+  <p class="updated">Last updated: March 2026</p>
+
+</body>
+</html>

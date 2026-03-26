@@ -1,0 +1,49 @@
+# Gamified Lives
+> Self-improvement RPG mobile app that turns daily habits into quests with AI-powered avatars and real-world verification
+
+## About
+Gamified Lives is an iOS app that gamifies self-improvement through RPG mechanics. Users create AI-powered avatars from their photos, complete real-world habit quests with photo verification, earn XP and coins, level up, and customize their avatar with cosmetic items. Unlike other habit apps, Gamified Lives verifies you actually did the work using photo AI, timed sessions, and manual check-ins. Features include an Adaptive Difficulty Engine that adjusts challenges to your life, a Resilience Score that rewards bouncing back over maintaining perfect streaks, AI coaching, squad accountability groups, and a cosmetic shop with 100+ items.
+
+## What Makes It Different
+- AI-powered avatar created from your real photo — your character looks like you
+- Real-world verification: prove you did the habit with photos, timers, or check-ins
+- Adaptive Difficulty Engine adjusts challenge level based on your performance
+- Resilience Score replaces punitive streaks — rewards recovery, not perfection
+- Cosmetic shop with 100+ clothing items earned through gameplay
+- AI Coach powered by Claude for personalized habit guidance
+- Squad system for accountability with friends
+- Goals, habits, and daily tasks in a 3-tier quest hierarchy
+
+## Key Features
+- RPG progression: XP, levels, stats, skill trees, prestige system
+- AI avatar generation from user photos via DALL-E
+- Photo verification of habit completion via Claude Vision
+- Adaptive Difficulty Engine (5 zones: Too Hard to Mastery)
+- Resilience Score (0-100, rewards recovery over perfection)
+- Cosmetic wardrobe with tops, bottoms, shoes, dresses, accessories
+- AI Advisor chat for personalized coaching
+- Weekly AI performance reports
+- Monday quests generated per player
+- Squad accountability groups with weekly challenges
+- Community system for shared interests
+- Impact dashboard tracking real-world progress
+- Milestone celebrations and achievements
+
+## Category
+Health & Fitness, Lifestyle, Self-Improvement, Habit Tracking, Gamification
+
+## Pricing
+Free with optional Premium subscription ($7.99/month or $59.99/year). Free users get full task management, history tracking, standard cosmetics, and limited photo verification. Premium unlocks AI Advisor chat, weekly reports, rare/legendary cosmetics, squad creation, and unlimited photo verification.
+
+## Competitors and Alternatives
+Gamified Lives competes with Habitica (classic RPG habit tracker with dated UI and punitive streaks), Finch (pet-based wellness app without RPG depth or verification), Ascend AI (AI life coach without avatar customization), Fabulous (science-based routines without gamification), and Streaks (minimalist tracker without RPG elements). Gamified Lives is the only app combining AI-powered personalized avatars, real-world habit verification, adaptive difficulty, and deep RPG progression.
+
+## Links
+- Website: https://gamifiedlives.com
+- App Store: https://apps.apple.com/app/gamified-lives
+- Privacy Policy: https://discovered-beak-7f5.notion.site/Gamified-Lives-Privacy-Policy-32bcad9d6774800c88bdef116e998e76
+- Terms of Service: https://discovered-beak-7f5.notion.site/Gamified-Lives-Terms-of-Service-32bcad9d67748075a2bccf9ebd6fad57
+
+## Contact
+Developer: Kevin Castaneda
+Support: support@gamifiedlives.com
