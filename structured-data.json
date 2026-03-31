@@ -28,7 +28,7 @@
         "Resilience Score system",
         "RPG progression with XP, levels, and prestige",
         "Cosmetic wardrobe with 100+ items",
-        "AI Advisor coaching powered by Claude",
+        "AI Advisor coaching",
         "Squad accountability groups",
         "Weekly AI performance reports",
         "Impact dashboard"
@@ -96,7 +96,7 @@
           "name": "Does Gamified Lives use AI?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, Gamified Lives uses AI in several ways: DALL-E generates your personalized avatar from your photo, Claude Vision verifies habit completion through photo analysis, an AI Advisor provides personalized coaching, weekly AI reports analyze your performance, and the Adaptive Difficulty Engine uses behavioral signals to adjust challenge levels automatically."
+            "text": "Yes, Gamified Lives uses AI in several ways: our AI generates your personalized avatar from your photo, AI vision verifies habit completion through photo analysis, an AI Advisor provides personalized coaching, weekly AI reports analyze your performance, and the Adaptive Difficulty Engine uses behavioral signals to adjust challenge levels automatically."
           }
         }
       ]

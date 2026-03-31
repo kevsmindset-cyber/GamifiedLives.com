@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gamified Lives — Turn Your Real Life Into an RPG</title>
   <meta name="description" content="Self-improvement RPG app with AI-powered avatars, real-world habit verification, adaptive difficulty, and cosmetic rewards. Free on iOS.">
@@ -78,308 +78,842 @@
   }
   </script>
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed-variant": "#004c6d",
+            "surface-container-low": "#f3f3f4",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#ffdad8",
+            "on-primary-fixed": "#001e2e",
+            "on-secondary-container": "#004c6d",
+            "background": "#f9f9fa",
+            "surface-variant": "#e2e2e3",
+            "on-tertiary-fixed-variant": "#8c1520",
+            "on-secondary-fixed": "#001e2e",
+            "surface-container": "#eeeeef",
+            "on-surface": "#1a1c1d",
+            "primary-fixed-dim": "#89cefe",
+            "outline": "#70787f",
+            "outline-variant": "#c0c7cf",
+            "on-tertiary-fixed": "#410006",
+            "primary-fixed": "#c8e6ff",
+            "primary-container": "#00628c",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#89cefe",
+            "surface-container-highest": "#e2e2e3",
+            "secondary": "#0ea5e9",
+            "on-surface-variant": "#40484e",
+            "inverse-primary": "#89cefe",
+            "on-primary-container": "#aadaff",
+            "surface": "#f9f9fa",
+            "surface-bright": "#f9f9fa",
+            "tertiary-container": "#aa2c32",
+            "tertiary": "#89111d",
+            "surface-container-high": "#e8e8e9",
+            "on-primary": "#ffffff",
+            "on-background": "#1a1c1d",
+            "primary": "#00496a",
+            "on-secondary": "#ffffff",
+            "inverse-surface": "#2f3132",
+            "surface-dim": "#dadadb",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#ffc7c4",
+            "tertiary-fixed-dim": "#ffb3b0",
+            "surface-tint": "#08658f",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#f0f1f2",
+            "secondary-container": "#c8e6ff",
+            "secondary-fixed": "#e0f2fe",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "coral": "#ff6b6b",
+            "sky-primary": "#0ea5e9"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
   <style>
-    :root {
-      --primary: #0EA5E9;
-      --primary-dark: #0284C7;
-      --coral: #FF6B6B;
-      --gold: #F5A623;
-      --bg: #FBFBFC;
-      --card: #FFFFFF;
-      --text: #1A1A2E;
-      --muted: #64748B;
-      --border: #E0E7FF;
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    .signature-gradient {
+      background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
     }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 80px 24px 60px;
-      background: linear-gradient(180deg, #F0F9FF 0%, var(--bg) 100%);
+    .primary-gradient {
+      background: linear-gradient(135deg, #00496a 0%, #00628c 100%);
     }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(14,165,233,0.1);
-      color: var(--primary);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      padding: 6px 16px;
-      border-radius: 50px;
-      margin-bottom: 20px;
+    .coral-gradient {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);
     }
-    .hero h1 {
-      font-size: clamp(32px, 6vw, 52px);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      color: var(--text);
+    .glass-card {
+      background: rgba(249, 249, 250, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
-    .hero h1 span { color: var(--primary); }
-    .hero p {
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 560px;
-      margin: 0 auto 32px;
+    .glass-header {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.7);
     }
-    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 14px 28px;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: background 0.2s;
+    .text-gradient {
+      background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .btn-primary:hover { background: var(--primary-dark); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--card);
-      color: var(--text);
-      font-size: 16px;
-      font-weight: 600;
-      padding: 14px 28px;
-      border-radius: 12px;
-      border: 1.5px solid var(--border);
-      text-decoration: none;
+    .editorial-shadow {
+      box-shadow: 0 8px 32px rgba(0, 76, 109, 0.06);
     }
-
-    /* Features */
-    .features {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 60px 24px;
-    }
-    .features h2 {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 40px;
-    }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .feature-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-    }
-    .feature-card .icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-    .feature-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .feature-card p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* Comparison */
-    .comparison {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 60px 24px;
-    }
-    .comparison h2 { text-align: center; font-size: 28px; margin-bottom: 12px; }
-    .comparison .sub { text-align: center; color: var(--muted); margin-bottom: 32px; font-size: 15px; }
-    .comp-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-    .comp-table th {
-      text-align: left;
-      padding: 12px 16px;
-      background: #F0F9FF;
-      font-weight: 700;
-      border-bottom: 2px solid var(--border);
-    }
-    .comp-table td {
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .comp-table .check { color: var(--primary); font-weight: 700; }
-    .comp-table .miss { color: #CBD5E1; }
-
-    /* FAQ */
-    .faq {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 60px 24px;
-    }
-    .faq h2 { text-align: center; font-size: 28px; margin-bottom: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-      padding: 18px 0;
-    }
-    .faq-item h3 {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-    .faq-item p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 40px 24px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 13px;
-    }
-    footer a { color: var(--primary); text-decoration: none; }
-    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; }
-
-    /* Updated timestamp for GEO freshness signals */
-    .updated {
-      text-align: center;
-      font-size: 11px;
-      color: #94A3B8;
-      padding: 8px;
-    }
+    .sky-accent { color: #0ea5e9; }
+    html { scroll-behavior: smooth; }
+    /* FAQ accordion */
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .faq-item.open .faq-answer { max-height: 500px; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-chevron { transition: transform 0.3s ease; }
   </style>
 </head>
-<body>
+<body class="bg-background text-on-surface font-body overflow-x-hidden">
 
-  <section class="hero">
-    <div class="hero-badge">SELF-IMPROVEMENT RPG</div>
-    <h1>Turn your real life<br>into an <span>RPG</span></h1>
-    <p>Set goals, build habits, and earn XP for actually completing them. AI-powered avatars, real-world verification, and adaptive difficulty. No more lying to yourself.</p>
-    <div class="cta-row">
-      <a href="https://apps.apple.com/app/gamified-lives" class="btn-primary">
-        Download Free
-      </a>
-      <a href="#features" class="btn-secondary">
-        See how it works
+<!-- ========== STICKY NAV ========== -->
+<nav class="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-8 py-4 bg-white/70 backdrop-blur-xl z-50 shadow-[0_8px_32px_rgba(0,98,140,0.06)]">
+  <div class="flex items-center gap-2">
+    <span class="text-2xl font-black text-slate-900 font-headline tracking-tight">Gamified Lives</span>
+  </div>
+  <div class="hidden md:flex items-center gap-8">
+    <a class="text-secondary font-bold border-b-2 border-secondary font-headline transition-all duration-300" href="#hero">Home</a>
+    <a class="text-slate-500 hover:text-sky-600 font-headline transition-all duration-300" href="#features">Features</a>
+    <a class="text-slate-500 hover:text-sky-600 font-headline transition-all duration-300" href="#compare">Compare</a>
+    <a class="text-slate-500 hover:text-sky-600 font-headline transition-all duration-300" href="#faq">FAQ</a>
+  </div>
+  <div class="flex items-center gap-3">
+    <a href="https://apps.apple.com/app/gamified-lives" class="signature-gradient text-on-primary px-6 py-2.5 rounded-full font-headline font-bold text-sm shadow-[0_8px_32px_rgba(0,98,140,0.15)] hover:scale-105 active:scale-95 transition-all hidden sm:inline-flex">
+      Download Free
+    </a>
+    <!-- Mobile menu button -->
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 hover:bg-sky-50 rounded-full transition-all">
+      <span class="material-symbols-outlined text-on-surface-variant">menu</span>
+    </button>
+  </div>
+</nav>
+<!-- Mobile menu dropdown -->
+<div id="mobile-menu" class="hidden fixed top-[72px] left-0 w-full bg-white/95 backdrop-blur-xl z-40 border-b border-outline-variant/10 px-6 py-6 flex flex-col gap-4 md:hidden">
+  <a class="text-secondary font-bold font-headline text-lg" href="#hero" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+  <a class="text-slate-500 font-headline text-lg" href="#features" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
+  <a class="text-slate-500 font-headline text-lg" href="#compare" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Compare</a>
+  <a class="text-slate-500 font-headline text-lg" href="#faq" onclick="document.getElementById('mobile-menu').classList.add('hidden')">FAQ</a>
+  <a href="https://apps.apple.com/app/gamified-lives" class="signature-gradient text-on-primary px-6 py-3 rounded-full font-headline font-bold text-center mt-2">Download Free</a>
+</div>
+
+<main class="pt-24">
+
+<!-- ========== HERO SECTION ========== -->
+<section id="hero" class="relative min-h-[700px] lg:min-h-[921px] flex items-center px-6 md:px-16 lg:px-24 mb-24 lg:mb-32">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+    <div class="lg:col-span-5 z-10">
+      <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl font-extrabold text-on-surface leading-[1.1] tracking-tighter mb-6">
+        Turn your real life into an <span class="text-secondary">RPG</span>
+      </h1>
+      <p class="text-body text-lg md:text-xl text-on-surface-variant mb-10 max-w-lg leading-relaxed">
+        Set goals, build habits, and earn XP for actually completing them. AI-powered avatars, real-world verification, and adaptive difficulty.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://apps.apple.com/app/gamified-lives" class="signature-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold text-lg shadow-[0_8px_32px_rgba(0,98,140,0.15)] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2">
+          Download Free
+        </a>
+        <a href="#features" class="glass-card border border-outline-variant/20 text-primary px-8 py-4 rounded-full font-headline font-bold text-lg hover:bg-white/90 transition-all inline-flex items-center gap-2">
+          See how it works
+        </a>
+      </div>
+    </div>
+    <!-- Overlapping Hero Image -->
+    <div class="lg:col-span-7 relative h-[400px] md:h-[500px] lg:h-[600px]">
+      <div class="absolute inset-0 bg-surface-container-low rounded-xl transform translate-x-4 md:translate-x-8 translate-y-4 md:translate-y-8 -z-10"></div>
+      <div class="w-full h-full rounded-xl overflow-hidden shadow-[0_32px_64px_rgba(0,0,0,0.1)]">
+        <img alt="RPG Workspace — Gamified Lives app dashboard showing XP, levels, and habit tracking" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAau8kR9hQ9PiBYdcTHXT2xdy7R92MIEBinizK8N12GNzBIe1_gfwlHzQXt3bPoMMHQaNsuWoSB3V_PzixcGTHNMwlg-BM_2QdMHICkty4dcWDnj00bTFCulii2CPaL6MLDds4-bznRKdBK1nzT_mubiG_s1cEjnsvOv2r5DuOspVd0rO9Ut_l7cKUIlu50vle_cJKctteOxHDohF1-NH3JqPGN3tOiWb0GLYbWB8xEdqPlkP0QFKd1C-PU3T954L-8oEdLhmX8UjLz">
+      </div>
+      <!-- Floating Stat Badge -->
+      <div class="absolute -bottom-6 md:-bottom-10 -left-4 md:-left-10 glass-card p-6 md:p-8 rounded-lg shadow-2xl max-w-xs">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="material-symbols-outlined text-coral text-3xl md:text-4xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+          <div>
+            <p class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Current Level</p>
+            <p class="font-headline text-2xl md:text-3xl font-black text-secondary">Level 24</p>
+          </div>
+        </div>
+        <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+          <div class="h-full signature-gradient w-3/4"></div>
+        </div>
+        <p class="mt-2 font-label text-sm text-on-surface-variant text-right">750 / 1000 XP</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BENTO GRID "YOUR EVOLUTION, CURATED" ========== -->
+<section class="bg-surface-container-low py-20 lg:py-32 px-6 md:px-16 lg:px-24 rounded-xl mx-4 md:mx-8">
+  <div class="text-center mb-16 lg:mb-20">
+    <h2 class="font-headline text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Your Evolution, <span class="text-secondary">Curated</span></h2>
+    <p class="text-on-surface-variant max-w-2xl mx-auto text-lg">Beyond simple task tracking, we provide the tools to visualize your progress through a premium digital lens.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+    <!-- Large Card: AI Avatars -->
+    <div class="md:col-span-2 bg-surface-container-lowest p-8 md:p-10 rounded-lg flex flex-col justify-between shadow-sm min-h-[350px] md:min-h-[400px]">
+      <div>
+        <span class="material-symbols-outlined text-primary text-4xl md:text-5xl mb-6" style="font-variation-settings: 'FILL' 1;">psychology</span>
+        <h3 class="font-headline text-2xl md:text-3xl font-bold mb-4">AI-Powered Avatars</h3>
+        <p class="text-on-surface-variant text-base md:text-lg max-w-md">Your digital twin is generated from a real photo of you. Customize it with 100+ cosmetic items earned through gameplay. Watch your character evolve as you level up.</p>
+      </div>
+      <div class="flex -space-x-4 mt-8">
+        <img class="w-12 h-12 md:w-14 md:h-14 rounded-full border-4 border-white" alt="Avatar example 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH-foIBnahomFkbl-28fPb553nUJbAZpFRIZwPpSb6gg3sdUm4ALZJd339lb7dA_Kej1-uxFHoODrVrNDIUMlCy0P4ecCZlhNYEKCCsZXy28AKKzKHnyNgwqtCAzHz74XbWfCRhGNsqath_xFDxioOwemljXQJXs84LnycYkSBlnoJjCeosM7H0N7gtAg13yv6xoG8k5hw54WSqn_lPuzJw54UyOzp7nxg_KdpaqflfWJ_RQYUsmHKjnbxNsi4LDjydYGy16IpuXpq">
+        <img class="w-12 h-12 md:w-14 md:h-14 rounded-full border-4 border-white" alt="Avatar example 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOwTNueugdDdo5-G2WjrllVucdjDeas8m5W28PDO98oi6nUqat1zJsvtB1YAtr0DvX-5zyvi24p1X0HdeWbm5xNV1g1ZygHfXid0KIT4oWetIT38w5X5Z0xwyoD8FwLlKzn0rXabh7O91w4Cpg53xsfMktAqBsdmBEm4Chp1TOVV-otLWQ5xJ80aK3v-lZit9GZLzvH6UTRNqUTzbgwzx-qwmxaktVpekmC61J2i0Yb02uOdFYTUW6XCpU53p5wav-0g9-hQLzU4zK">
+        <img class="w-12 h-12 md:w-14 md:h-14 rounded-full border-4 border-white" alt="Avatar example 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAtZ5CP1PNgV2ocfpkKrV5K51XkVm5nDtgfzNhcSx-n3Q_rJ-lCe5nG16xEG5-cpoXgXi5oAbH6E5zeezCibNmFNyG82IqC2BVn0s6IELN_oSU_MxeGL0Eeh1VJuhP19ZX-IKJpjGEPZSkWz09BHkB0xKYdZjS9uONwdZ1dUBYPQQxwsDrWQSQFDlWap8C4mw9FcDlWYu4yZ8PDqS4YhbZGM5T3IOAkKI_D1jV8d7_YVMjKtaQhgr-jzrlOQ9XKYWcqh0EUNG1bItD">
+      </div>
+    </div>
+    <!-- Vertical Card: Daily Quests -->
+    <div class="bg-primary-container text-on-primary-container p-8 md:p-10 rounded-lg flex flex-col justify-end min-h-[300px] md:min-h-[400px]">
+      <span class="material-symbols-outlined text-4xl md:text-5xl mb-6">explore</span>
+      <h3 class="font-headline text-xl md:text-2xl font-bold mb-2">Daily Quests</h3>
+      <p class="opacity-80">Turn your habits into epic adventures with XP rewards, difficulty tiers, and contextual coaching.</p>
+    </div>
+    <!-- Square Card: Treasure -->
+    <div class="bg-surface-container-lowest p-8 md:p-10 rounded-lg shadow-sm border-t-4 border-coral">
+      <h4 class="font-headline text-lg md:text-xl font-bold mb-2">Treasure Found</h4>
+      <p class="text-on-surface-variant mb-6">Earn <span class="text-coral font-bold">coins</span> for every completed quest. Spend them on cosmetics.</p>
+      <div class="flex justify-center py-4">
+        <span class="material-symbols-outlined text-6xl md:text-7xl text-coral" style="font-variation-settings: 'FILL' 1;">database</span>
+      </div>
+    </div>
+    <!-- Large Card: Visual Habit Tracking -->
+    <div class="md:col-span-2 bg-white rounded-lg overflow-hidden flex flex-col md:flex-row shadow-sm">
+      <div class="p-8 md:p-10 flex-1">
+        <h3 class="font-headline text-xl md:text-2xl font-bold mb-4">Visual Habit Tracking</h3>
+        <p class="text-on-surface-variant mb-6">No more boring lists. Track your streaks through heatmaps, progress rings, and habit strength analytics that tell the story of your growth.</p>
+        <a href="#features" class="text-primary font-bold flex items-center gap-2 group">
+          Explore Features
+          <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+      <div class="flex-1 bg-slate-100 relative min-h-[200px]">
+        <img alt="Habit tracking visualization showing progress streaks and analytics" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcztcGQLHbikOq1odRw7VHDt3PDJSDQk2Wwd32zyQAXPW7J9eyIeZuE24foA_BCuWPyle4Uc34Wofqweqde3Wf20nS-cZbYz1D8CCyyRw5v7eWeF-618n7CSDlfbZMUH_IicjrVz6qb5OpDOrcN_Zly_EFoizYAlJ38dXc_MjqD7jkarN1L6X43i8LcZN2Qdbks4WnbllFkUag6QdCS1z7onQxF1gOnTrlVqK6t0TE2Dx-3Uv8xBHsZVmdm-I6iFQxHUVnGoE2_0Z9">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURE CARDS "TOOLS FOR THE ASCENDANT MIND" ========== -->
+<section id="features" class="py-20 lg:py-32 px-6 md:px-12 lg:px-24">
+  <!-- Section Header -->
+  <header class="mb-12 lg:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+    <div class="max-w-2xl">
+      <div class="text-secondary font-label font-semibold tracking-widest uppercase mb-4 flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">stars</span>
+        Vault of Capabilities
+      </div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-headline font-extrabold text-on-surface leading-[1.1] tracking-tight">
+        Tools for the <span class="text-secondary">Ascendant</span> Mind
+      </h2>
+      <p class="mt-6 text-on-surface-variant text-lg max-w-xl leading-relaxed">
+        Explore the mechanics that power your evolution. Personal growth redesigned from the ground up, blending AI with behavioral science.
+      </p>
+    </div>
+    <div class="flex gap-4">
+      <a href="https://apps.apple.com/app/gamified-lives" class="primary-gradient text-on-primary px-8 py-4 rounded-full font-headline font-bold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all inline-flex items-center">
+        Start Your Quest
       </a>
     </div>
-  </section>
+  </header>
 
-  <section class="features" id="features">
-    <h2>Everything that makes Gamified Lives different</h2>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="icon">🧑‍🎨</div>
-        <h3>AI Avatar That Looks Like You</h3>
-        <p>Upload your photo and DALL-E creates a personalized RPG avatar. Customize it with 100+ cosmetic items earned through gameplay.</p>
+  <!-- 6 Feature Cards -->
+  <div class="bg-surface-container-low rounded-xl p-6 md:p-8 lg:p-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <!-- Feature 1: AI Avatar -->
+      <div class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_8px_32px_rgba(0,98,140,0.06)] flex flex-col h-full group hover:-translate-y-2 transition-transform duration-300">
+        <div class="mb-6 flex justify-between items-start">
+          <div class="w-14 h-14 bg-surface-container flex items-center justify-center rounded-2xl">
+            <span class="material-symbols-outlined text-3xl sky-accent" style="font-variation-settings: 'FILL' 1;">face_6</span>
+          </div>
+          <span class="text-on-primary-fixed-variant bg-primary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Core</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-headline font-bold mb-4 text-on-surface">AI Avatar That Looks Like You</h3>
+        <p class="text-on-surface-variant leading-relaxed flex-grow">
+          Upload your photo and our AI creates a personalized RPG avatar. Customize it with 100+ cosmetic items earned through gameplay.
+        </p>
+        <div class="mt-8 pt-6 border-t border-surface-variant/30">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full primary-gradient flex items-center justify-center">
+              <span class="material-symbols-outlined text-xs text-white">bolt</span>
+            </div>
+            <span class="text-sm font-label font-bold text-on-surface-variant">AI-Powered Generation</span>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="icon">📸</div>
-        <h3>Real-World Verification</h3>
-        <p>Don't just check a box — prove it. Photo AI, timed sessions, and check-ins verify your habits. That's how your XP actually means something.</p>
+
+      <!-- Feature 2: Real-World Verification -->
+      <div class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_8px_32px_rgba(0,98,140,0.06)] flex flex-col h-full group hover:-translate-y-2 transition-transform duration-300 lg:translate-y-6">
+        <div class="mb-6 flex justify-between items-start">
+          <div class="w-14 h-14 bg-surface-container flex items-center justify-center rounded-2xl">
+            <span class="material-symbols-outlined text-3xl sky-accent" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+          </div>
+        </div>
+        <h3 class="text-xl md:text-2xl font-headline font-bold mb-4 text-on-surface">Real-World Verification</h3>
+        <p class="text-on-surface-variant leading-relaxed flex-grow">
+          Don't just check a box -- prove it. Photo verification, timed sessions, and check-ins verify your habits. That's how your XP actually means something.
+        </p>
+        <div class="mt-8 overflow-hidden rounded-xl h-24 relative">
+          <img alt="Photo verification in action" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6LNMUDlSkM8Hj46Ov1Cxo9RNftQJCuwlZ8KeAKoI2gnH_dQCR-tGxf2KhK9j3R2ImKdnv75DvQ8RFh7e8WwCQc_82waxpYV6i0f0IiQmyz9V21z40lSat2WYPNnssEao-SX5qllRXnKmNOeaDQMQ9vRGS1CosA4aXfwK7qAHr-cR_dcX9Oro-UQtQq8Rl8dSIvlb0SnNomOcfeEBFNZvSWPSsTXX2New2BjovxBlki1kzgf6OOxmJsvpSFidqrkcgqb5-seG6Ofg7">
+          <div class="absolute inset-0 bg-primary/20 backdrop-blur-sm flex items-center justify-center">
+            <span class="text-white font-headline font-bold text-xs tracking-widest uppercase">Verified Synergy</span>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="icon">🎯</div>
-        <h3>Adaptive Difficulty Engine</h3>
-        <p>Crushing it? Difficulty scales up with bonus XP. Struggling? It eases back. Five zones from "Too Hard" to "Mastery" — always in your flow.</p>
+
+      <!-- Feature 3: Adaptive Difficulty Engine -->
+      <div class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_8px_32px_rgba(0,98,140,0.06)] flex flex-col h-full group hover:-translate-y-2 transition-transform duration-300">
+        <div class="mb-6 flex justify-between items-start">
+          <div class="w-14 h-14 bg-surface-container flex items-center justify-center rounded-2xl">
+            <span class="material-symbols-outlined text-3xl sky-accent" style="font-variation-settings: 'FILL' 1;">tune</span>
+          </div>
+          <span class="text-on-primary-fixed-variant bg-primary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Smart</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-headline font-bold mb-4 text-on-surface">Adaptive Difficulty Engine</h3>
+        <p class="text-on-surface-variant leading-relaxed flex-grow">
+          Crushing it? Difficulty scales up with bonus XP. Struggling? It eases back. Five zones from "Too Hard" to "Mastery" -- always in your flow.
+        </p>
+        <div class="mt-8 space-y-2">
+          <div class="flex justify-between text-xs font-bold text-secondary">
+            <span>CURRENT CHALLENGE</span>
+            <span>82%</span>
+          </div>
+          <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+            <div class="h-full primary-gradient" style="width: 82%"></div>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="icon">🔥</div>
-        <h3>Resilience Score, Not Streaks</h3>
-        <p>Streaks punish one bad day. Your Resilience Score rewards bouncing back. Break a streak? Get Phoenix Bonus XP for recovering fast.</p>
+
+      <!-- Feature 4: Resilience Score -->
+      <div class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_8px_32px_rgba(0,98,140,0.06)] flex flex-col h-full group hover:-translate-y-2 transition-transform duration-300">
+        <div class="mb-6 flex justify-between items-start">
+          <div class="w-14 h-14 bg-surface-container flex items-center justify-center rounded-2xl">
+            <span class="material-symbols-outlined text-3xl sky-accent" style="font-variation-settings: 'FILL' 1;">rebase_edit</span>
+          </div>
+        </div>
+        <h3 class="text-xl md:text-2xl font-headline font-bold mb-4 text-on-surface">Resilience Score, Not Streaks</h3>
+        <p class="text-on-surface-variant leading-relaxed flex-grow">
+          Streaks punish one bad day. Your Resilience Score rewards bouncing back. Break a streak? Get Phoenix Bonus XP for recovering fast.
+        </p>
+        <div class="mt-8 bg-surface-container-low rounded-xl p-4 flex items-center gap-4">
+          <span class="text-3xl font-headline font-black sky-accent">9.4</span>
+          <div class="text-[10px] font-bold uppercase leading-tight text-on-surface-variant">
+            Resilience<br>Multiplier
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="icon">🤖</div>
-        <h3>AI Coach In Your Corner</h3>
-        <p>An AI Advisor that knows your goals, your streaks, and your patterns. Get personalized coaching, weekly performance reports, and Monday quests.</p>
+
+      <!-- Feature 5: AI Coach -->
+      <div class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_8px_32px_rgba(0,98,140,0.06)] flex flex-col h-full group hover:-translate-y-2 transition-transform duration-300 lg:translate-y-6">
+        <div class="mb-6 flex justify-between items-start">
+          <div class="w-14 h-14 bg-surface-container flex items-center justify-center rounded-2xl">
+            <span class="material-symbols-outlined text-3xl sky-accent" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+          </div>
+        </div>
+        <h3 class="text-xl md:text-2xl font-headline font-bold mb-4 text-on-surface">AI Coach In Your Corner</h3>
+        <p class="text-on-surface-variant leading-relaxed flex-grow">
+          An AI Advisor that knows your goals, your streaks, and your patterns. Get personalized coaching, weekly performance reports, and Monday quests.
+        </p>
+        <div class="mt-8 flex -space-x-3">
+          <div class="w-10 h-10 rounded-full border-2 border-white bg-surface-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-xs sky-accent">psychology</span>
+          </div>
+          <div class="w-10 h-10 rounded-full border-2 border-white bg-primary text-white flex items-center justify-center">
+            <span class="material-symbols-outlined text-xs">chat_bubble</span>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="icon">👥</div>
-        <h3>Squad Accountability</h3>
-        <p>Join or create squads. Weekly group challenges. Leaderboards. When your squad is grinding, you don't want to be the one who slacks.</p>
+
+      <!-- Feature 6: Squad Accountability -->
+      <div class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_8px_32px_rgba(0,98,140,0.06)] flex flex-col h-full group hover:-translate-y-2 transition-transform duration-300">
+        <div class="mb-6 flex justify-between items-start">
+          <div class="w-14 h-14 bg-surface-container flex items-center justify-center rounded-2xl">
+            <span class="material-symbols-outlined text-3xl sky-accent" style="font-variation-settings: 'FILL' 1;">groups</span>
+          </div>
+          <div class="flex items-center gap-1 bg-coral/10 px-3 py-1 rounded-full text-[10px] font-bold text-coral uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-coral animate-pulse"></span>
+            Live Now
+          </div>
+        </div>
+        <h3 class="text-xl md:text-2xl font-headline font-bold mb-4 text-on-surface">Squad Accountability</h3>
+        <p class="text-on-surface-variant leading-relaxed flex-grow">
+          Join or create squads. Weekly group challenges. Leaderboards. When your squad is grinding, you don't want to be the one who slacks.
+        </p>
+        <div class="mt-8 flex items-center justify-between">
+          <div class="flex -space-x-2">
+            <img alt="Squad member" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAcjxyV4hnQUy-enkds8_FwKKjoK6N4RM8hYnzjvluCZ4oMFNvX-XUHuQSSGmDrwyHJXbHxeVOZbLUcIF1Y7182LIvpWG5KU0B4HMuD3re7a5VS5chFf9rbItYUvE-luto2F3FiSbIMI7sWfKC9c33o6USSgDbrVZBJweZX_uhp0EKqzmtVPyVWEsu8vyvQSpQ7h30x74IRJOQUds9AxS39IQjCY27GXP-ZBCAZTS9ltooQkxZuFRCgBSNyX_TvPyTWm701d_ycFBo">
+            <img alt="Squad member" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Yv_n9lQbnHMZJTObT7nmKBaKQeiJTmh39yNEjs0MK0OociK98YU0EhxPUdZBV0eAxaynjnplJjY_aHUBQ6yl1bAiUAosnwLPW09YVqnXS-1a3-HaXgwv8Jqm0u8q4WkL6dmc6NVLlj5fJ7tJP-9EEn-roCeCSafGF0KD7ABAqnNLqmuLJKPzYBWC-wDy21lTfsrrrfMYrHgfRylxy7wWiEvH8PBx4PVysX2j7xVEP9AAWlw8e3vniHemZQL5aGGUurCyhnXTRSst">
+            <img alt="Squad member" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRruTDVt9DwmVXXVfGhscfbaM53Z6R0IUBbkxkvqK41deFZMUpl91kwfKHDqnJ4t0NVBDKIIJ_INv5sWNZhsY-HL8cD0AVbwMxM5yy-siN1seHGB_V-X3rLSIVMrMT7RbVgARTZf-FOuG64np4_3KW7MFMzFI_cKG87fQQC-ye-054IXBYAgHJCca3ItvZG0ot8hjzNL4KW_nkZvbD3nwuDkWZMaOCW2Gh1DkhPrnofn28NKzRumAXRXpyBsL3Y0JdndZ-dtfqPzOs">
+          </div>
+          <span class="text-xs font-bold text-on-surface-variant">+14 Active Members</span>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="comparison">
-    <h2>How Gamified Lives compares</h2>
-    <p class="sub">The only app combining AI avatars, verification, adaptive difficulty, and RPG depth.</p>
-    <table class="comp-table">
+<!-- ========== PHILOSOPHY / STATS "BEYOND THE INTERFACE" ========== -->
+<section class="py-20 lg:py-32 px-6 md:px-12 lg:px-24">
+  <div class="flex flex-col lg:flex-row gap-12 items-center max-w-7xl mx-auto">
+    <div class="lg:w-1/2 relative">
+      <div class="absolute -top-12 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+      <div class="bg-surface-container-low rounded-xl p-4 md:p-6 relative z-10">
+        <img alt="Gamified Lives dashboard showing habit tracking and RPG progression" class="rounded-lg shadow-2xl object-cover w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-mAhkEga2IPc3mtXQzHmh5FfpRvOlbttmXetqpuICMnRRwxPRbcCyI5Z85bfqQKF-XaONdxxFQ5wWJacgscCzh2-_YfAY5TuGHjhtdmN6luTDkidIv55-Hz50AmnmHVmzu1wKifFOMvwSXGm-mfiCjgyn1LP0aFfQV_hIAY9_7maOHWbjbaYumPBjqxV16dIljxuo4HtnzQG8-MLYmPNyE4BDa9GxEdkRT8LpJ_oYJ65-q9JXXcdNquI1TvKICoYdGgo9evenF7cl">
+      </div>
+      <div class="absolute -bottom-8 -right-8 bg-white p-6 rounded-lg shadow-xl z-20 border border-surface-variant/20 hidden md:block">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-primary-fixed rounded-2xl">
+            <span class="material-symbols-outlined sky-accent" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Ascension Earned</p>
+            <p class="text-lg font-headline font-extrabold">Master Architect</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lg:w-1/2 space-y-8">
+      <h2 class="text-3xl md:text-4xl font-headline font-bold text-on-surface leading-tight">Beyond the Interface:<br>A Philosophy of <span class="text-secondary">Progress</span></h2>
+      <p class="text-on-surface-variant text-lg leading-relaxed">
+        We believe the most important interface is the one between who you are and who you want to become. Gamified Lives isn't just about checkboxes; it's about the emotional resonance of growth.
+      </p>
+      <div class="grid grid-cols-2 gap-8 pt-4">
+        <div class="space-y-2">
+          <div class="text-3xl font-headline font-extrabold sky-accent">500k+</div>
+          <div class="text-sm font-label font-bold text-on-surface-variant uppercase">Quests Completed</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl font-headline font-extrabold sky-accent">12.8m</div>
+          <div class="text-sm font-label font-bold text-on-surface-variant uppercase">XP Distributed</div>
+        </div>
+      </div>
+      <a href="#compare" class="flex items-center gap-3 text-primary font-headline font-bold group hover:gap-5 transition-all">
+        See how we compare
+        <span class="material-symbols-outlined">arrow_right_alt</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COMPARISON TABLE "LEVEL UP YOUR LIFE" ========== -->
+<section id="compare" class="py-20 lg:py-32 px-6 max-w-7xl mx-auto">
+  <!-- Header -->
+  <header class="mb-16 flex flex-col md:flex-row items-end gap-12">
+    <div class="flex-1 space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-secondary-container text-secondary font-label text-sm font-bold">
+        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">stars</span>
+        THE ASCENDANT CHOICE
+      </div>
+      <h2 class="text-4xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-tight text-on-surface">
+        Level Up <span class="text-secondary">Your Life</span>.
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant max-w-xl font-body leading-relaxed">
+        Compare the world's leading gamified wellness platforms. Discover why Gamified Lives is the definitive choice.
+      </p>
+    </div>
+    <div class="relative w-full md:w-1/3 aspect-square rounded-xl overflow-hidden shadow-2xl bg-surface-container-low group hidden md:block">
+      <img alt="Abstract architectural shapes representing personal growth" class="w-full h-full object-cover transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoTJ84LtHlusNWtuboHhje2PEVb9DX--TU90vD-qRIqKpK2rM_umW2NN1PU1Cjd7eKvchM0IngPtOJd91Fl1FcqDnI0imNWX31T14i8C_sYKayvyB6VpQEEcAl40ZqeoVl0HB9xuM9Hdgyvpk3Usw0tHFkhcKvfAeEy4KhMu61wUu4iH0_9nP9DlgHuJnJ2rlBLUfCbIXT3e360PKmbyzF_Y6OKpOt__GjCj8ftwuOWaG_MUnSDp0_cKoT9npv62uKZfkEhhJfLGru">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      <div class="absolute bottom-8 left-8 text-white">
+        <div class="text-sm font-bold uppercase tracking-widest mb-1">Global Leaderboard</div>
+        <div class="text-3xl font-headline font-black">Top 1% Rank</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Table -->
+  <div class="bg-surface-container-low rounded-xl p-2 md:p-8 shadow-sm overflow-x-auto">
+    <table class="w-full border-collapse min-w-[600px]">
       <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Gamified Lives</th>
-          <th>Habitica</th>
-          <th>Finch</th>
-          <th>Ascend AI</th>
+        <tr class="glass-header text-left">
+          <th class="py-6 md:py-8 px-4 md:px-6 font-headline font-bold text-base md:text-lg text-on-surface rounded-tl-lg">Feature</th>
+          <th class="py-6 md:py-8 px-4 md:px-6 relative text-center rounded-t-lg overflow-hidden">
+            <div class="absolute inset-0 signature-gradient opacity-90"></div>
+            <span class="relative z-10 font-headline font-extrabold text-lg md:text-xl text-white">Gamified Lives</span>
+          </th>
+          <th class="py-6 md:py-8 px-4 md:px-6 font-headline font-semibold text-on-surface-variant text-center">Habitica</th>
+          <th class="py-6 md:py-8 px-4 md:px-6 font-headline font-semibold text-on-surface-variant text-center">Finch</th>
+          <th class="py-6 md:py-8 px-4 md:px-6 font-headline font-semibold text-on-surface-variant text-center rounded-tr-lg">Ascend AI</th>
         </tr>
       </thead>
-      <tbody>
-        <tr><td>Personalized AI Avatar</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="miss">—</td></tr>
-        <tr><td>Real-World Verification</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="miss">—</td></tr>
-        <tr><td>Adaptive Difficulty</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="miss">—</td></tr>
-        <tr><td>RPG Progression</td><td class="check">✓</td><td class="check">✓</td><td class="miss">—</td><td class="check">✓</td></tr>
-        <tr><td>Cosmetic Rewards</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="miss">—</td></tr>
-        <tr><td>AI Coaching</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="check">✓</td></tr>
-        <tr><td>Resilience Score</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td><td class="miss">—</td></tr>
-        <tr><td>Squad System</td><td class="check">✓</td><td class="check">✓</td><td class="miss">—</td><td class="miss">—</td></tr>
-        <tr><td>Free Core Features</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="miss">—</td></tr>
-        <tr><td>Modern UI</td><td class="check">✓</td><td class="miss">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tbody class="font-body text-on-surface">
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">Personalized AI Avatar</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">Real-World Verification</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">Adaptive Difficulty</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">RPG Progression</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">Cosmetic Rewards</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">AI Coaching</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">Resilience Score</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">Squad System</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold border-b border-outline-variant/10">Free Core Features</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 border-b border-primary-container/40">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center border-b border-outline-variant/10">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+        </tr>
+        <tr class="group hover:bg-surface-container transition-colors">
+          <td class="py-5 md:py-6 px-4 md:px-6 font-semibold rounded-bl-lg">Modern UI</td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center bg-primary-container/30 rounded-b-lg">
+            <span class="material-symbols-outlined text-primary text-2xl md:text-3xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center">
+            <span class="material-symbols-outlined text-outline-variant">remove</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+          <td class="py-5 md:py-6 px-4 md:px-6 text-center rounded-br-lg">
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </td>
+        </tr>
       </tbody>
     </table>
-  </section>
+  </div>
+</section>
 
-  <section class="faq" id="faq">
-    <h2>Frequently asked questions</h2>
+<!-- ========== FAQ "COMMON INQUIRIES" ========== -->
+<section id="faq" class="py-20 lg:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+  <!-- Header -->
+  <header class="mb-16 text-center md:text-left">
+    <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-surface-container-low text-secondary font-label text-sm font-semibold tracking-wider">
+      <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+      KNOWLEDGE BASE
+    </div>
+    <h2 class="font-headline text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tighter text-on-surface mb-6 leading-tight">
+      Common <span class="text-secondary">Inquiries</span>
+    </h2>
+    <p class="max-w-2xl text-lg md:text-xl text-on-surface-variant font-body leading-relaxed">
+      Everything you need to know about navigating your personal exhibition of growth.
+    </p>
+  </header>
 
-    <div class="faq-item">
-      <h3>What is Gamified Lives?</h3>
-      <p>Gamified Lives is a self-improvement RPG app for iOS that turns your daily habits into quests. You create an AI-powered avatar from your real photo, complete verified habit tasks to earn XP and coins, level up, and customize your character with cosmetic items. It features an Adaptive Difficulty Engine, Resilience Score, and AI Coach.</p>
+  <!-- Asymmetrical FAQ Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <!-- Left Column: Visual Anchor -->
+    <div class="lg:col-span-4 lg:sticky lg:top-32">
+      <div class="rounded-xl overflow-hidden aspect-[4/5] editorial-shadow group">
+        <img alt="Modern minimalist workspace representing self-improvement" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKPebckJfqtSCY92Jpp_juUfY4QOXN_7KQN2MmjQLjvv0jqyGww5kf_c-Nk81uS7rbyzmnAFeD_tzvJ7uVRtm_rq5rDa1ZsP06KjKWSUGHiuH1Nf99o7FONwZCUKYBOUB6XcBAiPhvMXeeRMPo8CvOgIO3BiAmZvssQxZCiecX5opnjugoQqecoX7suKId19Xh6iMs4eVPIQyAdesPGEeCkwm7zHnhtkDJ2UNJFX58HJGUqFAaDJSVIi2Mk3MeHUiQiFkxLvTwYToP">
+      </div>
+      <div class="mt-8 p-8 rounded-lg bg-surface-container-low">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-coral" style="font-variation-settings: 'FILL' 1;">help_center</span>
+          <h3 class="font-headline text-lg font-bold">Still have questions?</h3>
+        </div>
+        <p class="text-on-surface-variant text-sm mb-6">Reach out and we'll get back to you.</p>
+        <a href="mailto:support@gamifiedlives.com" class="block w-full py-4 px-6 coral-gradient text-white rounded-full font-headline font-bold text-sm tracking-wide shadow-lg hover:translate-y-[-2px] transition-all active:scale-95 text-center">
+          CONTACT SUPPORT
+        </a>
+      </div>
     </div>
-    <div class="faq-item">
-      <h3>What is the best gamified habit tracker app?</h3>
-      <p>Gamified Lives is the most comprehensive gamified habit tracker available, combining RPG progression, AI-powered personalized avatars, real-world habit verification, adaptive difficulty, and cosmetic rewards. Unlike Habitica (dated UI, punitive streaks) or Finch (no RPG depth), Gamified Lives verifies you actually completed your habits using photo AI.</p>
-    </div>
-    <div class="faq-item">
-      <h3>How is Gamified Lives different from Habitica?</h3>
-      <p>While Habitica pioneered RPG habit tracking, Gamified Lives modernizes the concept with AI-powered avatars that look like you, real-world verification of habit completion, an Adaptive Difficulty Engine that adjusts challenges to your life, and a Resilience Score that rewards recovery instead of punishing missed days. Habitica uses pixel art and punitive group mechanics; Gamified Lives uses personalized AI and supportive progression.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Is Gamified Lives free?</h3>
-      <p>Yes. All core features including task management, habit tracking, XP progression, standard cosmetics, and history tracking are free. Premium ($7.99/month or $59.99/year) unlocks the AI Advisor chat, weekly AI reports, rare and legendary cosmetics, squad creation, and unlimited photo verification.</p>
-    </div>
-    <div class="faq-item">
-      <h3>What app turns habits into a game?</h3>
-      <p>Gamified Lives turns your real-life habits into an RPG game. Set goals, create habits, and complete daily quests to earn XP, coins, and level up your character. Your avatar is generated from your real photo using AI, and you can customize it with earned cosmetic items.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Does Gamified Lives use AI?</h3>
-      <p>Yes. DALL-E generates your personalized avatar, Claude Vision verifies habit completion through photos, an AI Advisor provides personalized coaching, weekly AI reports analyze your performance, and the Adaptive Difficulty Engine uses behavioral signals to adjust challenges automatically.</p>
-    </div>
-  </section>
 
-  <footer>
-    <div class="footer-links">
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
-      <a href="mailto:support@gamifiedlives.com">Contact</a>
+    <!-- Right Column: FAQ Items -->
+    <div class="lg:col-span-8 flex flex-col gap-4 md:gap-6">
+      <!-- FAQ 1 -->
+      <div class="faq-item open p-6 md:p-8 lg:p-12 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors duration-300 cursor-pointer" onclick="this.classList.toggle('open')">
+        <h3 class="font-headline text-xl md:text-2xl lg:text-3xl font-bold mb-0 flex items-start gap-4 justify-between">
+          <span class="flex items-start gap-4">
+            <span class="text-secondary font-black opacity-30 shrink-0">01</span>
+            What is Gamified Lives?
+          </span>
+          <span class="material-symbols-outlined faq-chevron text-on-surface-variant shrink-0 mt-1">expand_more</span>
+        </h3>
+        <div class="faq-answer">
+          <div class="font-body text-base md:text-lg text-on-surface-variant leading-relaxed pl-0 md:pl-12 pt-6">
+            <p>Gamified Lives is a self-improvement RPG app for iOS that turns your daily habits into quests. You create an AI-powered avatar from your real photo, complete verified habit tasks to earn XP and coins, level up, and customize your character with cosmetic items. It features an Adaptive Difficulty Engine, Resilience Score, and AI Coach.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item p-6 md:p-8 lg:p-12 rounded-lg bg-surface-container-lowest editorial-shadow cursor-pointer" onclick="this.classList.toggle('open')">
+        <h3 class="font-headline text-xl md:text-2xl lg:text-3xl font-bold mb-0 flex items-start gap-4 justify-between">
+          <span class="flex items-start gap-4">
+            <span class="text-secondary font-black opacity-30 shrink-0">02</span>
+            What is the best gamified habit tracker app?
+          </span>
+          <span class="material-symbols-outlined faq-chevron text-on-surface-variant shrink-0 mt-1">expand_more</span>
+        </h3>
+        <div class="faq-answer">
+          <div class="font-body text-base md:text-lg text-on-surface-variant leading-relaxed pl-0 md:pl-12 pt-6">
+            <p>Gamified Lives is the most comprehensive gamified habit tracker available, combining RPG progression, AI-powered personalized avatars, real-world habit verification, adaptive difficulty, and cosmetic rewards. Unlike Habitica (dated UI, punitive streaks) or Finch (no RPG depth), Gamified Lives verifies you actually completed your habits using photo AI.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item p-6 md:p-8 lg:p-12 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors duration-300 cursor-pointer" onclick="this.classList.toggle('open')">
+        <h3 class="font-headline text-xl md:text-2xl lg:text-3xl font-bold mb-0 flex items-start gap-4 justify-between">
+          <span class="flex items-start gap-4">
+            <span class="text-secondary font-black opacity-30 shrink-0">03</span>
+            How is Gamified Lives different from Habitica?
+          </span>
+          <span class="material-symbols-outlined faq-chevron text-on-surface-variant shrink-0 mt-1">expand_more</span>
+        </h3>
+        <div class="faq-answer">
+          <div class="font-body text-base md:text-lg text-on-surface-variant leading-relaxed pl-0 md:pl-12 pt-6">
+            <p>While Habitica pioneered RPG habit tracking, Gamified Lives modernizes the concept with AI-powered avatars that look like you, real-world verification of habit completion, an Adaptive Difficulty Engine that adjusts challenges to your life, and a Resilience Score that rewards recovery instead of punishing missed days. Habitica uses pixel art and punitive group mechanics; Gamified Lives uses personalized AI and supportive progression.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item p-6 md:p-8 lg:p-12 rounded-lg bg-surface-container-lowest editorial-shadow cursor-pointer" onclick="this.classList.toggle('open')">
+        <h3 class="font-headline text-xl md:text-2xl lg:text-3xl font-bold mb-0 flex items-start gap-4 justify-between">
+          <span class="flex items-start gap-4">
+            <span class="text-secondary font-black opacity-30 shrink-0">04</span>
+            Is Gamified Lives free?
+          </span>
+          <span class="material-symbols-outlined faq-chevron text-on-surface-variant shrink-0 mt-1">expand_more</span>
+        </h3>
+        <div class="faq-answer">
+          <div class="font-body text-base md:text-lg text-on-surface-variant leading-relaxed pl-0 md:pl-12 pt-6">
+            <p>Yes. All core features including task management, habit tracking, XP progression, standard cosmetics, and history tracking are free. Premium ($7.99/month or $59.99/year) unlocks the AI Advisor chat, weekly AI reports, rare and legendary cosmetics, squad creation, and unlimited photo verification.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-item p-6 md:p-8 lg:p-12 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors duration-300 cursor-pointer" onclick="this.classList.toggle('open')">
+        <h3 class="font-headline text-xl md:text-2xl lg:text-3xl font-bold mb-0 flex items-start gap-4 justify-between">
+          <span class="flex items-start gap-4">
+            <span class="text-secondary font-black opacity-30 shrink-0">05</span>
+            What app turns habits into a game?
+          </span>
+          <span class="material-symbols-outlined faq-chevron text-on-surface-variant shrink-0 mt-1">expand_more</span>
+        </h3>
+        <div class="faq-answer">
+          <div class="font-body text-base md:text-lg text-on-surface-variant leading-relaxed pl-0 md:pl-12 pt-6">
+            <p>Gamified Lives turns your real-life habits into an RPG game. Set goals, create habits, and complete daily quests to earn XP, coins, and level up your character. Your avatar is generated from your real photo using AI, and you can customize it with earned cosmetic items.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="faq-item p-6 md:p-8 lg:p-12 rounded-lg bg-surface-container-lowest editorial-shadow cursor-pointer" onclick="this.classList.toggle('open')">
+        <h3 class="font-headline text-xl md:text-2xl lg:text-3xl font-bold mb-0 flex items-start gap-4 justify-between">
+          <span class="flex items-start gap-4">
+            <span class="text-secondary font-black opacity-30 shrink-0">06</span>
+            Does Gamified Lives use AI?
+          </span>
+          <span class="material-symbols-outlined faq-chevron text-on-surface-variant shrink-0 mt-1">expand_more</span>
+        </h3>
+        <div class="faq-answer">
+          <div class="font-body text-base md:text-lg text-on-surface-variant leading-relaxed pl-0 md:pl-12 pt-6">
+            <p>Yes. Our AI generates your personalized avatar, AI vision verifies habit completion through photos, an AI Advisor provides personalized coaching, weekly AI reports analyze your performance, and the Adaptive Difficulty Engine uses behavioral signals to adjust challenges automatically.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ========== CTA "BEGIN YOUR EXHIBITION" ========== -->
+<section class="mx-4 md:mx-8 lg:mx-24 mb-20 lg:mb-32 rounded-xl p-10 md:p-16 lg:p-24 bg-primary-fixed overflow-hidden relative">
+  <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+    <div class="max-w-xl text-center md:text-left">
+      <h2 class="font-headline text-3xl md:text-4xl lg:text-5xl font-black text-on-primary-fixed mb-6">Begin Your Exhibition.</h2>
+      <p class="text-base md:text-lg text-on-primary-fixed-variant mb-8 font-medium">Join the ascendants who have turned their daily routines into a masterwork of personal evolution.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+        <a href="https://apps.apple.com/app/gamified-lives" class="px-10 py-5 signature-gradient text-white rounded-full font-headline font-extrabold text-lg shadow-2xl hover:translate-y-[-4px] transition-all text-center">Download Free</a>
+        <a href="#features" class="px-10 py-5 border-2 border-outline/20 text-on-primary-fixed rounded-full font-headline font-bold text-lg hover:bg-white/30 transition-all text-center">See Features</a>
+      </div>
+    </div>
+    <div class="w-48 h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-xl overflow-hidden rotate-6 editorial-shadow shrink-0">
+      <img alt="Abstract art representing personal growth and achievement" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPnok7qur6twZqjTYhghc6ncX_AnMqZOG37TBBmggF9jajHSNawdTkk9kESliVo1I4LI6iem5jbyHAuyPN-mTp4aFppHDybFBbBIXV5EAN_J9B49evF79M9Amj7OcIrQpq3r6Zwh04wf2NbipxC0jHAjXZta84tlmxvsOJnPH6UiHeAsNTMJCRuSoWYmoMTopiWp__u7z_mCyKO4HxXjwqBMvCE1LDIUMTxQp6M8I2bdHHJd-rspwCDWEojBaAMuDQY0bRM7hPZbIy">
+    </div>
+  </div>
+  <!-- Decorative Background Element -->
+  <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary opacity-10 rounded-full blur-3xl"></div>
+</section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-surface py-16 md:py-20 px-6 md:px-16 lg:px-24 border-t border-outline-variant/10">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+    <div class="max-w-xs">
+      <span class="text-2xl font-black text-slate-900 font-headline tracking-tight">Gamified Lives</span>
+      <p class="mt-4 text-on-surface-variant leading-relaxed">Turn your habits into quests and your life into a rewarding journey of personal growth.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-12 md:gap-16">
+      <div>
+        <h5 class="font-headline font-bold mb-6">Product</h5>
+        <ul class="space-y-4 text-on-surface-variant">
+          <li><a class="hover:text-primary transition-colors" href="#features">Features</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#compare">Compare</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-headline font-bold mb-6">Legal</h5>
+        <ul class="space-y-4 text-on-surface-variant">
+          <li><a class="hover:text-primary transition-colors" href="/privacy">Privacy Policy</a></li>
+          <li><a class="hover:text-primary transition-colors" href="/terms">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="col-span-2 sm:col-span-1">
+        <h5 class="font-headline font-bold mb-6">Contact</h5>
+        <ul class="space-y-4 text-on-surface-variant">
+          <li><a class="hover:text-primary transition-colors" href="mailto:support@gamifiedlives.com">Support</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto mt-16 md:mt-20 pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between text-sm text-on-surface-variant gap-4">
     <p>&copy; 2026 Kevin Castaneda. All rights reserved.</p>
-  </footer>
+    <div class="flex gap-8">
+      <a class="hover:text-primary transition-colors" href="/privacy">Privacy Policy</a>
+      <a class="hover:text-primary transition-colors" href="/terms">Terms of Service</a>
+    </div>
+  </div>
+</footer>
 
-  <p class="updated">Last updated: March 2026</p>
+<p class="text-center text-[11px] text-on-surface-variant/50 py-4">Last updated: March 2026</p>
 
 </body>
 </html>

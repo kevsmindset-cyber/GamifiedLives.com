@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    }
+    .card {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, #00628C 0%, #0EA5E9 50%, #34B5FA 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative elements */
+    .orb1 {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,107,0.15) 0%, transparent 70%);
+      top: -100px;
+      right: 100px;
+    }
+    .orb2 {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+      bottom: -80px;
+      left: 200px;
+    }
+    .orb3 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+      top: 60px;
+      left: 60px;
+    }
+
+    /* Grid pattern overlay */
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .left {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    h1 {
+      font-size: 64px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .tagline {
+      font-size: 22px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      max-width: 520px;
+      font-weight: 400;
+    }
+
+    .right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-end;
+    }
+
+    .feature-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 14px 24px;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .feature-pill .icon {
+      font-size: 20px;
+      width: 28px;
+      text-align: center;
+    }
+
+    /* Bottom bar */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+      z-index: 3;
+    }
+    .bottom-bar .url {
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .bottom-bar .cta {
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 700;
+      background: rgba(255,107,107,0.9);
+      padding: 8px 24px;
+      border-radius: 50px;
+    }
+
+    /* Floating diamond accents */
+    .diamond {
+      position: absolute;
+      color: rgba(255,255,255,0.08);
+      font-size: 80px;
+      z-index: 1;
+    }
+    .d1 { top: 40px; right: 60px; transform: rotate(15deg); }
+    .d2 { bottom: 80px; right: 280px; font-size: 50px; transform: rotate(-10deg); }
+    .d3 { top: 160px; left: 520px; font-size: 36px; transform: rotate(25deg); color: rgba(245,166,35,0.12); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid"></div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
+    <div class="diamond d1">&#9670;</div>
+    <div class="diamond d2">&#9670;</div>
+    <div class="diamond d3">&#9733;</div>
+
+    <div class="left">
+      <div class="badge">SELF-IMPROVEMENT RPG</div>
+      <h1>Gamified<br>Lives</h1>
+      <p class="tagline">Turn your real life into an RPG. AI avatars, verified habits, adaptive difficulty.</p>
+    </div>
+
+    <div class="right">
+      <div class="feature-pill">
+        <span class="icon">&#129489;&#8205;&#127912;</span>
+        <span>AI Avatar From Your Photo</span>
+      </div>
+      <div class="feature-pill">
+        <span class="icon">&#128248;</span>
+        <span>Real-World Verification</span>
+      </div>
+      <div class="feature-pill">
+        <span class="icon">&#127919;</span>
+        <span>Adaptive Difficulty</span>
+      </div>
+      <div class="feature-pill">
+        <span class="icon">&#128293;</span>
+        <span>Resilience Score</span>
+      </div>
+      <div class="feature-pill">
+        <span class="icon">&#129302;</span>
+        <span>AI Coach</span>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <span class="url">gamifiedlives.com</span>
+      <span class="cta">Free on iOS</span>
+    </div>
+  </div>
+</body>
+</html>

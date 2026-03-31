@@ -10,14 +10,14 @@ Gamified Lives is an iOS app that gamifies self-improvement through RPG mechanic
 - Adaptive Difficulty Engine adjusts challenge level based on your performance
 - Resilience Score replaces punitive streaks — rewards recovery, not perfection
 - Cosmetic shop with 100+ clothing items earned through gameplay
-- AI Coach powered by Claude for personalized habit guidance
+- AI Coach for personalized habit guidance
 - Squad system for accountability with friends
 - Goals, habits, and daily tasks in a 3-tier quest hierarchy
 
 ## Key Features
 - RPG progression: XP, levels, stats, skill trees, prestige system
-- AI avatar generation from user photos via DALL-E
-- Photo verification of habit completion via Claude Vision
+- AI avatar generation from user photos
+- Photo verification of habit completion via AI vision
 - Adaptive Difficulty Engine (5 zones: Too Hard to Mastery)
 - Resilience Score (0-100, rewards recovery over perfection)
 - Cosmetic wardrobe with tops, bottoms, shoes, dresses, accessories
