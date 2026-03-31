@@ -41,8 +41,8 @@ Gamified Lives competes with Habitica (classic RPG habit tracker with dated UI a
 ## Links
 - Website: https://gamifiedlives.com
 - App Store: https://apps.apple.com/app/gamified-lives
-- Privacy Policy: https://discovered-beak-7f5.notion.site/Gamified-Lives-Privacy-Policy-32bcad9d6774800c88bdef116e998e76
-- Terms of Service: https://discovered-beak-7f5.notion.site/Gamified-Lives-Terms-of-Service-32bcad9d67748075a2bccf9ebd6fad57
+- Privacy Policy: https://gamifiedlives.com/privacy
+- Terms of Service: https://gamifiedlives.com/terms
 
 ## Contact
 Developer: Kevin Castaneda

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Gamified Lives</title>
+  <meta name="description" content="Gamified Lives privacy policy. Learn how we collect, use, and protect your data.">
+  <link rel="canonical" href="https://gamifiedlives.com/privacy">
+  <style>
+    :root {
+      --primary: #0EA5E9;
+      --primary-dark: #0284C7;
+      --bg: #FBFBFC;
+      --card: #FFFFFF;
+      --text: #1A1A2E;
+      --muted: #64748B;
+      --border: #E0E7FF;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .nav {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .nav span { color: var(--muted); font-size: 14px; }
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .effective {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 36px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    p, li {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    ul {
+      padding-left: 24px;
+      margin-bottom: 12px;
+    }
+    li { margin-bottom: 6px; }
+    a { color: var(--primary); }
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="/">Gamified Lives</a>
+    <span>/</span>
+    <span>Privacy Policy</span>
+  </div>
+
+  <div class="content">
+    <h1>Privacy Policy</h1>
+    <p class="effective">Effective date: March 30, 2026</p>
+
+    <p>Gamified Lives ("we", "us", or "our") operates the Gamified Lives mobile application (the "App"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the App.</p>
+
+    <h2>1. Information We Collect</h2>
+
+    <p><strong>Information you provide directly:</strong></p>
+    <ul>
+      <li><strong>Account information:</strong> When you sign in with Apple or Google, we receive your name and email address (or a relay email if you use Apple's Hide My Email).</li>
+      <li><strong>Profile information:</strong> Your chosen display name, gender selection, and avatar preferences.</li>
+      <li><strong>Photos:</strong> If you choose to upload a selfie for avatar creation or use photo verification for tasks, those images are processed by our AI services (OpenAI DALL-E for avatars, Anthropic Claude for verification) and are not stored on our servers after processing.</li>
+      <li><strong>Goals, habits, and tasks:</strong> The content you create within the App to track your personal development.</li>
+      <li><strong>Chat messages:</strong> Messages sent to the AI Advisor are processed by Anthropic's Claude AI and are not stored beyond the active session.</li>
+    </ul>
+
+    <p><strong>Information collected automatically:</strong></p>
+    <ul>
+      <li><strong>Usage analytics:</strong> We use Amplitude to collect anonymized usage data such as feature interactions, session duration, and app events. This data is not linked to your identity.</li>
+      <li><strong>Crash reports:</strong> We use Sentry to collect crash reports and error logs to improve app stability. These may include device model, OS version, and stack traces.</li>
+      <li><strong>Device information:</strong> Device type, operating system version, and app version for compatibility and debugging.</li>
+    </ul>
+
+    <p><strong>Information we do NOT collect:</strong></p>
+    <ul>
+      <li>Location data</li>
+      <li>Contacts or address book</li>
+      <li>Health data (HealthKit integration is planned but not active)</li>
+      <li>Browsing history</li>
+      <li>Advertising identifiers</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <ul>
+      <li>To provide and maintain the App's features, including AI-powered avatar generation, task verification, coaching, and weekly reports.</li>
+      <li>To personalize your experience (adaptive difficulty, AI coaching context).</li>
+      <li>To process in-app purchases and manage your subscription status via RevenueCat.</li>
+      <li>To send push notifications you have opted into (task reminders, streak alerts, squad nudges).</li>
+      <li>To analyze usage patterns and improve the App (via anonymized Amplitude analytics).</li>
+      <li>To diagnose and fix bugs (via Sentry crash reporting).</li>
+    </ul>
+
+    <h2>3. Data Storage</h2>
+    <p>Your game state (XP, level, streak, goals, habits, tasks, cosmetics, and avatar) is stored locally on your device using AsyncStorage. If you sign in, core profile data may be synced to our Supabase backend for cross-device access and squad features.</p>
+    <p>Photos uploaded for avatar creation or task verification are sent to third-party AI services for processing and are not retained on our servers after the response is generated.</p>
+
+    <h2>4. Third-Party Services</h2>
+    <p>We use the following third-party services that may process your data according to their own privacy policies:</p>
+    <ul>
+      <li><strong>Supabase:</strong> Backend database and authentication. <a href="https://supabase.com/privacy">Privacy Policy</a></li>
+      <li><strong>OpenAI:</strong> Avatar image generation (DALL-E). <a href="https://openai.com/privacy">Privacy Policy</a></li>
+      <li><strong>Anthropic:</strong> AI coaching, task verification, and reports (Claude). <a href="https://www.anthropic.com/privacy">Privacy Policy</a></li>
+      <li><strong>RevenueCat:</strong> Subscription and purchase management. <a href="https://www.revenuecat.com/privacy">Privacy Policy</a></li>
+      <li><strong>Amplitude:</strong> Anonymized usage analytics. <a href="https://amplitude.com/privacy">Privacy Policy</a></li>
+      <li><strong>Sentry:</strong> Crash reporting and error tracking. <a href="https://sentry.io/privacy/">Privacy Policy</a></li>
+      <li><strong>Apple / Google:</strong> Authentication via Sign in with Apple / Google Sign-In.</li>
+    </ul>
+
+    <h2>5. Data Sharing</h2>
+    <p>We do not sell, rent, or trade your personal information to third parties. We share data only as described in this policy (with the third-party services listed above) and as required by law.</p>
+    <p>If you join a squad, your display name, level, streak, and daily task count are visible to other squad members.</p>
+
+    <h2>6. Push Notifications</h2>
+    <p>You may opt in to push notifications for task reminders, streak alerts, and squad activity. You can disable notifications at any time through your device settings. All notification content is generated locally using templates — no personal data is transmitted for notification purposes.</p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>The App is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us and we will delete it.</p>
+
+    <h2>8. Data Retention and Deletion</h2>
+    <p>Local data is stored on your device and can be deleted by uninstalling the App. If you have synced data to our backend, you can request deletion of your account and all associated data by using the "Delete Account" option in the App's settings, or by contacting us at the email below. We will process deletion requests within 30 days.</p>
+
+    <h2>9. Security</h2>
+    <p>We implement reasonable security measures to protect your data. API keys for AI services are stored server-side and are never included in the app bundle. All network communication uses HTTPS encryption.</p>
+
+    <h2>10. Your Rights</h2>
+    <p>Depending on your jurisdiction, you may have the right to:</p>
+    <ul>
+      <li>Access the personal data we hold about you</li>
+      <li>Request correction of inaccurate data</li>
+      <li>Request deletion of your data</li>
+      <li>Opt out of analytics tracking</li>
+      <li>Export your data in a portable format</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:support@gamifiedlives.com">support@gamifiedlives.com</a>.</p>
+
+    <h2>11. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the updated policy in the App or on our website. Your continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>12. Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, contact us at:</p>
+    <p><a href="mailto:support@gamifiedlives.com">support@gamifiedlives.com</a></p>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="mailto:support@gamifiedlives.com">Contact</a>
+    </div>
+    <p>&copy; 2026 Kevin Castaneda. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
