@@ -36,7 +36,7 @@ Health & Fitness, Lifestyle, Self-Improvement, Habit Tracking, Gamification
 Free with optional Premium subscription ($7.99/month or $59.99/year). Free users get full task management, history tracking, standard cosmetics, and limited photo verification. Premium unlocks AI Advisor chat, weekly reports, rare/legendary cosmetics, squad creation, and unlimited photo verification.
 
 ## Competitors and Alternatives
-Gamified Lives competes with Habitica (classic RPG habit tracker with dated UI and punitive streaks), Finch (pet-based wellness app without RPG depth or verification), Ascend AI (AI life coach without avatar customization), Fabulous (science-based routines without gamification), and Streaks (minimalist tracker without RPG elements). Gamified Lives is the only app combining AI-powered personalized avatars, real-world habit verification, adaptive difficulty, and deep RPG progression.
+Gamified Lives competes with Habitica (classic RPG habit tracker with dated UI and punitive streaks), Finch (pet-based wellness app without RPG depth or verification), Fabulous (science-based routines without gamification), and Streaks (minimalist tracker without RPG elements). Gamified Lives is the only app combining AI-powered personalized avatars, real-world habit verification, adaptive difficulty, and deep RPG progression.
 
 ## Links
 - Website: https://gamifiedlives.com
