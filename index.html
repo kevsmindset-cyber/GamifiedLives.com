@@ -2910,6 +2910,94 @@ section.tight { padding-block: calc(80px * var(--density)); }
   .pcard-badge { font-size: 9px; padding: 5px 12px; }
 }
 
+/* ============================================================
+   MOBILE — unified phone-sized responsive pass
+   Everything below 640px gets tighter rhythm, smaller type,
+   simpler nav, and fits the iPhone viewport without overflow.
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Global rhythm */
+  section { padding-block: 64px; }
+  section.tight { padding-block: 48px; }
+  .section-header { margin-bottom: 40px; }
+  .wrap { padding: 0 18px; }
+
+  /* Typography */
+  .h-display { font-size: clamp(34px, 9vw, 44px); line-height: 1.02; letter-spacing: -0.025em; }
+  .h-section { font-size: clamp(28px, 7.2vw, 36px); line-height: 1.08; }
+  .h-sub { font-size: 20px; }
+  .body-lg { font-size: 16px; }
+
+  /* Navbar — collapse middle links, keep logo + CTA */
+  .nav { gap: 10px; padding: 8px 8px 8px 14px; width: calc(100vw - 20px); top: 10px; }
+  .nav-links { display: none; }
+  .nav-cta { padding: 8px 14px; font-size: 13px; margin-left: auto; }
+  .nav-logo { font-size: 14px; }
+  .nav-logo-mark { width: 24px; height: 24px; font-size: 13px; }
+
+  /* Hero */
+  .hero-grid { gap: 32px; }
+  .hero-copy { text-align: left; }
+
+  /* Tile ghost number was 200px — absurd on phones */
+  .tile-ghost-num { font-size: 120px; right: -10px; bottom: -20px; }
+
+  /* Phone mockup — shrink to fit the real device */
+  .phone { width: min(320px, calc(100vw - 48px)); height: min(660px, calc((100vw - 48px) * 2.06)); }
+
+  /* Demo controls stacked */
+  .demo-shell { gap: 24px; }
+
+  /* Pricing cards */
+  .pcard { padding: 28px 22px; }
+  .pcard-price .amt { font-size: 42px; }
+  .pcard-price .per { font-size: 13px; }
+  .pcard ul li { font-size: 14px; }
+
+  /* Pricing matrix — allow horizontal scroll if tight */
+  .pmatrix-wrap { padding: 20px 14px; border-radius: 20px; }
+  .pmatrix-row { font-size: 12px; padding: 10px 10px; gap: 6px; grid-template-columns: 1.6fr 0.7fr 0.9fr; }
+  .pmatrix-title { font-size: 20px; }
+  .pmatrix-sub { font-size: 14px; }
+
+  /* Features grid */
+  .features-grid, .life-grid, .hierarchy-grid, .squad-grid, .testimonials { gap: 14px; }
+
+  /* Analytics tabs — allow horizontal scroll on the pill row */
+  .analytics-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .analytics-tabs::-webkit-scrollbar { display: none; }
+
+  /* Testimonial cards */
+  .test-quote { font-size: 15px; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .footer-base { flex-direction: column; gap: 8px; text-align: center; font-size: 11px; }
+
+  /* Buttons */
+  .btn { padding: 14px 22px; font-size: 14px; }
+  .btn-lg { padding: 16px 26px; font-size: 15px; }
+
+  /* Monthly pass tease */
+  .pass-tease { padding: 22px; border-radius: 24px; }
+  .pass-tease-title { font-size: 22px; }
+
+  /* Any direct-children horizontal grid that wasn't caught */
+  .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
+
+  /* Prevent any stray horizontal overflow */
+  body, #root { overflow-x: hidden; }
+}
+
+/* Extra tight devices (iPhone SE / small phones) */
+@media (max-width: 380px) {
+  .h-display { font-size: 30px; }
+  .phone { width: calc(100vw - 40px); height: calc((100vw - 40px) * 2.06); }
+  .wrap { padding: 0 14px; }
+  .nav-cta { padding: 7px 12px; font-size: 12px; }
+  .nav-logo-mark { display: none; }
+}
+
   </style>
 </head>
 <body>
