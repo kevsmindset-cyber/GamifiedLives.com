@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap — Gamified Lives</title>
+  <meta name="description" content="What's shipping next in Gamified Lives. Honest, public, and updated as things ship.">
+  <link rel="canonical" href="https://gamifiedlives.com/roadmap.html">
+  <meta property="og:title" content="Roadmap — Gamified Lives">
+  <meta property="og:description" content="What's shipping next, what's in the oven, and what's being considered.">
+  <meta property="og:url" content="https://gamifiedlives.com/roadmap.html">
+  <meta property="og:image" content="https://gamifiedlives.com/images/og-image.png">
+  <style>
+    :root {
+      --primary: #0EA5E9; --primary-dark: #00628C; --primary-light: #34B5FA;
+      --coral: #FF6B6B; --gold: #F5A623; --emerald: #0D9668; --purple: #8B5CF6;
+      --bg: #F6F6F7; --card: #FFFFFF; --section: #F0F1F2;
+      --text: #0F172A; --text-2: #5A5C5D; --text-3: #94A3B8;
+      --shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+      --r-card: 24px; --r-pill: 9999px;
+      --grad: linear-gradient(135deg, #00628C 0%, #34B5FA 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(246, 246, 247, 0.85);
+      backdrop-filter: saturate(140%) blur(16px);
+      -webkit-backdrop-filter: saturate(140%) blur(16px);
+      border-bottom: 1px solid rgba(15,23,42,0.04);
+      padding: 14px clamp(20px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; letter-spacing: -0.015em; }
+    .nav-logo-mark {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--grad); display: grid; place-items: center;
+      color: white; font-weight: 900; font-size: 15px;
+      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.35);
+    }
+    .nav-back {
+      font-size: 14px; font-weight: 600; color: var(--text-2);
+      padding: 8px 14px; border-radius: var(--r-pill);
+    }
+    .nav-back:hover { background: rgba(15,23,42,0.05); color: var(--text); }
+
+    .hero { padding: 64px 0 32px; text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--primary-dark);
+      background: rgba(14, 165, 233, 0.12);
+      padding: 6px 14px; border-radius: var(--r-pill);
+      margin-bottom: 20px;
+    }
+    h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 18px; }
+    .lede { font-size: 17px; color: var(--text-2); max-width: 620px; margin: 0 auto; }
+
+    main { padding-bottom: 80px; }
+
+    .column-head {
+      margin: 48px 0 16px;
+      padding: 14px 20px;
+      border-radius: var(--r-pill);
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+      color: white;
+    }
+    .column-head.now      { background: var(--emerald); }
+    .column-head.next     { background: var(--primary-dark); }
+    .column-head.later    { background: var(--purple); }
+    .column-head.considering { background: var(--gold); color: #5A3D0A; }
+
+    .items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 720px) { .items { grid-template-columns: 1fr; } }
+
+    .item {
+      background: var(--card);
+      border-radius: var(--r-card);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .item-title { font-size: 17px; font-weight: 800; letter-spacing: -0.015em; color: var(--text); }
+    .item-desc { font-size: 14px; color: var(--text-2); }
+    .item-meta {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .tag.premium { background: rgba(245, 166, 35, 0.18); color: #7F5200; }
+    .tag.free    { background: rgba(13, 150, 104, 0.14); color: #0D9668; }
+    .tag.ios     { background: rgba(15, 23, 42, 0.08); color: var(--text); }
+    .tag.android { background: rgba(139, 92, 246, 0.15); color: var(--purple); }
+
+    .feedback {
+      background: #0F172A;
+      color: white;
+      border-radius: var(--r-card);
+      padding: 36px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .feedback h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .feedback p { color: rgba(255,255,255,0.78); margin-bottom: 20px; font-size: 15px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .feedback a {
+      display: inline-block;
+      background: white;
+      color: var(--primary-dark);
+      padding: 12px 22px;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 14px;
+      margin: 4px;
+    }
+
+    .disclaimer {
+      background: rgba(245, 166, 35, 0.12);
+      border-radius: 16px;
+      padding: 18px 22px;
+      font-size: 14px;
+      color: #5A3D0A;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+    .disclaimer strong { font-weight: 800; }
+
+    footer {
+      background: var(--section);
+      padding: 40px clamp(20px, 4vw, 40px) 32px;
+      text-align: center;
+    }
+    .footer-logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 12px; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 16px; }
+    .footer-links a { font-size: 13px; color: var(--text-2); }
+    .footer-links a:hover { color: var(--text); }
+    .footer-meta { font-size: 12px; color: var(--text-3); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/">
+      <span class="nav-logo-mark">G</span>
+      <span>Gamified Lives</span>
+    </a>
+    <a class="nav-back" href="/">← Back to home</a>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Roadmap</span>
+      <h1>What's shipping next.</h1>
+      <p class="lede">Honest, public, and updated as things ship. No vaporware. If it's here, it's either being built now or next on the list.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="disclaimer">
+      <strong>How to read this:</strong> Items move left to right as they ship. "Shipping now" is in active development for the next TestFlight build. "Next up" is queued. "On the horizon" is planned but unscheduled. "Considering" needs community signal before I commit — vote on Reddit.
+    </div>
+
+    <!-- SHIPPING NOW -->
+    <div class="column-head now">● Shipping now</div>
+    <div class="items">
+      <div class="item">
+        <div class="item-title">iOS launch <span class="tag ios">iOS</span></div>
+        <div class="item-desc">App Store submission in review. Waitlist emails go out the day it's live.</div>
+        <div class="item-meta">Available soon</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Apple Health auto-verification</div>
+        <div class="item-desc">Steps, workouts, mindful minutes, sleep, and calories auto-verify your habits in the background. No manual logging needed for HealthKit-backed activities.</div>
+        <div class="item-meta">Apple Health · Steps · Sleep · Exercise minutes</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Life Domain insights v2</div>
+        <div class="item-desc">Cross-domain correlations go deeper: 30-day regression, mood drivers, and "the one habit that changes everything" detector.</div>
+        <div class="item-meta">Client-side · No AI cost</div>
+      </div>
+    </div>
+
+    <!-- NEXT UP -->
+    <div class="column-head next">● Next up</div>
+    <div class="items">
+      <div class="item">
+        <div class="item-title">Dynamic AI Monday Quest <span class="tag premium">Premium</span></div>
+        <div class="item-desc">Monday Quest goes from pre-written templates to fully AI-generated — written for you based on last week's data and what you're working on.</div>
+        <div class="item-meta">Claude Haiku · Weekly</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Home screen widgets <span class="tag ios">iOS</span></div>
+        <div class="item-desc">Today's tasks, XP ring, streak, and resilience score — all glanceable from your home screen without opening the app.</div>
+        <div class="item-meta">iOS 17+</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Smart scale integrations</div>
+        <div class="item-desc">Body-weight data from Withings, Eufy, and Renpho auto-syncs into the Health card. Weekly trend and body composition built in.</div>
+        <div class="item-meta">Health domain</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Cosmetic expansion</div>
+        <div class="item-desc">50+ new rare and legendary clothing items, a seasonal winter drop, and the first rotating creator template with wearables included.</div>
+        <div class="item-meta">Rare · Legendary · Prestige</div>
+      </div>
+    </div>
+
+    <!-- ON THE HORIZON -->
+    <div class="column-head later">● On the horizon</div>
+    <div class="items">
+      <div class="item">
+        <div class="item-title">Android launch <span class="tag android">Android</span></div>
+        <div class="item-desc">Full feature parity with iOS. Starts as beta on Play Store Early Access once iOS is stable.</div>
+        <div class="item-meta">After iOS 1.1</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Dungeons — themed multi-day challenges</div>
+        <div class="item-desc">Opt-in week-long boss fights with a narrative arc. Example: "The 7-Day Focus Dungeon" — daily deep-work boss, weekly report boss, Phoenix comeback quest.</div>
+        <div class="item-meta">Framework in place · Content next</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Seasons — 90-day story arcs</div>
+        <div class="item-desc">Quarterly narrative arcs tied to the Monthly Pass. Each season brings a new Awakening, rotating cosmetic drops, and a season-end legacy reward.</div>
+        <div class="item-meta">Battle-pass adjacent</div>
+      </div>
+      <div class="item">
+        <div class="item-title">NFC tap-to-verify</div>
+        <div class="item-desc">Stick an NFC sticker on your gym bag, fridge, or desk — tap to instantly log a verified habit. No photo, no timer, no app open.</div>
+        <div class="item-meta">iPhone + Android · Background tag read</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Templates marketplace v2</div>
+        <div class="item-desc">Creator-authored quest chains with built-in cosmetics. Verified creators keep a revenue share. Your monthly $1 Premium credit actually spends on something.</div>
+        <div class="item-meta">Creator economy</div>
+      </div>
+    </div>
+
+    <!-- CONSIDERING -->
+    <div class="column-head considering">● Considering</div>
+    <div class="items">
+      <div class="item">
+        <div class="item-title">Couples / partner mode</div>
+        <div class="item-desc">Shared goals between two people — anniversary trips, savings targets, fitness PRs. Tell me on Reddit if you want this.</div>
+        <div class="item-meta">Community signal needed</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Desktop companion</div>
+        <div class="item-desc">Light macOS / Windows companion for deep-work sessions, focus timers, and journaling. Not a port of the app — a focused co-app.</div>
+        <div class="item-meta">Community signal needed</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Apple Watch complications</div>
+        <div class="item-desc">Streak + XP + next task on your wrist. Tap-to-verify. Waiting to see real iPhone launch traction first.</div>
+        <div class="item-meta">Community signal needed</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Voice-first morning ritual</div>
+        <div class="item-desc">Wake up, open app, speak your day plan into the AI Coach — it builds your tasks for you and voice-checks you at noon.</div>
+        <div class="item-meta">Community signal needed</div>
+      </div>
+    </div>
+
+    <div class="feedback">
+      <h3>Vote on what comes next</h3>
+      <p>The "Considering" column lives or dies by community signal. If something here would change your life, say so — the subreddit is the real planning doc.</p>
+      <a href="https://reddit.com/r/gamifiedlives" target="_blank" rel="noopener">r/gamifiedlives</a>
+      <a href="mailto:roadmap@gamifiedlives.com">Email ideas</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-logo">
+      <span class="nav-logo-mark">G</span>
+      <span>Gamified Lives</span>
+    </div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/press.html">Press kit</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <div class="footer-meta">© 2026 Gamified Lives · Built by Kevin Castaneda</div>
+  </footer>
+</body>
+</html>

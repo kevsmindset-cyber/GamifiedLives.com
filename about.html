@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Gamified Lives</title>
+  <meta name="description" content="The story behind Gamified Lives — a one-person-built habit RPG that rewards real effort.">
+  <link rel="canonical" href="https://gamifiedlives.com/about.html">
+  <meta property="og:title" content="About — Gamified Lives">
+  <meta property="og:description" content="One person. Self-funded. Extremely tired of habit apps that make you feel worse.">
+  <meta property="og:url" content="https://gamifiedlives.com/about.html">
+  <meta property="og:image" content="https://gamifiedlives.com/images/og-image.png">
+  <style>
+    :root {
+      --primary: #0EA5E9; --primary-dark: #00628C; --primary-light: #34B5FA;
+      --coral: #FF6B6B; --gold: #F5A623; --emerald: #0D9668;
+      --bg: #F6F6F7; --card: #FFFFFF; --section: #F0F1F2;
+      --text: #0F172A; --text-2: #5A5C5D; --text-3: #94A3B8;
+      --shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+      --r-card: 24px; --r-pill: 9999px;
+      --grad: linear-gradient(135deg, #00628C 0%, #34B5FA 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(246, 246, 247, 0.85);
+      backdrop-filter: saturate(140%) blur(16px);
+      -webkit-backdrop-filter: saturate(140%) blur(16px);
+      border-bottom: 1px solid rgba(15,23,42,0.04);
+      padding: 14px clamp(20px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; letter-spacing: -0.015em; }
+    .nav-logo-mark {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--grad); display: grid; place-items: center;
+      color: white; font-weight: 900; font-size: 15px;
+      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.35);
+    }
+    .nav-back {
+      font-size: 14px; font-weight: 600; color: var(--text-2);
+      padding: 8px 14px; border-radius: var(--r-pill);
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .nav-back:hover { background: rgba(15,23,42,0.05); color: var(--text); }
+
+    .hero { padding: 72px 0 40px; text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--primary-dark);
+      background: rgba(14, 165, 233, 0.12);
+      padding: 6px 14px; border-radius: var(--r-pill);
+      margin-bottom: 20px;
+    }
+    h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 18px; }
+    .lede { font-size: clamp(17px, 1.7vw, 20px); color: var(--text-2); max-width: 620px; margin: 0 auto; }
+
+    article { padding: 20px 0 80px; }
+    article h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.015em; margin: 40px 0 14px; }
+    article p { color: var(--text-2); margin-bottom: 16px; font-size: 17px; }
+    article p strong { color: var(--text); font-weight: 700; }
+    article a { color: var(--primary-dark); font-weight: 600; border-bottom: 1px solid rgba(0, 98, 140, 0.25); }
+    article a:hover { border-bottom-color: var(--primary-dark); }
+    article ul { color: var(--text-2); margin: 0 0 20px 20px; }
+    article ul li { margin-bottom: 6px; }
+
+    .pull {
+      background: var(--card);
+      border-radius: var(--r-card);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin: 32px 0;
+    }
+    .pull-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--primary-dark); margin-bottom: 10px;
+    }
+    .pull-quote {
+      font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3;
+      color: var(--text);
+    }
+
+    footer {
+      background: var(--section);
+      padding: 40px clamp(20px, 4vw, 40px) 32px;
+      text-align: center;
+    }
+    .footer-logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 12px; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 16px; }
+    .footer-links a { font-size: 13px; color: var(--text-2); }
+    .footer-links a:hover { color: var(--text); }
+    .footer-meta { font-size: 12px; color: var(--text-3); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/">
+      <span class="nav-logo-mark">G</span>
+      <span>Gamified Lives</span>
+    </a>
+    <a class="nav-back" href="/">← Back to home</a>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">About</span>
+      <h1>Built by someone who stopped<br>believing habit apps.</h1>
+      <p class="lede">Gamified Lives is made by one person. Self-funded. No VC, no growth team, no roadmap someone else wrote.</p>
+    </div>
+  </section>
+
+  <article class="wrap">
+    <p>
+      Hi — I'm <strong>Kevin Castaneda</strong>. I've been obsessed with habit apps for years and quietly disappointed by every single one. Duolingo's streak turns into a guilt engine. Habitica looks like a 2013 browser game. Finch is lovely but the data is shallow. Every app I tried treated my effort like a box to tick instead of a life I was actually trying to change.
+    </p>
+
+    <p>
+      So I built the one I wanted to use.
+    </p>
+
+    <div class="pull">
+      <div class="pull-eyebrow">The thesis</div>
+      <div class="pull-quote">
+        If an RPG can make you sit through a 60-hour side quest with nothing but progress bars and vibes, a habit app should be able to make you save $5,000, sleep 7.5 hours, or read 20 pages a night.
+      </div>
+    </div>
+
+    <h2>Why it looks different</h2>
+    <p>
+      Most habit apps punish you for missing a day. Gamified Lives gives you a <strong>Phoenix Bonus</strong> — 2× XP for 24 hours after a streak breaks. Coming back matters more than being perfect.
+    </p>
+    <p>
+      Most habit apps are a list of checkboxes. Gamified Lives is a three-layer system: <strong>Goals → Habits → Tasks</strong>, where goals auto-fill their progress from the domain data you're already logging. Log $50 saved, and the "Save $5,000" goal moves on its own.
+    </p>
+    <p>
+      Most habit apps trust you blindly. Gamified Lives has <strong>real verification</strong>: photo scan for food and proof, HealthKit auto-verification for fitness, timers for focused work. Not because I don't trust you — because proof is what makes the XP feel real.
+    </p>
+
+    <h2>Why "life domains"</h2>
+    <p>
+      The day I realized I had six apps on my phone for six areas of my life — one for macros, one for sleep, one for money, one for mood, one for learning hours, one for sobriety — was the day the design changed. Gamified Lives absorbs them all. You pick which domains you want. The rest stay hidden.
+    </p>
+    <p>
+      The magic is what happens when the data lives together. The app finds correlations for you: <em>"You spend 30% more on days after shorter sleep."</em> No other habit app in the market has the full picture, so no other habit app can surface those insights.
+    </p>
+
+    <h2>What's next</h2>
+    <p>
+      iOS launch first, then Android. Apple Health auto-verification is in the oven (<a href="/roadmap.html">see the roadmap</a>). Beyond that, it's whatever the community tells me they want — the <a href="https://reddit.com/r/gamifiedlives" target="_blank" rel="noopener">subreddit</a> is the real planning doc.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      <strong>Press:</strong> <a href="/press.html">press kit</a> · <strong>Support:</strong> <a href="mailto:support@gamifiedlives.com">support@gamifiedlives.com</a> · <strong>Everything else:</strong> <a href="mailto:hi@gamifiedlives.com">hi@gamifiedlives.com</a>
+    </p>
+  </article>
+
+  <footer>
+    <div class="footer-logo">
+      <span class="nav-logo-mark">G</span>
+      <span>Gamified Lives</span>
+    </div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/roadmap.html">Roadmap</a>
+      <a href="/press.html">Press kit</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <div class="footer-meta">© 2026 Gamified Lives · Built by Kevin Castaneda</div>
+  </footer>
+</body>
+</html>

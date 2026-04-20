@@ -2911,6 +2911,90 @@ section.tight { padding-block: calc(80px * var(--density)); }
 }
 
 /* ============================================================
+   WAITLIST FORM — email capture inside the CTA banner
+   ============================================================ */
+.wl-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  padding: 6px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+}
+.wl-form input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 15px;
+  color: white;
+}
+.wl-form input[type="email"]::placeholder { color: rgba(255,255,255,0.55); }
+.wl-form button {
+  border: 0;
+  background: white;
+  color: var(--primary-dark);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.wl-form button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(255, 255, 255, 0.25);
+}
+.wl-form button:disabled { opacity: 0.6; cursor: default; }
+.wl-error {
+  position: absolute;
+  transform: translateY(60px);
+  font-size: 13px;
+  color: #FECACA;
+  text-align: center;
+  width: 100%;
+}
+.wl-success {
+  margin: 28px auto 0;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+  padding: 18px 22px;
+  color: white;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+}
+.wl-success-ico {
+  width: 32px; height: 32px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.2);
+  display: grid; place-items: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+@media (max-width: 540px) {
+  .wl-form { flex-direction: column; border-radius: 20px; padding: 10px; gap: 10px; }
+  .wl-form input[type="email"] { padding: 12px 14px; }
+  .wl-form button { width: 100%; padding: 14px; }
+}
+
+/* ============================================================
    MOBILE — unified phone-sized responsive pass
    Everything below 640px gets tighter rhythm, smaller type,
    simpler nav, and fits the iPhone viewport without overflow.
@@ -3048,7 +3132,7 @@ const Icon = {
 function Nav() {
   return (
     <nav className="nav">
-      <a className="nav-logo" href="#">
+      <a className="nav-logo" href="/">
         <span className="nav-logo-mark">G</span>
         <span>Gamified Lives</span>
       </a>
@@ -3059,7 +3143,7 @@ function Nav() {
         <a className="nav-link" href="#pricing">Pricing</a>
         <a className="nav-link" href="#faq">FAQ</a>
       </div>
-      <a className="nav-cta" href="#cta">Start 7-day free trial</a>
+      <a className="nav-cta" href="#cta">Join waitlist</a>
     </nav>
   );
 }
@@ -3084,7 +3168,7 @@ function Hero() {
           </p>
           <div className="hero-ctas">
             <a className="btn btn-primary" href="#cta">
-              Start 7-day free trial
+              Join the waitlist
               <Icon.arrow />
             </a>
             <a className="btn btn-ghost" href="#demo">
@@ -4074,12 +4158,16 @@ function DemoPhone({ flow, step }) {
 /* =========== FLOW — AVATAR CREATION (onboarding day 1) =========== */
 function FlowAvatar({ step }) {
   // 0 welcome, 1 camera aim, 2 AI thinking, 3 drawing strokes, 4 reveal
+  const totalSteps = 5;
+  const currentStep = Math.min(step + 1, totalSteps);
   return (
     <div className="d-av-screen">
       <div className="d-av-topbar">
-        <span className="d-av-step">Step 2 of 4</span>
+        <span className="d-av-step">Step {currentStep} of {totalSteps}</span>
         <div className="d-av-dots">
-          <span className="on"/><span className="on"/><span/><span/>
+          {Array.from({ length: totalSteps }).map((_, i) => (
+            <span key={i} className={i <= step ? "on" : ""}/>
+          ))}
         </div>
       </div>
 
@@ -4991,7 +5079,7 @@ function Pricing() {
               <li>Rare & Legendary cosmetics unlocked</li>
               <li>$1/month template shop credit</li>
             </ul>
-            <a className="btn btn-primary" href="#cta">Start 7-day free trial</a>
+            <a className="btn btn-primary" href="#cta">Join the waitlist</a>
           </div>
           <div className="pcard">
             <div className="pcard-tier">Give a month</div>
@@ -5095,28 +5183,78 @@ function FAQ() {
   );
 }
 
+const SUPABASE_URL = "https://mtujvdqhlolfojqxyzwh.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10dWp2ZHFobG9sZm9qcXh5endoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE5MTIxMzMsImV4cCI6MjA1NzQ4ODEzM30.BoLljoD9XdeKWL_JKInX7GiC9nljyUjvFsYS4SPjgk8";
+
+async function joinWaitlist(email, source = "landing") {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_ANON,
+      Authorization: `Bearer ${SUPABASE_ANON}`,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify({ email: email.trim().toLowerCase(), source }),
+  });
+  // 201 = new, 409 = already on the list (both treated as success)
+  return r.ok || r.status === 409;
+}
+
+function WaitlistForm({ source = "landing" }) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!/^\S+@\S+\.\S+$/.test(email)) { setStatus("error"); return; }
+    setStatus("loading");
+    const ok = await joinWaitlist(email, source).catch(() => false);
+    setStatus(ok ? "success" : "error");
+  };
+  if (status === "success") {
+    return (
+      <div className="wl-success">
+        <span className="wl-success-ico">✓</span>
+        You're on the list. We'll ping you the day the App Store goes live.
+      </div>
+    );
+  }
+  return (
+    <form className="wl-form" onSubmit={submit}>
+      <input
+        type="email"
+        inputMode="email"
+        autoComplete="email"
+        placeholder="you@your-domain.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        disabled={status === "loading"}
+        aria-label="Email address"
+      />
+      <button type="submit" disabled={status === "loading"}>
+        {status === "loading" ? "Saving…" : "Join the waitlist"}
+      </button>
+      {status === "error" && (
+        <div className="wl-error">Something went wrong — double-check your email and try again.</div>
+      )}
+    </form>
+  );
+}
+
 function CTABanner() {
   return (
     <section id="cta" data-screen-label="10 CTA">
       <div className="wrap">
         <div className="cta-banner">
-          <span className="eyebrow" style={{ color: "rgba(255,255,255,0.7)" }}>New save file</span>
+          <span className="eyebrow" style={{ color: "rgba(255,255,255,0.7)" }}>Pre-launch waitlist</span>
           <h2 className="h-section" style={{ marginTop: 16 }}>
             Your character is<br/>waiting for Day 1.
           </h2>
           <p className="body-lg">
-            Free forever tier. No credit card for trial. Eight minutes from
-            download to first XP.
+            Gamified Lives launches on iOS soon. Drop your email and we'll send a
+            one-tap install link the moment we go live. No spam — just launch day.
           </p>
-          <div className="hero-ctas">
-            <a className="btn btn-primary" href="#">
-              Start 7-day free trial
-              <Icon.arrow />
-            </a>
-            <a className="btn" href="#" style={{ background: "rgba(255,255,255,0.12)", color: "white" }}>
-              Download on App Store
-            </a>
-          </div>
+          <WaitlistForm source="landing-cta" />
         </div>
       </div>
     </section>
@@ -5142,27 +5280,24 @@ function Footer() {
             <div>
               <h5>Product</h5>
               <ul>
-                <li><a>Features</a></li>
-                <li><a>Pricing</a></li>
-                <li><a>Changelog</a></li>
-                <li><a>Roadmap</a></li>
-                <li><a>App Store</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="/roadmap.html">Roadmap</a></li>
+                <li><a href="#cta">Waitlist</a></li>
               </ul>
             </div>
             <div>
               <h5>Community</h5>
               <ul>
-                <li><a>Discord</a></li>
-                <li><a>Reddit r/GamifiedLives</a></li>
-                <li><a>TikTok</a></li>
-                <li><a>Squad directory</a></li>
+                <li><a href="https://reddit.com/r/gamifiedlives" target="_blank" rel="noopener">Reddit r/gamifiedlives</a></li>
+                <li><a href="https://tiktok.com/@gamified.lives" target="_blank" rel="noopener">TikTok @gamified.lives</a></li>
               </ul>
             </div>
             <div>
               <h5>Company</h5>
               <ul>
-                <li><a>About</a></li>
-                <li><a>Press kit</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/press.html">Press kit</a></li>
                 <li><a href="/privacy.html">Privacy policy</a></li>
                 <li><a href="/terms.html">Terms of service</a></li>
               </ul>
