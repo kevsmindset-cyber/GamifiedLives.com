@@ -91,7 +91,7 @@
 
   <div class="content">
     <h1>Privacy Policy</h1>
-    <p class="effective">Effective date: May 22, 2026</p>
+    <p class="effective">Effective date: May 28, 2026</p>
 
     <p>Gamified Lives ("we", "us", or "our") operates the Gamified Lives mobile application (the "App"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the App.</p>
 
@@ -155,18 +155,28 @@
     <p>Body progress photos (when used) are stored in our private Supabase Storage bucket scoped to your user account. Access is enforced by per-user row-level security and short-lived signed URLs (60-second TTL). Photos are never indexed, shared, or used for any purpose other than displaying them back to you in the App.</p>
     <p>Life-domain data (Finance, Sleep, Mind, Learning, Recovery), food / macro logs, and body weight entries default to local-only. They are uploaded to our Supabase backend only if you explicitly enable the corresponding cloud-sync toggle in the App.</p>
 
-    <h2>4. Third-Party Services</h2>
+    <h2 id="third-party-ai">4. Third-Party Services</h2>
     <p>We use the following third-party services that may process your data according to their own privacy policies:</p>
     <ul>
       <li><strong>Supabase:</strong> Backend database, authentication, file storage, and edge functions. <a href="https://supabase.com/privacy">Privacy Policy</a></li>
-      <li><strong>Anthropic:</strong> Powers the AI Coach, weekly reports, daily quests, habit clarification, and structured photo analysis (food macros, workout stats, etc.). Audio and text content sent for processing is governed by <a href="https://www.anthropic.com/legal/privacy">Anthropic's privacy policy</a>. Anthropic does not train models on data sent via its API.</li>
-      <li><strong>OpenAI:</strong> Powers avatar image generation and voice synthesis for Avatar Calls. Governed by <a href="https://openai.com/policies/privacy-policy">OpenAI's privacy policy</a>. OpenAI does not train models on data sent via its API.</li>
-      <li><strong>Deepgram:</strong> Real-time speech-to-text transcription during Avatar Calls. Audio is processed in transit and discarded; no recordings are retained. <a href="https://deepgram.com/privacy">Privacy Policy</a></li>
+      <li><strong>Anthropic (Claude):</strong> Powers the AI Coach, weekly reports, daily quests, habit clarification, and structured photo analysis (food macros, workout stats, etc.). Receives your chat messages, mood and journal entries, and your goal/habit summaries when you use AI Coach features. Audio and text content sent for processing is governed by <a href="https://www.anthropic.com/legal/privacy">Anthropic's privacy policy</a>. Anthropic does not train models on data sent via its API.</li>
+      <li><strong>OpenAI:</strong> Powers avatar image generation and voice synthesis for Avatar Calls. Receives your selfie when generating your avatar and short text when generating your coach's voice for AI calls. Governed by <a href="https://openai.com/policies/privacy-policy">OpenAI's privacy policy</a>. OpenAI does not train models on data sent via its API.</li>
+      <li><strong>Deepgram:</strong> Real-time speech-to-text transcription during Avatar Calls. Receives your voice recordings to transcribe what you said. Audio is processed in transit and discarded; no recordings are retained. <a href="https://deepgram.com/privacy">Privacy Policy</a></li>
       <li><strong>RevenueCat:</strong> Subscription and in-app purchase management. <a href="https://www.revenuecat.com/privacy">Privacy Policy</a></li>
       <li><strong>Amplitude:</strong> Anonymized usage analytics. <a href="https://amplitude.com/privacy">Privacy Policy</a></li>
       <li><strong>Sentry:</strong> Crash reporting and error tracking. <a href="https://sentry.io/privacy/">Privacy Policy</a></li>
       <li><strong>Apple / Google:</strong> Authentication via Sign in with Apple / Google Sign-In, and Apple HealthKit for on-device activity reads.</li>
     </ul>
+
+    <h3 style="margin-top: 28px; font-size: 17px; font-weight: 700;">Your consent &amp; controls for AI services</h3>
+    <p>The first time you use a feature that sends data to one of our AI providers (Anthropic, OpenAI, or Deepgram) — whether that is AI Coach chat, photo verification, smart-import, avatar generation, voice calls, or any of our domain AI tools — the App displays a consent screen that:</p>
+    <ul>
+      <li>Lists each third-party AI service by name and what data each receives.</li>
+      <li>Lists every feature that will be disabled if you decline.</li>
+      <li>Requires you to explicitly tap <em>"I agree — enable AI features"</em> before any data leaves your device.</li>
+    </ul>
+    <p>If you decline, all AI-powered features remain disabled and no data is sent to any of these providers. You can review or change this decision at any time in <strong>Settings → AI &amp; Data Sharing</strong>. Disabling AI sharing immediately blocks all further calls to Anthropic, OpenAI, and Deepgram — the rest of the App (habits, goals, tasks, XP, streaks, cosmetics, friends, squads, leaderboards, and analytics) continues to work normally.</p>
+    <p>We confirm that each AI provider listed above contractually commits to data protections substantially equivalent to those described in this policy. None of these providers train their underlying models on data sent via their commercial APIs, and none retain raw inputs beyond what is required for the specific request.</p>
 
     <h2>5. Data Sharing</h2>
     <p>We do not sell, rent, or trade your personal information to third parties. We share data only as described in this policy (with the third-party services listed above) and as required by law.</p>
