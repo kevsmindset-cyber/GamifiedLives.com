@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ═══════════════ FILL THESE IN FOR EVERY POST ═══════════════
+       TITLE:      55-60 chars, put the main keyword near the front
+       DESCRIPTION: 150-160 chars, written to earn the click (shows in Google)
+       SLUG:       lowercase-hyphenated, must match the filename (your-slug.html)
+       DATE:       YYYY-MM-DD (used in schema) + human date (shown to readers)
+       Replace EVERY {{...}} placeholder below, including in the JSON-LD block.
+  ═════════════════════════════════════════════════════════════════ -->
+
+  <title>{{TITLE}} — Gamified Lives</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <link rel="canonical" href="https://gamifiedlives.com/blog/{{SLUG}}">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="https://gamifiedlives.com/blog/{{SLUG}}">
+  <meta property="og:image" content="https://gamifiedlives.com/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Article structured data — helps Google + AI crawlers understand the post.
+       Keep datePublished accurate; set dateModified if you later edit it. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{TITLE}}",
+    "description": "{{DESCRIPTION}}",
+    "image": "https://gamifiedlives.com/images/og-image.png",
+    "datePublished": "{{DATE_ISO}}",
+    "dateModified": "{{DATE_ISO}}",
+    "author": { "@type": "Person", "name": "Kevin Castaneda" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Gamified Lives",
+      "logo": { "@type": "ImageObject", "url": "https://gamifiedlives.com/images/og-image.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://gamifiedlives.com/blog/{{SLUG}}" }
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: #0EA5E9; --primary-dark: #00628C; --primary-light: #34B5FA;
+      --coral: #FF6B6B; --gold: #F5A623; --emerald: #0D9668;
+      --bg: #F6F6F7; --card: #FFFFFF; --section: #F0F1F2;
+      --text: #0F172A; --text-2: #5A5C5D; --text-3: #94A3B8;
+      --shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+      --r-card: 24px; --r-pill: 9999px;
+      --grad: linear-gradient(135deg, #00628C 0%, #34B5FA 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(246, 246, 247, 0.85);
+      backdrop-filter: saturate(140%) blur(16px);
+      -webkit-backdrop-filter: saturate(140%) blur(16px);
+      border-bottom: 1px solid rgba(15,23,42,0.04);
+      padding: 14px clamp(20px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; letter-spacing: -0.015em; }
+    .nav-logo-mark {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--grad); display: grid; place-items: center;
+      color: white; font-weight: 900; font-size: 15px;
+      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.35);
+    }
+    .nav-back { font-size: 14px; font-weight: 600; color: var(--text-2); padding: 8px 14px; border-radius: var(--r-pill); transition: background 0.15s ease, color 0.15s ease; }
+    .nav-back:hover { background: rgba(15,23,42,0.05); color: var(--text); }
+
+    .post-head { padding: 64px 0 28px; }
+    .post-cat { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 16px; }
+    h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 16px; }
+    .post-meta { font-size: 14px; color: var(--text-3); }
+
+    article { padding: 12px 0 64px; }
+    article h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.015em; margin: 40px 0 14px; }
+    article h3 { font-size: 20px; font-weight: 800; margin: 28px 0 10px; }
+    article p { color: var(--text-2); margin-bottom: 18px; font-size: 18px; }
+    article p strong { color: var(--text); font-weight: 700; }
+    article a { color: var(--primary-dark); font-weight: 600; border-bottom: 1px solid rgba(0, 98, 140, 0.25); }
+    article a:hover { border-bottom-color: var(--primary-dark); }
+    article ul, article ol { color: var(--text-2); margin: 0 0 20px 22px; font-size: 18px; }
+    article li { margin-bottom: 8px; }
+    article blockquote {
+      background: var(--card); border-radius: var(--r-card); padding: 24px 28px;
+      margin: 28px 0; box-shadow: var(--shadow);
+      font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; color: var(--text);
+    }
+    article img { max-width: 100%; border-radius: var(--r-card); margin: 24px 0; }
+
+    .cta {
+      background: var(--grad); color: white; border-radius: var(--r-card);
+      padding: 36px 32px; text-align: center; margin: 48px 0 8px;
+    }
+    .cta h3 { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: white; }
+    .cta p { color: rgba(255,255,255,0.9); margin-bottom: 20px; }
+    .cta a {
+      display: inline-block; background: white; color: var(--primary-dark);
+      font-weight: 800; padding: 14px 28px; border-radius: var(--r-pill); border: none;
+    }
+
+    footer { background: var(--section); padding: 40px clamp(20px, 4vw, 40px) 32px; text-align: center; }
+    .footer-logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 12px; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 16px; }
+    .footer-links a { font-size: 13px; color: var(--text-2); }
+    .footer-links a:hover { color: var(--text); }
+    .footer-meta { font-size: 12px; color: var(--text-3); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/">
+      <span class="nav-logo-mark">G</span>
+      <span>Gamified Lives</span>
+    </a>
+    <a class="nav-back" href="/blog">← All posts</a>
+  </nav>
+
+  <header class="post-head wrap">
+    <span class="post-cat">{{CATEGORY}}</span>
+    <h1>{{TITLE}}</h1>
+    <div class="post-meta">{{HUMAN_DATE}} · {{READ_TIME}} min read · by Kevin Castaneda</div>
+  </header>
+
+  <article class="wrap">
+
+    <!-- ═══════════ WRITE YOUR POST BELOW ═══════════
+         Use these building blocks:
+           <p>Paragraph. Wrap key phrases in <strong>bold</strong>.</p>
+           <h2>Section heading</h2>      <h3>Sub-heading</h3>
+           <ul><li>bullet</li></ul>      <ol><li>numbered</li></ol>
+           <blockquote>A pull quote that stands out.</blockquote>
+           <a href="https://...">a link</a>
+           <img src="/images/your-image.png" alt="describe it for SEO + accessibility">
+         SEO tips: use your target keyword in the first paragraph and at least
+         one <h2>. Write the alt text on every image. Link out to /about.html or
+         /roadmap.html where natural (internal links help). -->
+
+    <p>{{OPENING_PARAGRAPH — include your main keyword naturally in the first sentence.}}</p>
+
+    <h2>{{First section heading}}</h2>
+    <p>{{...}}</p>
+
+    <!-- ═══════════ END OF POST BODY ═══════════ -->
+
+    <div class="cta">
+      <h3>Stop ticking boxes. Start leveling up.</h3>
+      <p>Gamified Lives turns your real goals into an RPG you actually want to play.</p>
+      <a href="/">Get the app →</a>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-logo">
+      <span class="nav-logo-mark">G</span>
+      <span>Gamified Lives</span>
+    </div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog">Blog</a>
+      <a href="/roadmap.html">Roadmap</a>
+      <a href="/press.html">Press kit</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <div class="footer-meta">© 2026 Gamified Lives · Built by Kevin Castaneda</div>
+  </footer>
+</body>
+</html>

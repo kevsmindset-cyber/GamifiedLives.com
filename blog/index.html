@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Gamified Lives</title>
+  <meta name="description" content="Notes on habits, motivation, and building a habit RPG that rewards real effort — from the team behind Gamified Lives.">
+  <link rel="canonical" href="https://gamifiedlives.com/blog">
+  <meta property="og:title" content="Blog — Gamified Lives">
+  <meta property="og:description" content="Notes on habits, motivation, and building a habit RPG that rewards real effort.">
+  <meta property="og:url" content="https://gamifiedlives.com/blog">
+  <meta property="og:image" content="https://gamifiedlives.com/images/og-image.png">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      --primary: #0EA5E9; --primary-dark: #00628C; --primary-light: #34B5FA;
+      --coral: #FF6B6B; --gold: #F5A623; --emerald: #0D9668;
+      --bg: #F6F6F7; --card: #FFFFFF; --section: #F0F1F2;
+      --text: #0F172A; --text-2: #5A5C5D; --text-3: #94A3B8;
+      --shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+      --r-card: 24px; --r-pill: 9999px;
+      --grad: linear-gradient(135deg, #00628C 0%, #34B5FA 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(246, 246, 247, 0.85);
+      backdrop-filter: saturate(140%) blur(16px);
+      -webkit-backdrop-filter: saturate(140%) blur(16px);
+      border-bottom: 1px solid rgba(15,23,42,0.04);
+      padding: 14px clamp(20px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; letter-spacing: -0.015em; }
+    .nav-logo-mark {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--grad); display: grid; place-items: center;
+      color: white; font-weight: 900; font-size: 15px;
+      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.35);
+    }
+    .nav-back {
+      font-size: 14px; font-weight: 600; color: var(--text-2);
+      padding: 8px 14px; border-radius: var(--r-pill);
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .nav-back:hover { background: rgba(15,23,42,0.05); color: var(--text); }
+
+    .hero { padding: 72px 0 40px; text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--primary-dark);
+      background: rgba(14, 165, 233, 0.12);
+      padding: 6px 14px; border-radius: var(--r-pill);
+      margin-bottom: 20px;
+    }
+    h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 18px; }
+    .lede { font-size: clamp(17px, 1.7vw, 20px); color: var(--text-2); max-width: 620px; margin: 0 auto; }
+
+    .posts { padding: 24px 0 80px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    @media (max-width: 720px) { .posts { grid-template-columns: 1fr; } }
+
+    .post-card {
+      background: var(--card);
+      border-radius: var(--r-card);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 12px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .post-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(15,23,42,0.10); }
+    .post-cat {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--primary-dark);
+    }
+    .post-title { font-size: 22px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; }
+    .post-excerpt { font-size: 15px; color: var(--text-2); }
+    .post-meta { font-size: 13px; color: var(--text-3); margin-top: auto; padding-top: 8px; }
+
+    .empty {
+      grid-column: 1 / -1;
+      background: var(--card); border-radius: var(--r-card); padding: 48px 28px;
+      text-align: center; box-shadow: var(--shadow);
+    }
+    .empty h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .empty p { color: var(--text-2); }
+
+    footer {
+      background: var(--section);
+      padding: 40px clamp(20px, 4vw, 40px) 32px;
+      text-align: center;
+    }
+    .footer-logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 12px; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 16px; }
+    .footer-links a { font-size: 13px; color: var(--text-2); }
+    .footer-links a:hover { color: var(--text); }
+    .footer-meta { font-size: 12px; color: var(--text-3); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/">
+      <span class="nav-logo-mark">G</span>
+      <span>Gamified Lives</span>
+    </a>
+    <a class="nav-back" href="/">← Back to home</a>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Blog</span>
+      <h1>Notes on habits<br>that actually stick.</h1>
+      <p class="lede">Why most habit apps fail, what the research says, and how we're building a habit RPG that rewards real effort.</p>
+    </div>
+  </section>
+
+  <section class="posts wrap">
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         HOW TO ADD A POST:
+         1. Create the post file: blog/your-slug.html  (copy blog/_TEMPLATE.html)
+         2. Copy ONE <a class="post-card"> block below, paste it at the TOP of
+            this list (newest first), and fill in href / category / title /
+            excerpt / date.
+         3. Add a <url> line for the post in /sitemap.xml.
+         4. Delete the .empty block below once you have your first post.
+         5. Commit / push — GitHub Pages redeploys in under a minute.
+
+         POST CARD TEMPLATE (copy this, keep it newest-first):
+
+         <a class="post-card" href="/blog/your-slug">
+           <span class="post-cat">Category</span>
+           <span class="post-title">Your post title goes here</span>
+           <span class="post-excerpt">One or two sentences that make someone want to click.</span>
+           <span class="post-meta">Jun 11, 2026 · 5 min read</span>
+         </a>
+    ═════════════════════════════════════════════════════════════════════ -->
+
+    <div class="empty">
+      <h3>First post coming soon.</h3>
+      <p>We're writing it now. Check back shortly.</p>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-logo">
+      <span class="nav-logo-mark">G</span>
+      <span>Gamified Lives</span>
+    </div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog">Blog</a>
+      <a href="/roadmap.html">Roadmap</a>
+      <a href="/press.html">Press kit</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <div class="footer-meta">© 2026 Gamified Lives · Built by Kevin Castaneda</div>
+  </footer>
+</body>
+</html>
