@@ -12,13 +12,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- BLOG POSTS: add one <url> per post (newest lastmod), e.g.:
+  <!-- BLOG POSTS (newest first) -->
   <url>
-    <loc>https://gamifiedlives.com/blog/your-slug</loc>
+    <loc>https://gamifiedlives.com/blog/app-that-calls-you-reminders-dont-work</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url> -->
+  </url>
   <url>
     <loc>https://gamifiedlives.com/about.html</loc>
     <lastmod>2026-06-11</lastmod>
