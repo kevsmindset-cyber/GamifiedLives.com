@@ -95,8 +95,9 @@
     <div id="appSection" style="display:none">
       <div class="section-label">App</div>
       <div class="cards" id="appCards"></div>
+      <div class="hint" id="appSub" style="margin:-12px 0 18px"></div>
       <div class="panel">
-        <h3>Daily signups (last 30 days)</h3>
+        <h3>Daily registered signups (last 30 days)</h3>
         <div class="bars" id="signupBars"></div>
       </div>
       <div class="panel">
@@ -152,16 +153,19 @@
 
       var t = a.totals || {}, p = a.premium || {};
       document.getElementById("appCards").innerHTML = [
-        ["Total users", n(t.total_users), ""],
-        ["New (30 days)", n(t.new_30d), ""],
+        ["Registered users", n(t.registered_users), ""],
+        ["New (30 days)", n(t.registered_new_30d), ""],
         ["Subscribers", n(p.subscribers), "accent"],
         ["Conversion", (p.conversion_pct || 0) + "%", "accent"]
       ].map(function (c) {
         return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + c[2] + '">' + c[1] + '</div></div>';
       }).join("");
 
-      barChart(document.getElementById("signupBars"), a.daily_signups || [], "signups", "day",
-        function (x) { return x.day + ': ' + x.signups + ' signups'; });
+      var sub = document.getElementById("appSub");
+      if (sub) sub.textContent = n(t.guest_users) + " guest sessions (anonymous / test installs) · " + n(t.total_users) + " total rows";
+
+      barChart(document.getElementById("signupBars"), a.daily_signups || [], "registered", "day",
+        function (x) { return x.day + ': ' + (x.registered || 0) + ' registered, ' + x.signups + ' incl. guests'; });
 
       var ev = a.premium_events || [];
       document.getElementById("premiumEvents").innerHTML = ev.length
