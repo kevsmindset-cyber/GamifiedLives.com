@@ -61,6 +61,7 @@
     .bar-lbl { font-size: 9px; color: var(--text-3); white-space: nowrap; transform: rotate(-45deg); transform-origin: top left; height: 14px; }
     .empty { text-align: center; color: var(--text-3); padding: 40px 0; }
     .hint { font-size: 12px; color: var(--text-3); margin-top: 6px; }
+    .section-label { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin: 8px 0 14px; }
   </style>
 </head>
 <body>
@@ -90,6 +91,22 @@
       </div>
     </div>
 
+    <!-- APP METRICS (hidden until the app-metrics views exist) -->
+    <div id="appSection" style="display:none">
+      <div class="section-label">App</div>
+      <div class="cards" id="appCards"></div>
+      <div class="panel">
+        <h3>Daily signups (last 30 days)</h3>
+        <div class="bars" id="signupBars"></div>
+      </div>
+      <div class="panel">
+        <h3>Subscription events (all time)</h3>
+        <div id="premiumEvents"></div>
+        <div class="hint">Retention isn't shown yet — it needs an in-app "last active" heartbeat (a future app update).</div>
+      </div>
+    </div>
+
+    <div class="section-label">Website</div>
     <div class="cards" id="cards"></div>
 
     <div class="panel">
@@ -116,9 +133,52 @@
 
     function n(x) { return (x == null ? 0 : x).toLocaleString(); }
 
+    function barChart(el, rows, valueKey, labelKey, tip) {
+      var max = Math.max(1, ...rows.map(function (x) { return x[valueKey]; }));
+      el.innerHTML = rows.length
+        ? rows.map(function (x) {
+            var h = Math.round((x[valueKey] / max) * 160);
+            return '<div class="bar-col" title="' + tip(x) + '">'
+              + '<div class="bar" style="height:' + h + 'px"></div>'
+              + '<div class="bar-lbl">' + String(x[labelKey]).slice(5) + '</div></div>';
+          }).join("")
+        : '<div class="empty">No data yet.</div>';
+    }
+
+    function renderApp(a) {
+      var sec = document.getElementById("appSection");
+      if (!a) { sec.style.display = "none"; return; }
+      sec.style.display = "block";
+
+      var t = a.totals || {}, p = a.premium || {};
+      document.getElementById("appCards").innerHTML = [
+        ["Total users", n(t.total_users), ""],
+        ["New (30 days)", n(t.new_30d), ""],
+        ["Subscribers", n(p.subscribers), "accent"],
+        ["Conversion", (p.conversion_pct || 0) + "%", "accent"]
+      ].map(function (c) {
+        return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + c[2] + '">' + c[1] + '</div></div>';
+      }).join("");
+
+      barChart(document.getElementById("signupBars"), a.daily_signups || [], "signups", "day",
+        function (x) { return x.day + ': ' + x.signups + ' signups'; });
+
+      var ev = a.premium_events || [];
+      document.getElementById("premiumEvents").innerHTML = ev.length
+        ? '<table><thead><tr><th>Event</th><th class="num">Count</th></tr></thead><tbody>'
+          + ev.map(function (e) {
+              return '<tr><td class="cap">' + (e.event_type || "—").toLowerCase().replace(/_/g, " ")
+                + '</td><td class="num">' + n(e.count) + '</td></tr>';
+            }).join("")
+          + '</tbody></table>'
+        : '<div class="empty">No subscription events yet.</div>';
+    }
+
     function render(d) {
       document.getElementById("updated").textContent =
         "Updated " + new Date(d.generated_at).toLocaleString();
+
+      renderApp(d.app);
 
       var t = d.totals || {};
       document.getElementById("cards").innerHTML = [
