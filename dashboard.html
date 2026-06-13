@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Growth Dashboard — Gamified Lives</title>
+  <style>
+    :root {
+      --primary: #0EA5E9; --primary-dark: #00628C; --primary-light: #34B5FA;
+      --coral: #FF6B6B; --gold: #F5A623; --emerald: #0D9668;
+      --bg: #F6F6F7; --card: #FFFFFF; --section: #F0F1F2;
+      --text: #0F172A; --text-2: #5A5C5D; --text-3: #94A3B8;
+      --shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+      --r-card: 20px; --r-pill: 9999px;
+      --grad: linear-gradient(135deg, #00628C 0%, #34B5FA 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-size: 16px; -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 32px clamp(16px, 4vw, 40px) 80px; }
+    .head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+    .title { display: flex; align-items: center; gap: 12px; }
+    .mark { width: 34px; height: 34px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; color: #fff; font-weight: 900; box-shadow: 0 4px 10px rgba(14,165,233,0.35); }
+    h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .sub { font-size: 13px; color: var(--text-3); }
+    .btn { background: var(--primary); color: #fff; border: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: var(--r-pill); cursor: pointer; }
+    .btn.ghost { background: var(--section); color: var(--text-2); }
+
+    /* Gate */
+    .gate { max-width: 380px; margin: 12vh auto 0; background: var(--card); border-radius: var(--r-card); padding: 32px; box-shadow: var(--shadow); text-align: center; }
+    .gate .mark { margin: 0 auto 16px; width: 44px; height: 44px; font-size: 20px; }
+    .gate h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+    .gate p { color: var(--text-2); font-size: 14px; margin-bottom: 18px; }
+    .gate input { width: 100%; padding: 13px 16px; border: 1px solid rgba(15,23,42,0.12); border-radius: 12px; font-size: 16px; margin-bottom: 12px; }
+    .gate .err { color: var(--coral); font-size: 13px; min-height: 18px; margin-bottom: 8px; }
+
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+    @media (max-width: 720px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+    .stat { background: var(--card); border-radius: var(--r-card); padding: 20px; box-shadow: var(--shadow); }
+    .stat .label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+    .stat .value { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+    .stat .value.accent { color: var(--primary-dark); }
+
+    .panel { background: var(--card); border-radius: var(--r-card); padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px; }
+    .panel h3 { font-size: 16px; font-weight: 800; margin-bottom: 16px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(15,23,42,0.06); }
+    th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-3); font-weight: 800; }
+    td { color: var(--text-2); }
+    td.cap { font-weight: 700; color: var(--text); text-transform: capitalize; }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+    .bars { display: flex; align-items: flex-end; gap: 4px; height: 180px; padding-top: 8px; }
+    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+    .bar { width: 100%; max-width: 26px; background: var(--grad); border-radius: 5px 5px 0 0; min-height: 2px; transition: height 0.3s; }
+    .bar-lbl { font-size: 9px; color: var(--text-3); white-space: nowrap; transform: rotate(-45deg); transform-origin: top left; height: 14px; }
+    .empty { text-align: center; color: var(--text-3); padding: 40px 0; }
+    .hint { font-size: 12px; color: var(--text-3); margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <!-- Passcode gate -->
+  <div id="gate" class="gate">
+    <div class="mark">G</div>
+    <h2>Growth Dashboard</h2>
+    <p>Enter your passcode to view analytics.</p>
+    <input id="pass" type="password" placeholder="Passcode" autocomplete="current-password" />
+    <div class="err" id="err"></div>
+    <button class="btn" id="enter" style="width:100%">View dashboard</button>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="app" class="wrap" style="display:none">
+    <div class="head">
+      <div class="title">
+        <span class="mark">G</span>
+        <div>
+          <h1>Growth Dashboard</h1>
+          <div class="sub" id="updated">—</div>
+        </div>
+      </div>
+      <div>
+        <button class="btn ghost" id="signout">Lock</button>
+        <button class="btn" id="refresh">Refresh</button>
+      </div>
+    </div>
+
+    <div class="cards" id="cards"></div>
+
+    <div class="panel">
+      <h3>Daily traffic (last 30 days)</h3>
+      <div class="bars" id="bars"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Channels (last 30 days)</h3>
+      <div id="channels"></div>
+      <div class="hint">Tip: add <code>?utm_source=tiktok&amp;utm_campaign=launch</code> to links you post for exact channel attribution.</div>
+    </div>
+
+    <div class="panel">
+      <h3>Top pages (last 30 days)</h3>
+      <div id="pages"></div>
+    </div>
+  </div>
+
+  <script>
+    var ENDPOINT = "https://mtujvdqhlolfojqxyzwh.supabase.co/functions/v1/stats";
+    var gate = document.getElementById("gate");
+    var app = document.getElementById("app");
+
+    function n(x) { return (x == null ? 0 : x).toLocaleString(); }
+
+    function render(d) {
+      document.getElementById("updated").textContent =
+        "Updated " + new Date(d.generated_at).toLocaleString();
+
+      var t = d.totals || {};
+      document.getElementById("cards").innerHTML = [
+        ["Visitors", n(t.visitors), ""],
+        ["Pageviews", n(t.pageviews), ""],
+        ["Download clicks", n(t.download_clicks), "accent"],
+        ["Click rate", (t.click_rate_pct || 0) + "%", "accent"]
+      ].map(function (c) {
+        return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + c[2] + '">' + c[1] + '</div></div>';
+      }).join("");
+
+      var daily = d.daily || [];
+      var max = Math.max(1, ...daily.map(function (x) { return x.pageviews; }));
+      document.getElementById("bars").innerHTML = daily.length
+        ? daily.map(function (x) {
+            var h = Math.round((x.pageviews / max) * 160);
+            var lbl = x.day.slice(5); // MM-DD
+            return '<div class="bar-col" title="' + x.day + ': ' + x.pageviews + ' views, ' + x.visitors + ' visitors">'
+              + '<div class="bar" style="height:' + h + 'px"></div>'
+              + '<div class="bar-lbl">' + lbl + '</div></div>';
+          }).join("")
+        : '<div class="empty">No data yet — visits will show up here.</div>';
+
+      var ch = d.channels || [];
+      document.getElementById("channels").innerHTML = ch.length
+        ? '<table><thead><tr><th>Channel</th><th class="num">Visitors</th><th class="num">Pageviews</th><th class="num">Downloads</th><th class="num">Click rate</th></tr></thead><tbody>'
+          + ch.map(function (c) {
+              return '<tr><td class="cap">' + (c.channel || "—") + '</td><td class="num">' + n(c.visitors)
+                + '</td><td class="num">' + n(c.pageviews) + '</td><td class="num">' + n(c.download_clicks)
+                + '</td><td class="num">' + (c.click_rate_pct || 0) + '%</td></tr>';
+            }).join("")
+          + '</tbody></table>'
+        : '<div class="empty">No channel data yet.</div>';
+
+      var pg = d.top_pages || [];
+      document.getElementById("pages").innerHTML = pg.length
+        ? '<table><thead><tr><th>Page</th><th class="num">Visitors</th><th class="num">Pageviews</th></tr></thead><tbody>'
+          + pg.map(function (p) {
+              return '<tr><td>' + (p.path || "/") + '</td><td class="num">' + n(p.visitors)
+                + '</td><td class="num">' + n(p.pageviews) + '</td></tr>';
+            }).join("")
+          + '</tbody></table>'
+        : '<div class="empty">No page data yet.</div>';
+    }
+
+    function load(passcode) {
+      return fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ passcode: passcode })
+      }).then(function (r) {
+        if (r.status === 401) throw new Error("Wrong passcode.");
+        if (!r.ok) throw new Error("Couldn't load (" + r.status + ").");
+        return r.json();
+      });
+    }
+
+    function showApp(passcode, data) {
+      sessionStorage.setItem("gl_dash_pass", passcode);
+      gate.style.display = "none";
+      app.style.display = "block";
+      render(data);
+    }
+
+    document.getElementById("enter").addEventListener("click", function () {
+      var p = document.getElementById("pass").value.trim();
+      var err = document.getElementById("err");
+      err.textContent = "";
+      if (!p) { err.textContent = "Enter your passcode."; return; }
+      load(p).then(function (d) { showApp(p, d); }).catch(function (e) { err.textContent = e.message; });
+    });
+    document.getElementById("pass").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") document.getElementById("enter").click();
+    });
+
+    document.getElementById("refresh").addEventListener("click", function () {
+      var p = sessionStorage.getItem("gl_dash_pass");
+      if (p) load(p).then(render).catch(function () {});
+    });
+    document.getElementById("signout").addEventListener("click", function () {
+      sessionStorage.removeItem("gl_dash_pass");
+      location.reload();
+    });
+
+    // Auto-load if we already have the passcode this session
+    (function () {
+      var p = sessionStorage.getItem("gl_dash_pass");
+      if (p) load(p).then(function (d) { showApp(p, d); }).catch(function () {
+        sessionStorage.removeItem("gl_dash_pass");
+      });
+    })();
+  </script>
+</body>
+</html>
