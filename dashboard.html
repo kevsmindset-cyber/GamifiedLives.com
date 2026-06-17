@@ -117,6 +117,11 @@
       <div class="section-label">App</div>
       <div class="cards" id="appCards"></div>
       <div class="hint" id="appSub"></div>
+      <div class="panel" id="retentionPanel" style="display:none">
+        <h3>Retention</h3>
+        <div class="cap">Active = opened the app in the window. D1/D7 = of users old enough, share who came back.</div>
+        <div class="cards" id="retentionCards"></div>
+      </div>
       <div class="panel">
         <h3>Daily signups</h3>
         <div class="cap" id="signupCap"></div>
@@ -195,6 +200,21 @@
       }).join("");
       document.getElementById("appSub").textContent =
         n(t.guest_users) + " guest sessions (anonymous / test) · " + n(t.total_users) + " total auth rows";
+
+      // Retention (hidden until the user_activity migration exists + heartbeats land)
+      var rp = document.getElementById("retentionPanel");
+      var ret = a.retention;
+      if (ret && (ret.tracked_users || 0) > 0) {
+        rp.style.display = "block";
+        document.getElementById("retentionCards").innerHTML = [
+          ["Active today", n(ret.active_1d), "1 day"],
+          ["Active this week", n(ret.active_7d), "7 days"],
+          ["Stickiness", (ret.stickiness_pct || 0) + "%", "DAU / MAU", "accent"],
+          ["D1 / D7", (ret.d1_pct == null ? "—" : ret.d1_pct + "%") + " / " + (ret.d7_pct == null ? "—" : ret.d7_pct + "%"), "came back", "accent"]
+        ].map(function (c) {
+          return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + (c[3] || "") + '">' + c[1] + '</div><div class="sub">' + c[2] + '</div></div>';
+        }).join("");
+      } else { rp.style.display = "none"; }
 
       document.getElementById("signupCap").textContent = "Registered signups per day in range";
       barChart(document.getElementById("signupBars"), a.daily_signups || [], "registered", "day", (a.daily_signups || []).length > 14,
