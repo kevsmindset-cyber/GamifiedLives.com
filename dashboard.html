@@ -12,25 +12,30 @@
       --bg: #F6F6F7; --card: #FFFFFF; --section: #F0F1F2;
       --text: #0F172A; --text-2: #5A5C5D; --text-3: #94A3B8;
       --shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
-      --r-card: 20px; --r-pill: 9999px;
+      --r-card: 18px; --r-pill: 9999px;
       --grad: linear-gradient(135deg, #00628C 0%, #34B5FA 100%);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      background: var(--bg); color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
-      font-size: 16px; -webkit-font-smoothing: antialiased;
-    }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 32px clamp(16px, 4vw, 40px) 80px; }
-    .head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+    html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 28px clamp(14px, 4vw, 36px) 80px; }
+    .head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
     .title { display: flex; align-items: center; gap: 12px; }
     .mark { width: 34px; height: 34px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; color: #fff; font-weight: 900; box-shadow: 0 4px 10px rgba(14,165,233,0.35); }
     h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
-    .sub { font-size: 13px; color: var(--text-3); }
-    .btn { background: var(--primary); color: #fff; border: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: var(--r-pill); cursor: pointer; }
+    .range-dates { font-size: 13px; color: var(--text-2); font-weight: 600; }
+    .updated { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+    .btn { background: var(--primary); color: #fff; border: none; font-weight: 700; font-size: 13px; padding: 9px 16px; border-radius: var(--r-pill); cursor: pointer; }
     .btn.ghost { background: var(--section); color: var(--text-2); }
 
-    /* Gate */
+    .controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 14px 0 22px; }
+    .seg { display: inline-flex; background: var(--section); border-radius: var(--r-pill); padding: 4px; gap: 2px; }
+    .seg button { border: none; background: transparent; color: var(--text-2); font-weight: 700; font-size: 13px; padding: 7px 16px; border-radius: var(--r-pill); cursor: pointer; }
+    .seg button.active { background: #fff; color: var(--primary-dark); box-shadow: 0 1px 4px rgba(15,23,42,0.1); }
+    .filter-chip { display: inline-flex; align-items: center; gap: 8px; background: rgba(14,165,233,0.1); color: var(--primary-dark); font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: var(--r-pill); }
+    .filter-chip button { border: none; background: rgba(0,98,140,0.15); color: var(--primary-dark); border-radius: 50%; width: 18px; height: 18px; cursor: pointer; font-weight: 800; line-height: 1; }
+    .spacer { flex: 1; }
+    .auto { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-3); }
+
     .gate { max-width: 380px; margin: 12vh auto 0; background: var(--card); border-radius: var(--r-card); padding: 32px; box-shadow: var(--shadow); text-align: center; }
     .gate .mark { margin: 0 auto 16px; width: 44px; height: 44px; font-size: 20px; }
     .gate h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
@@ -38,15 +43,26 @@
     .gate input { width: 100%; padding: 13px 16px; border: 1px solid rgba(15,23,42,0.12); border-radius: 12px; font-size: 16px; margin-bottom: 12px; }
     .gate .err { color: var(--coral); font-size: 13px; min-height: 18px; margin-bottom: 8px; }
 
-    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+    .section-label { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin: 26px 0 14px; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     @media (max-width: 720px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-    .stat { background: var(--card); border-radius: var(--r-card); padding: 20px; box-shadow: var(--shadow); }
-    .stat .label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
-    .stat .value { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+    .stat { background: var(--card); border-radius: var(--r-card); padding: 18px; box-shadow: var(--shadow); }
+    .stat .label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+    .stat .value { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
     .stat .value.accent { color: var(--primary-dark); }
+    .stat .sub { font-size: 12px; color: var(--text-3); margin-top: 4px; }
 
-    .panel { background: var(--card); border-radius: var(--r-card); padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px; }
-    .panel h3 { font-size: 16px; font-weight: 800; margin-bottom: 16px; }
+    .panel { background: var(--card); border-radius: var(--r-card); padding: 22px; box-shadow: var(--shadow); margin-top: 16px; }
+    .panel h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .panel .cap { font-size: 12px; color: var(--text-3); margin-bottom: 16px; }
+
+    .bars { display: flex; align-items: flex-end; gap: 3px; height: 190px; padding-top: 8px; }
+    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; cursor: default; }
+    .bar { width: 100%; max-width: 30px; background: var(--grad); border-radius: 5px 5px 0 0; min-height: 2px; transition: height 0.3s, opacity 0.15s; }
+    .bar-col:hover .bar { opacity: 0.78; }
+    .bar-lbl { font-size: 9px; color: var(--text-3); white-space: nowrap; }
+    .bar-lbl.rot { transform: rotate(-45deg); transform-origin: top right; height: 26px; }
+    .empty { text-align: center; color: var(--text-3); padding: 40px 0; }
 
     table { width: 100%; border-collapse: collapse; font-size: 14px; }
     th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid rgba(15,23,42,0.06); }
@@ -54,18 +70,12 @@
     td { color: var(--text-2); }
     td.cap { font-weight: 700; color: var(--text); text-transform: capitalize; }
     td.num { text-align: right; font-variant-numeric: tabular-nums; }
-
-    .bars { display: flex; align-items: flex-end; gap: 4px; height: 180px; padding-top: 8px; }
-    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
-    .bar { width: 100%; max-width: 26px; background: var(--grad); border-radius: 5px 5px 0 0; min-height: 2px; transition: height 0.3s; }
-    .bar-lbl { font-size: 9px; color: var(--text-3); white-space: nowrap; transform: rotate(-45deg); transform-origin: top left; height: 14px; }
-    .empty { text-align: center; color: var(--text-3); padding: 40px 0; }
-    .hint { font-size: 12px; color: var(--text-3); margin-top: 6px; }
-    .section-label { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin: 8px 0 14px; }
+    tr.clickable { cursor: pointer; }
+    tr.clickable:hover td { background: rgba(14,165,233,0.06); }
+    .hint { font-size: 12px; color: var(--text-3); margin-top: 8px; }
   </style>
 </head>
 <body>
-  <!-- Passcode gate -->
   <div id="gate" class="gate">
     <div class="mark">G</div>
     <h2>Growth Dashboard</h2>
@@ -75,14 +85,14 @@
     <button class="btn" id="enter" style="width:100%">View dashboard</button>
   </div>
 
-  <!-- Dashboard -->
   <div id="app" class="wrap" style="display:none">
     <div class="head">
       <div class="title">
         <span class="mark">G</span>
         <div>
           <h1>Growth Dashboard</h1>
-          <div class="sub" id="updated">—</div>
+          <div class="range-dates" id="rangeDates">—</div>
+          <div class="updated" id="updated">—</div>
         </div>
       </div>
       <div>
@@ -91,188 +101,231 @@
       </div>
     </div>
 
-    <!-- APP METRICS (hidden until the app-metrics views exist) -->
+    <div class="controls">
+      <div class="seg" id="rangeSeg">
+        <button data-range="24h">24 hours</button>
+        <button data-range="7d">7 days</button>
+        <button data-range="30d">30 days</button>
+        <button data-range="all">All time</button>
+      </div>
+      <span id="filterWrap"></span>
+      <span class="spacer"></span>
+      <label class="auto"><input type="checkbox" id="autoToggle" checked /> Auto-refresh 90s</label>
+    </div>
+
     <div id="appSection" style="display:none">
       <div class="section-label">App</div>
       <div class="cards" id="appCards"></div>
-      <div class="hint" id="appSub" style="margin:-12px 0 18px"></div>
+      <div class="hint" id="appSub"></div>
       <div class="panel">
-        <h3>Daily registered signups (last 30 days)</h3>
+        <h3>Daily signups</h3>
+        <div class="cap" id="signupCap"></div>
         <div class="bars" id="signupBars"></div>
       </div>
       <div class="panel">
-        <h3>Subscription events (all time)</h3>
+        <h3>Subscription events</h3>
+        <div class="cap">All time, by type</div>
         <div id="premiumEvents"></div>
-        <div class="hint">Retention isn't shown yet — it needs an in-app "last active" heartbeat (a future app update).</div>
+        <div class="hint">Retention isn't shown yet — needs an in-app "last active" heartbeat (a future app update).</div>
       </div>
     </div>
 
     <div class="section-label">Website</div>
-    <div class="cards" id="cards"></div>
+    <div class="cards" id="webCards"></div>
 
     <div class="panel">
-      <h3>Daily traffic (last 30 days)</h3>
-      <div class="bars" id="bars"></div>
+      <h3>Traffic by hour</h3>
+      <div class="cap">Last 24 hours (UTC)</div>
+      <div class="bars" id="hourBars"></div>
     </div>
 
     <div class="panel">
-      <h3>Channels (last 30 days)</h3>
+      <h3>Traffic by day</h3>
+      <div class="cap" id="dailyCap"></div>
+      <div class="bars" id="dayBars"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Channels</h3>
+      <div class="cap">Click a channel to filter the whole Website section to it</div>
       <div id="channels"></div>
-      <div class="hint">Tip: add <code>?utm_source=tiktok&amp;utm_campaign=launch</code> to links you post for exact channel attribution.</div>
+      <div class="hint">Tip: add <code>?utm_source=tiktok&amp;utm_campaign=launch</code> to links you post for exact attribution.</div>
     </div>
 
     <div class="panel">
-      <h3>Top pages (last 30 days)</h3>
+      <h3>Top pages</h3>
+      <div class="cap" id="pagesCap"></div>
       <div id="pages"></div>
     </div>
   </div>
 
   <script>
     var ENDPOINT = "https://mtujvdqhlolfojqxyzwh.supabase.co/functions/v1/stats";
-    var gate = document.getElementById("gate");
-    var app = document.getElementById("app");
+    var state = { range: "7d", channel: null };
+    var autoTimer = null;
 
     function n(x) { return (x == null ? 0 : x).toLocaleString(); }
+    function fmtDate(iso) { var d = new Date(iso); return d.toLocaleDateString(undefined, { month: "short", day: "numeric" }); }
+    function fmtDateTime(iso) { return new Date(iso).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }); }
 
-    function barChart(el, rows, valueKey, labelKey, tip) {
+    function barChart(el, rows, valueKey, labelKey, rotate, tip) {
       var max = Math.max(1, ...rows.map(function (x) { return x[valueKey]; }));
       el.innerHTML = rows.length
         ? rows.map(function (x) {
-            var h = Math.round((x[valueKey] / max) * 160);
+            var h = Math.round((x[valueKey] / max) * 165);
             return '<div class="bar-col" title="' + tip(x) + '">'
               + '<div class="bar" style="height:' + h + 'px"></div>'
-              + '<div class="bar-lbl">' + String(x[labelKey]).slice(5) + '</div></div>';
+              + '<div class="bar-lbl' + (rotate ? ' rot' : '') + '">' + x[labelKey] + '</div></div>';
           }).join("")
-        : '<div class="empty">No data yet.</div>';
+        : '<div class="empty">No data in this range yet.</div>';
     }
 
     function renderApp(a) {
       var sec = document.getElementById("appSection");
       if (!a) { sec.style.display = "none"; return; }
       sec.style.display = "block";
-
-      var t = a.totals || {}, p = a.premium || {};
+      var t = a.totals || {}, p = a.premium || {}, nr = a.new_in_range || {};
       document.getElementById("appCards").innerHTML = [
-        ["Registered users", n(t.registered_users), ""],
-        ["New (30 days)", n(t.registered_new_30d), ""],
-        ["Subscribers", n(p.subscribers), "accent"],
-        ["Conversion", (p.conversion_pct || 0) + "%", "accent"]
+        ["Registered users", n(t.registered_users), "all time"],
+        ["New in range", n(nr.registered), "registered"],
+        ["Subscribers", n(p.subscribers), "all time", "accent"],
+        ["Conversion", (p.conversion_pct || 0) + "%", "subs / registered", "accent"]
       ].map(function (c) {
-        return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + c[2] + '">' + c[1] + '</div></div>';
+        return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + (c[3] || "") + '">' + c[1] + '</div><div class="sub">' + c[2] + '</div></div>';
       }).join("");
+      document.getElementById("appSub").textContent =
+        n(t.guest_users) + " guest sessions (anonymous / test) · " + n(t.total_users) + " total auth rows";
 
-      var sub = document.getElementById("appSub");
-      if (sub) sub.textContent = n(t.guest_users) + " guest sessions (anonymous / test installs) · " + n(t.total_users) + " total rows";
-
-      barChart(document.getElementById("signupBars"), a.daily_signups || [], "registered", "day",
+      document.getElementById("signupCap").textContent = "Registered signups per day in range";
+      barChart(document.getElementById("signupBars"), a.daily_signups || [], "registered", "day", (a.daily_signups || []).length > 14,
         function (x) { return x.day + ': ' + (x.registered || 0) + ' registered, ' + x.signups + ' incl. guests'; });
+      // relabel day → short date
+      Array.prototype.forEach.call(document.querySelectorAll('#signupBars .bar-lbl'), function (el, i) {
+        var d = (a.daily_signups || [])[i]; if (d) el.textContent = fmtDate(d.day + 'T00:00:00Z');
+      });
 
       var ev = a.premium_events || [];
       document.getElementById("premiumEvents").innerHTML = ev.length
         ? '<table><thead><tr><th>Event</th><th class="num">Count</th></tr></thead><tbody>'
-          + ev.map(function (e) {
-              return '<tr><td class="cap">' + (e.event_type || "—").toLowerCase().replace(/_/g, " ")
-                + '</td><td class="num">' + n(e.count) + '</td></tr>';
-            }).join("")
+          + ev.map(function (e) { return '<tr><td class="cap">' + (e.event_type || "—").toLowerCase().replace(/_/g, " ") + '</td><td class="num">' + n(e.count) + '</td></tr>'; }).join("")
           + '</tbody></table>'
         : '<div class="empty">No subscription events yet.</div>';
     }
 
-    function render(d) {
-      document.getElementById("updated").textContent =
-        "Updated " + new Date(d.generated_at).toLocaleString();
-
-      renderApp(d.app);
-
-      var t = d.totals || {};
-      document.getElementById("cards").innerHTML = [
+    function renderWeb(d) {
+      var w = d.web || {}, t = w.totals || {};
+      document.getElementById("webCards").innerHTML = [
         ["Visitors", n(t.visitors), ""],
         ["Pageviews", n(t.pageviews), ""],
         ["Download clicks", n(t.download_clicks), "accent"],
         ["Click rate", (t.click_rate_pct || 0) + "%", "accent"]
-      ].map(function (c) {
-        return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + c[2] + '">' + c[1] + '</div></div>';
-      }).join("");
+      ].map(function (c) { return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + c[2] + '">' + c[1] + '</div></div>'; }).join("");
 
-      var daily = d.daily || [];
-      var max = Math.max(1, ...daily.map(function (x) { return x.pageviews; }));
-      document.getElementById("bars").innerHTML = daily.length
-        ? daily.map(function (x) {
-            var h = Math.round((x.pageviews / max) * 160);
-            var lbl = x.day.slice(5); // MM-DD
-            return '<div class="bar-col" title="' + x.day + ': ' + x.pageviews + ' views, ' + x.visitors + ' visitors">'
-              + '<div class="bar" style="height:' + h + 'px"></div>'
-              + '<div class="bar-lbl">' + lbl + '</div></div>';
-          }).join("")
-        : '<div class="empty">No data yet — visits will show up here.</div>';
+      // hourly (last 24h)
+      barChart(document.getElementById("hourBars"), w.hourly || [], "pageviews", "label", false,
+        function (x) { return x.label + ' — ' + x.pageviews + ' views, ' + x.visitors + ' visitors, ' + x.clicks + ' clicks'; });
 
-      var ch = d.channels || [];
+      // daily
+      document.getElementById("dailyCap").textContent = fmtDate(d.range_start) + " – " + fmtDate(d.range_end);
+      var daily = (w.daily || []).map(function (x) { return { v: x, label: fmtDate(x.day + 'T00:00:00Z') }; });
+      barChart(document.getElementById("dayBars"),
+        (w.daily || []).map(function (x) { return { day: x.day, pageviews: x.pageviews, visitors: x.visitors, clicks: x.clicks, label: fmtDate(x.day + 'T00:00:00Z') }; }),
+        "pageviews", "label", (w.daily || []).length > 14,
+        function (x) { return x.day + ': ' + x.pageviews + ' views, ' + x.visitors + ' visitors, ' + x.clicks + ' clicks'; });
+
+      // channels (clickable)
+      var ch = w.channels || [];
       document.getElementById("channels").innerHTML = ch.length
         ? '<table><thead><tr><th>Channel</th><th class="num">Visitors</th><th class="num">Pageviews</th><th class="num">Downloads</th><th class="num">Click rate</th></tr></thead><tbody>'
           + ch.map(function (c) {
-              return '<tr><td class="cap">' + (c.channel || "—") + '</td><td class="num">' + n(c.visitors)
-                + '</td><td class="num">' + n(c.pageviews) + '</td><td class="num">' + n(c.download_clicks)
-                + '</td><td class="num">' + (c.click_rate_pct || 0) + '%</td></tr>';
+              return '<tr class="clickable" data-ch="' + c.channel + '"><td class="cap">' + c.channel + '</td><td class="num">' + n(c.visitors)
+                + '</td><td class="num">' + n(c.pageviews) + '</td><td class="num">' + n(c.download_clicks) + '</td><td class="num">' + (c.click_rate_pct || 0) + '%</td></tr>';
             }).join("")
           + '</tbody></table>'
-        : '<div class="empty">No channel data yet.</div>';
+        : '<div class="empty">No channel data in range.</div>';
+      Array.prototype.forEach.call(document.querySelectorAll('#channels tr.clickable'), function (tr) {
+        tr.addEventListener("click", function () { state.channel = tr.getAttribute("data-ch"); load(); });
+      });
 
-      var pg = d.top_pages || [];
+      // top pages
+      document.getElementById("pagesCap").textContent = fmtDate(d.range_start) + " – " + fmtDate(d.range_end);
+      var pg = w.top_pages || [];
       document.getElementById("pages").innerHTML = pg.length
         ? '<table><thead><tr><th>Page</th><th class="num">Visitors</th><th class="num">Pageviews</th></tr></thead><tbody>'
-          + pg.map(function (p) {
-              return '<tr><td>' + (p.path || "/") + '</td><td class="num">' + n(p.visitors)
-                + '</td><td class="num">' + n(p.pageviews) + '</td></tr>';
-            }).join("")
+          + pg.map(function (p) { return '<tr><td>' + (p.path || "/") + '</td><td class="num">' + n(p.visitors) + '</td><td class="num">' + n(p.pageviews) + '</td></tr>'; }).join("")
           + '</tbody></table>'
-        : '<div class="empty">No page data yet.</div>';
+        : '<div class="empty">No page data in range.</div>';
     }
 
-    function load(passcode) {
+    function renderControls(d) {
+      // range segmented control active state
+      Array.prototype.forEach.call(document.querySelectorAll('#rangeSeg button'), function (b) {
+        b.classList.toggle("active", b.getAttribute("data-range") === state.range);
+      });
+      // channel filter chip
+      var fw = document.getElementById("filterWrap");
+      if (state.channel) {
+        fw.innerHTML = '<span class="filter-chip">Channel: ' + state.channel + ' <button id="clearCh">×</button></span>';
+        document.getElementById("clearCh").addEventListener("click", function () { state.channel = null; load(); });
+      } else { fw.innerHTML = ""; }
+      // header dates
+      document.getElementById("rangeDates").textContent = fmtDate(d.range_start) + " – " + fmtDate(d.range_end) + ", " + new Date(d.range_end).getFullYear();
+      document.getElementById("updated").textContent = "Updated " + fmtDateTime(d.generated_at);
+    }
+
+    function render(d) { renderControls(d); renderApp(d.app); renderWeb(d); }
+
+    function load() {
+      var p = sessionStorage.getItem("gl_dash_pass");
+      if (!p) return Promise.resolve();
       return fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ passcode: passcode })
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ passcode: p, range: state.range, channel: state.channel })
       }).then(function (r) {
         if (r.status === 401) throw new Error("Wrong passcode.");
         if (!r.ok) throw new Error("Couldn't load (" + r.status + ").");
         return r.json();
-      });
+      }).then(render).catch(function (e) { console.warn(e); });
     }
 
-    function showApp(passcode, data) {
+    function startAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      if (document.getElementById("autoToggle").checked) autoTimer = setInterval(load, 90000);
+    }
+
+    function showApp(passcode) {
       sessionStorage.setItem("gl_dash_pass", passcode);
-      gate.style.display = "none";
-      app.style.display = "block";
-      render(data);
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("app").style.display = "block";
+      load(); startAuto();
     }
 
     document.getElementById("enter").addEventListener("click", function () {
       var p = document.getElementById("pass").value.trim();
-      var err = document.getElementById("err");
-      err.textContent = "";
+      var err = document.getElementById("err"); err.textContent = "";
       if (!p) { err.textContent = "Enter your passcode."; return; }
-      load(p).then(function (d) { showApp(p, d); }).catch(function (e) { err.textContent = e.message; });
+      // probe with a quick load
+      sessionStorage.setItem("gl_dash_pass", p);
+      fetch(ENDPOINT, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ passcode: p, range: state.range }) })
+        .then(function (r) {
+          if (r.status === 401) { sessionStorage.removeItem("gl_dash_pass"); err.textContent = "Wrong passcode."; return; }
+          showApp(p);
+        }).catch(function () { err.textContent = "Network error."; });
     });
-    document.getElementById("pass").addEventListener("keydown", function (e) {
-      if (e.key === "Enter") document.getElementById("enter").click();
-    });
+    document.getElementById("pass").addEventListener("keydown", function (e) { if (e.key === "Enter") document.getElementById("enter").click(); });
 
-    document.getElementById("refresh").addEventListener("click", function () {
-      var p = sessionStorage.getItem("gl_dash_pass");
-      if (p) load(p).then(render).catch(function () {});
+    Array.prototype.forEach.call(document.querySelectorAll('#rangeSeg button'), function (b) {
+      b.addEventListener("click", function () { state.range = b.getAttribute("data-range"); load(); });
     });
+    document.getElementById("refresh").addEventListener("click", load);
+    document.getElementById("autoToggle").addEventListener("change", startAuto);
     document.getElementById("signout").addEventListener("click", function () {
-      sessionStorage.removeItem("gl_dash_pass");
-      location.reload();
+      sessionStorage.removeItem("gl_dash_pass"); if (autoTimer) clearInterval(autoTimer); location.reload();
     });
 
-    // Auto-load if we already have the passcode this session
     (function () {
       var p = sessionStorage.getItem("gl_dash_pass");
-      if (p) load(p).then(function (d) { showApp(p, d); }).catch(function () {
-        sessionStorage.removeItem("gl_dash_pass");
-      });
+      if (p) { document.getElementById("gate").style.display = "none"; document.getElementById("app").style.display = "block"; load(); startAuto(); }
     })();
   </script>
 </body>
