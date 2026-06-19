@@ -306,7 +306,7 @@ section.tight { padding-block: calc(80px * var(--density)); }
 .phone {
   position: relative;
   width: 340px;
-  height: 700px;
+  height: 724px;
   margin: 0 auto;
   background: #0F172A;
   border-radius: 48px;
@@ -751,7 +751,7 @@ section.tight { padding-block: calc(80px * var(--density)); }
 
 /* ============ IN-APP PHONE SCREEN STYLES ============ */
 /* Reusable phone UI matching actual app */
-.a-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.a-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .a-head-left { display: flex; align-items: center; gap: 12px; }
 .a-avatar {
   width: 44px; height: 44px;
@@ -786,104 +786,84 @@ section.tight { padding-block: calc(80px * var(--density)); }
   color: var(--text-3);
   margin: 14px 2px 4px;
 }
-.a-big-level {
-  font-size: 32px; font-weight: 900;
-  letter-spacing: -0.025em;
-  color: var(--primary-dark);
-  line-height: 1;
+/* level rail */
+.a-rail { display: flex; align-items: center; gap: 9px; margin: 4px 0 11px; }
+.a-rail-lvl { font-size: 18px; font-weight: 900; color: var(--primary-dark); letter-spacing: -0.02em; white-space: nowrap; }
+.a-rail-lvl b { font-size: 10px; font-weight: 800; color: var(--text-3); letter-spacing: 0.1em; margin-right: 3px; }
+.a-rail-bar { flex: 1; height: 7px; background: #E3F2FB; border-radius: 999px; overflow: hidden; }
+.a-rail-fill { height: 100%; background: var(--primary); border-radius: 999px; transition: width 0.7s cubic-bezier(.22,.9,.35,1); }
+.a-rail-xp { font-size: 12px; font-weight: 800; color: var(--gold-dark); white-space: nowrap; }
+.a-rail-xp span { color: var(--text-3); font-weight: 600; }
+
+/* hero next-up card */
+.a-hero {
+  position: relative; overflow: hidden;
+  border-radius: 22px; padding: 15px 16px;
+  background: linear-gradient(135deg, #0EA5E9 0%, #34B5FA 100%);
+  box-shadow: 0 12px 28px rgba(14,165,233,0.28);
+  margin-bottom: 12px; flex-shrink: 0;
 }
-.a-level-row {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  margin-bottom: 8px;
+.a-hero::after {
+  content: ""; position: absolute; top: -45%; right: -18%;
+  width: 70%; height: 170%;
+  background: radial-gradient(circle, rgba(255,255,255,0.20), transparent 70%);
+  pointer-events: none;
 }
-.a-xp { font-size: 13px; color: var(--gold-dark); font-weight: 800; }
-.a-xp .xp-small { color: var(--text-3); font-weight: 600; }
-.a-bar {
-  height: 10px;
-  background: #E3F2FB;
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 14px;
-}
-.a-bar-fill {
-  height: 100%;
-  background: var(--primary);
-  border-radius: 999px;
-  transition: width 0.7s cubic-bezier(.22,.9,.35,1);
+.a-hero-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; position: relative; }
+.a-hero-label { font-size: 10px; font-weight: 800; letter-spacing: 0.16em; color: rgba(255,255,255,0.95); }
+.a-hero-chip { background: rgba(255,255,255,0.22); color: white; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; }
+.a-hero-title { font-size: 23px; font-weight: 900; letter-spacing: -0.02em; color: white; line-height: 1.05; position: relative; }
+.a-hero-sub { font-size: 12px; color: rgba(255,255,255,0.92); font-weight: 600; margin: 4px 0 12px; position: relative; }
+.a-hero-btn {
+  border: none; cursor: pointer;
+  background: white; color: var(--primary-dark);
+  font-size: 14px; font-weight: 800; letter-spacing: -0.01em;
+  padding: 9px 17px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12); position: relative;
 }
 
-.a-card {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 14px;
-  box-shadow: var(--shadow-ambient);
-  margin-bottom: 10px;
-}
-.a-pass-head {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 6px;
-}
-.a-pass-label { font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dark); }
-.a-pass-boost {
-  background: var(--primary-soft); color: var(--primary-dark);
-  padding: 3px 8px; border-radius: 999px;
-  font-size: 10px; font-weight: 800;
-  display: flex; align-items: center; gap: 3px;
-}
-.a-pass-title { display: flex; align-items: baseline; gap: 6px; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
-.a-pass-title .of { color: var(--text-3); font-weight: 600; }
-.a-pass-bar {
-  height: 6px;
-  background: var(--hover);
-  border-radius: 999px;
-  overflow: hidden;
-  margin: 6px 0 4px;
-}
-.a-pass-bar-fill {
-  height: 100%; width: 12%;
-  background: var(--gold);
-  border-radius: 999px;
-}
-.a-pass-meta { font-size: 10px; color: var(--text-2); font-weight: 600; }
+.a-upnext { display: flex; justify-content: space-between; align-items: center; margin: 2px 2px 8px; }
+.a-viewmap { font-size: 12px; color: var(--primary-dark); font-weight: 800; }
 
-.a-mood {
-  text-align: center;
-  background: #E6F1FA;
-  color: var(--text);
-  font-size: 12px; font-weight: 600;
-  padding: 10px;
-  border-radius: 999px;
-  margin: 10px 0;
-}
-
-.a-tasks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
-.a-task {
-  border-radius: 16px;
-  padding: 12px;
-  color: white;
-  min-height: 110px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative;
+/* reminders-style list */
+.a-listwrap { flex-shrink: 0; }
+.a-list { background: var(--card); border-radius: 18px; box-shadow: var(--shadow-ambient); overflow: hidden; flex-shrink: 0; }
+.a-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px;
   cursor: pointer;
-  transition: transform 0.2s;
+  border-bottom: 1px solid rgba(15,23,42,0.05);
+  transition: background 0.15s;
 }
-.a-task:hover { transform: translateY(-2px); }
-.a-task.done { opacity: 0.82; }
-.a-task.b { background: #8EC8E8; }
-.a-task.c { background: #F4A3A3; }
-.a-task.g { background: #3B9D79; }
-.a-task.y { background: #E5B866; }
-.a-task-sparkle { font-size: 14px; color: white; }
-.a-task-title { font-size: 13px; font-weight: 800; letter-spacing: -0.01em; color: white; line-height: 1.15; }
-.a-task-done {
-  margin-top: 6px;
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
-  opacity: 0.95;
+.a-row:last-child { border-bottom: none; }
+.a-row:hover { background: var(--bg); }
+.a-check {
+  width: 24px; height: 24px; flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid #CBD5E1;
+  display: grid; place-items: center;
+  color: white;
+  transition: all 0.15s;
 }
+.a-check.on { background: var(--primary); border-color: var(--primary); }
+.a-row-main { flex: 1; min-width: 0; }
+.a-row-title { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+.a-row.done .a-row-title { text-decoration: line-through; color: var(--text-3); }
+.a-row-sub { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-2); margin-top: 2px; }
+.a-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.a-dot.b { background: #0EA5E9; }
+.a-dot.c { background: #FF6B6B; }
+.a-dot.g { background: #0D9668; }
+.a-dot.y { background: #F5A623; }
+.a-row-xp { display: flex; align-items: center; gap: 3px; font-size: 13px; font-weight: 800; color: var(--text); white-space: nowrap; }
+.a-row-xp svg { color: var(--text-3); }
+
+.a-viewall { text-align: center; font-size: 14px; font-weight: 800; color: var(--primary-dark); padding: 14px 0 8px; flex-shrink: 0; }
 
 /* tab bar */
 .a-tabbar {
+  flex-shrink: 0;
   margin: auto -20px 0;
   padding: 8px 12px 12px;
   background: rgba(255,255,255,0.92);
@@ -3027,7 +3007,7 @@ section.tight { padding-block: calc(80px * var(--density)); }
   .tile-ghost-num { font-size: 120px; right: -10px; bottom: -20px; }
 
   /* Phone mockup — shrink to fit the real device */
-  .phone { width: min(320px, calc(100vw - 48px)); height: min(660px, calc((100vw - 48px) * 2.06)); }
+  .phone { width: min(320px, calc(100vw - 48px)); height: min(682px, calc((100vw - 48px) * 2.13)); }
 
   /* Demo controls stacked */
   .demo-shell { gap: 24px; }
@@ -3076,7 +3056,7 @@ section.tight { padding-block: calc(80px * var(--density)); }
 /* Extra tight devices (iPhone SE / small phones) */
 @media (max-width: 380px) {
   .h-display { font-size: 30px; }
-  .phone { width: calc(100vw - 40px); height: calc((100vw - 40px) * 2.06); }
+  .phone { width: calc(100vw - 40px); height: calc((100vw - 40px) * 2.13); }
   .wrap { padding: 0 14px; }
   .nav-cta { padding: 7px 12px; font-size: 12px; }
   .nav-logo-mark { display: none; }
@@ -3122,6 +3102,7 @@ const Icon = {
   bolt: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>,
   flame: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5 5 10a5 5 0 11-10 0c0-3 2-4 2-7 1 2 3 2 3-3z"/></svg>,
   arrow: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>,
+  chev: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>,
   play: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>,
   check: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7"/></svg>,
   msg: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><path d="M4 6h16v10H7l-3 3z"/></svg>,
@@ -3203,17 +3184,17 @@ function Hero() {
 /* ========== HOME PHONE — matching real app screenshot ========== */
 function HomePhone({ interactive = false }) {
   const initial = [
-    { id: 1, title: "Review your spending", tone: "b", done: true, xp: 40 },
-    { id: 2, title: "Eat healthy", tone: "c", done: true, xp: 30 },
-    { id: 3, title: "Treadmill", tone: "g", done: false, xp: 60 },
-    { id: 4, title: "Read 20 pages", tone: "y", done: false, xp: 40 },
+    { id: 1, title: "Review your spending", dot: "b", min: 5, done: true },
+    { id: 2, title: "Eat healthy", dot: "c", min: 5, done: false },
+    { id: 3, title: "Treadmill", dot: "g", min: 20, done: true },
   ];
   const [tasks, setTasks] = useState(initial);
-  const [xp, setXp] = useState(5.9);
+  const [xp, setXp] = useState(4.4);
   const [bursts, setBursts] = useState([]);
   const phoneRef = useRef(null);
-  const XP_MAX = 10;
+  const XP_MAX = 22;
   const pct = Math.min((xp / XP_MAX) * 100, 100);
+  const next = tasks.find(t => !t.done);
 
   function toggle(id, evt) {
     if (!interactive) return;
@@ -3222,8 +3203,7 @@ function HomePhone({ interactive = false }) {
     const wasDone = t.done;
     setTasks(prev => prev.map(x => x.id === id ? { ...x, done: !x.done } : x));
     if (!wasDone) {
-      const delta = t.xp / 20; // xp out of 10 scale
-      setXp(v => Math.min(XP_MAX, v + delta));
+      setXp(v => Math.min(XP_MAX, v + 1));
       if (phoneRef.current && evt) {
         const rect = evt.currentTarget.getBoundingClientRect();
         const pr = phoneRef.current.getBoundingClientRect();
@@ -3232,12 +3212,12 @@ function HomePhone({ interactive = false }) {
           id: id2,
           x: rect.left - pr.left + rect.width / 2 - 20,
           y: rect.top - pr.top - 6,
-          text: `+${t.xp} XP`
+          text: `+1 XP`
         }]);
         setTimeout(() => setBursts(b => b.filter(x => x.id !== id2)), 1200);
       }
     } else {
-      setXp(v => Math.max(0, v - t.xp / 20));
+      setXp(v => Math.max(0, v - 1));
     }
   }
 
@@ -3258,62 +3238,55 @@ function HomePhone({ interactive = false }) {
               <div className="a-avatar">K</div>
               <div>
                 <div className="a-name">Kevin</div>
-                <div className="a-sub">Level 3 · Pathmaker</div>
+                <div className="a-sub">Lvl 6 · Pathmaker</div>
               </div>
             </div>
             <div className="a-head-right">
-              <div className="a-flame-chip">🔥 5</div>
+              <div className="a-flame-chip">🔥 2</div>
               <div className="a-icon-btn"><Icon.msg /></div>
               <div className="a-icon-btn"><Icon.menu /></div>
             </div>
           </div>
 
-          <div className="a-sec-title">Main Level</div>
-          <div className="a-level-row">
-            <div className="a-big-level">Level 0{Math.max(1, Math.floor(xp) + 1)}</div>
-            <div className="a-xp">💎 {xp.toFixed(1)} <span className="xp-small">/ {XP_MAX} XP</span></div>
-          </div>
-          <div className="a-bar">
-            <div className="a-bar-fill" style={{ width: `${pct}%` }} />
+          <div className="a-rail">
+            <span className="a-rail-lvl"><b>LVL</b> 0{Math.max(1, Math.floor(xp / XP_MAX) + 6)}</span>
+            <div className="a-rail-bar"><div className="a-rail-fill" style={{ width: `${pct}%` }} /></div>
+            <span className="a-rail-xp">💎 {xp.toFixed(1)} <span>/ {XP_MAX}</span></span>
           </div>
 
-          <div className="a-card">
-            <div className="a-pass-head">
-              <span className="a-pass-label">April Pass</span>
-              <span className="a-pass-boost"><Icon.bolt /> 1.5× XP</span>
+          <div className="a-hero">
+            <div className="a-hero-top">
+              <span className="a-hero-label">● NEXT UP</span>
+              <span className="a-hero-chip">💎 +1</span>
             </div>
-            <div className="a-pass-title">Tier 2 <span className="of">/ 30</span></div>
-            <div className="a-pass-bar">
-              <div className="a-pass-bar-fill" />
-            </div>
-            <div className="a-pass-meta">1/5 XP to Tier 3</div>
+            <div className="a-hero-title">{next ? next.title : "All caught up"}</div>
+            <div className="a-hero-sub">{next ? `general · ${next.min} min` : "Nice work today"}</div>
+            <button className="a-hero-btn">Start Task <Icon.arrow /></button>
           </div>
 
-          <div className="a-mood">😁 Radiant — logged</div>
-
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "4px 2px 8px" }}>
-            <div className="a-sec-title" style={{ margin: 0 }}>Today's Tasks</div>
-            <div style={{ fontSize: 11, color: "var(--primary-dark)", fontWeight: 800 }}>View Map</div>
+          <div className="a-upnext">
+            <span className="a-sec-title" style={{ margin: 0 }}>Up Next</span>
+            <span className="a-viewmap">View Map</span>
           </div>
 
-          <div className="a-tasks">
-            {tasks.map(t => (
-              <div
-                key={t.id}
-                className={`a-task ${t.tone}${t.done ? " done" : ""}`}
-                onClick={(e) => toggle(t.id, e)}
-              >
-                <div className="a-task-sparkle"><Icon.sparkle /></div>
-                <div>
-                  <div className="a-task-title">{t.title}</div>
-                  {t.done && (
-                    <div className="a-task-done">
-                      <Icon.check /> Done
-                    </div>
-                  )}
+          <div className="a-listwrap">
+            <div className="a-list">
+              {tasks.map(t => (
+                <div
+                  key={t.id}
+                  className={`a-row${t.done ? " done" : ""}`}
+                  onClick={(e) => toggle(t.id, e)}
+                >
+                  <div className={`a-check${t.done ? " on" : ""}`}>{t.done && <Icon.check />}</div>
+                  <div className="a-row-main">
+                    <div className="a-row-title">{t.title}</div>
+                    <div className="a-row-sub"><span className={`a-dot ${t.dot}`} />general · {t.min} min</div>
+                  </div>
+                  <div className="a-row-xp">+1 XP <Icon.chev /></div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="a-viewall">View all tasks →</div>
           </div>
 
           <div className="a-tabbar">
