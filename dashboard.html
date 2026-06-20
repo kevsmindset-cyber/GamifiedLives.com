@@ -121,6 +121,13 @@
         <h3>Retention</h3>
         <div class="cap">Active = opened the app in the window. D1/D7 = of users old enough, share who came back.</div>
         <div class="cards" id="retentionCards"></div>
+        <div class="cap" style="margin-top:14px">By origin — did they come back?</div>
+        <div class="cards" id="retentionOriginCards"></div>
+      </div>
+      <div class="panel" id="guestPanel" style="display:none">
+        <h3>Guest funnel</h3>
+        <div class="cap">Guests = started via "Continue without account". Converted = later signed in for a real account (origin stamped, so it survives conversion).</div>
+        <div class="cards" id="guestCards"></div>
       </div>
       <div class="panel">
         <h3>Daily signups</h3>
@@ -131,7 +138,6 @@
         <h3>Subscription events</h3>
         <div class="cap">All time, by type</div>
         <div id="premiumEvents"></div>
-        <div class="hint">Retention isn't shown yet — needs an in-app "last active" heartbeat (a future app update).</div>
       </div>
     </div>
 
@@ -204,17 +210,41 @@
       // Retention (hidden until the user_activity migration exists + heartbeats land)
       var rp = document.getElementById("retentionPanel");
       var ret = a.retention;
+      var statCard = function (c) {
+        return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + (c[3] || "") + '">' + c[1] + '</div><div class="sub">' + c[2] + '</div></div>';
+      };
+      var d1d7 = function (o) {
+        return (o && o.d1_pct != null ? o.d1_pct + "%" : "—") + " / " + (o && o.d7_pct != null ? o.d7_pct + "%" : "—");
+      };
       if (ret && (ret.tracked_users || 0) > 0) {
         rp.style.display = "block";
         document.getElementById("retentionCards").innerHTML = [
           ["Active today", n(ret.active_1d), "1 day"],
           ["Active this week", n(ret.active_7d), "7 days"],
           ["Stickiness", (ret.stickiness_pct || 0) + "%", "DAU / MAU", "accent"],
-          ["D1 / D7", (ret.d1_pct == null ? "—" : ret.d1_pct + "%") + " / " + (ret.d7_pct == null ? "—" : ret.d7_pct + "%"), "came back", "accent"]
-        ].map(function (c) {
-          return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + (c[3] || "") + '">' + c[1] + '</div><div class="sub">' + c[2] + '</div></div>';
-        }).join("");
+          ["D1 / D7", d1d7(ret), "came back", "accent"]
+        ].map(statCard).join("");
+        var reg = ret.registered || {}, gst = ret.guest || {};
+        document.getElementById("retentionOriginCards").innerHTML = [
+          ["Registered D1 / D7", d1d7(reg), n(reg.tracked) + " tracked"],
+          ["Registered active 7d", n(reg.active_7d), "of " + n(reg.tracked)],
+          ["Guest D1 / D7", d1d7(gst), n(gst.tracked) + " tracked", "accent"],
+          ["Guest active 7d", n(gst.active_7d), "of " + n(gst.tracked), "accent"]
+        ].map(statCard).join("");
       } else { rp.style.display = "none"; }
+
+      // Guest funnel
+      var gpnl = document.getElementById("guestPanel");
+      var gfn = a.guest_funnel;
+      if (gfn && (gfn.total || 0) > 0) {
+        gpnl.style.display = "block";
+        document.getElementById("guestCards").innerHTML = [
+          ["Guests", n(gfn.total), "started without account"],
+          ["Came back (7d)", n(gfn.active_7d), gfn.return_pct + "% return", "accent"],
+          ["Converted", n(gfn.converted), "made an account", "accent"],
+          ["Conversion", gfn.conv_pct + "%", "guest → account", "accent"]
+        ].map(statCard).join("");
+      } else { gpnl.style.display = "none"; }
 
       document.getElementById("signupCap").textContent = "Registered signups per day in range";
       barChart(document.getElementById("signupBars"), a.daily_signups || [], "registered", "day", (a.daily_signups || []).length > 14,
