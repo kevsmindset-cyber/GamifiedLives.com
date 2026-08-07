@@ -73,6 +73,17 @@
     tr.clickable { cursor: pointer; }
     tr.clickable:hover td { background: rgba(14,165,233,0.06); }
     .hint { font-size: 12px; color: var(--text-3); margin-top: 8px; }
+
+    /* line charts */
+    .lg-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; font-size: 12px; color: var(--text-2); }
+    .lg-row .lg { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+    .lg-row .lg i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+    .lg-row .lg b { color: var(--text); font-weight: 800; }
+    .lg-row .lg-max { margin-left: auto; color: var(--text-3); font-weight: 700; }
+    .lc { width: 100%; height: 210px; display: block; overflow: visible; }
+    .lc rect[fill="transparent"]:hover { cursor: crosshair; }
+    .xlab { position: relative; height: 16px; margin-top: 8px; }
+    .xlab span { position: absolute; font-size: 10px; color: var(--text-3); white-space: nowrap; }
   </style>
 </head>
 <body>
@@ -106,6 +117,7 @@
         <button data-range="24h">24 hours</button>
         <button data-range="7d">7 days</button>
         <button data-range="30d">30 days</button>
+        <button data-range="90d">90 days</button>
         <button data-range="all">All time</button>
       </div>
       <span id="filterWrap"></span>
@@ -130,9 +142,19 @@
         <div class="cards" id="guestCards"></div>
       </div>
       <div class="panel">
-        <h3>Daily signups</h3>
+        <h3>Active users per day</h3>
+        <div class="cap">Users who opened the app each day. Dense from the Aug 2026 build onward — earlier points are signup + last-seen days only.</div>
+        <div id="dauChart"></div>
+      </div>
+      <div class="panel">
+        <h3>Signups per day</h3>
         <div class="cap" id="signupCap"></div>
-        <div class="bars" id="signupBars"></div>
+        <div id="signupChart"></div>
+      </div>
+      <div class="panel">
+        <h3>New subscribers per day</h3>
+        <div class="cap">Initial purchases vs cancellations, by day</div>
+        <div id="premiumChart"></div>
       </div>
       <div class="panel">
         <h3>Subscription events</h3>
@@ -153,7 +175,7 @@
     <div class="panel">
       <h3>Traffic by day</h3>
       <div class="cap" id="dailyCap"></div>
-      <div class="bars" id="dayBars"></div>
+      <div id="dayChart"></div>
     </div>
 
     <div class="panel">
@@ -178,6 +200,75 @@
     function n(x) { return (x == null ? 0 : x).toLocaleString(); }
     function fmtDate(iso) { var d = new Date(iso); return d.toLocaleDateString(undefined, { month: "short", day: "numeric" }); }
     function fmtDateTime(iso) { return new Date(iso).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }); }
+    function fmtDay(day) { return fmtDate(day + "T00:00:00Z"); }
+
+    function niceCeil(v) {
+      if (v <= 5) return 5;
+      var p = Math.pow(10, Math.floor(Math.log10(v)));
+      var f = v / p;
+      var nf = f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10;
+      return nf * p;
+    }
+
+    // SVG multi-series line chart. days: [{day:'YYYY-MM-DD', ...}], series: [{key,label,color,fill?}]
+    function lineChart(el, days, series) {
+      days = days || [];
+      if (!days.length) { el.innerHTML = '<div class="empty">No data in this range yet.</div>'; return; }
+      var W = 1000, H = 210, padT = 12, padB = 6;
+      var innerH = H - padT - padB, len = days.length;
+      var max = 1;
+      days.forEach(function (d) { series.forEach(function (s) { max = Math.max(max, d[s.key] || 0); }); });
+      var top = niceCeil(max);
+      var xAt = function (i) { return len === 1 ? W / 2 : (W * i / (len - 1)); };
+      var yAt = function (v) { return padT + innerH * (1 - (v / top)); };
+
+      var grid = "";
+      for (var g = 0; g <= 4; g++) {
+        var gy = padT + innerH * g / 4;
+        grid += '<line x1="0" y1="' + gy.toFixed(1) + '" x2="' + W + '" y2="' + gy.toFixed(1) + '" stroke="rgba(15,23,42,0.07)" stroke-width="1" vector-effect="non-scaling-stroke"/>';
+      }
+
+      var layers = series.map(function (s) {
+        var line = days.map(function (row, i) { return (i ? "L" : "M") + xAt(i).toFixed(1) + " " + yAt(row[s.key] || 0).toFixed(1); }).join(" ");
+        var area = "";
+        if (s.fill) {
+          area = '<path d="M' + xAt(0).toFixed(1) + " " + yAt(0).toFixed(1) + " "
+            + days.map(function (row, i) { return "L" + xAt(i).toFixed(1) + " " + yAt(row[s.key] || 0).toFixed(1); }).join(" ")
+            + " L" + xAt(len - 1).toFixed(1) + " " + yAt(0).toFixed(1) + ' Z" fill="' + s.color + '" opacity="0.09"/>';
+        }
+        return { area: area, line: '<path d="' + line + '" fill="none" stroke="' + s.color + '" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' };
+      });
+
+      // transparent hover columns with a tooltip listing every series value for that day
+      var slot = len > 1 ? W / (len - 1) : W;
+      var hits = days.map(function (row, i) {
+        var rx = Math.max(0, xAt(i) - slot / 2);
+        var title = fmtDay(row.day) + "\n" + series.map(function (s) { return s.label + ": " + n(row[s.key] || 0); }).join("   ");
+        return '<rect x="' + rx.toFixed(1) + '" y="0" width="' + slot.toFixed(1) + '" height="' + H + '" fill="transparent"><title>' + title + "</title></rect>";
+      }).join("");
+
+      var legend = series.map(function (s) {
+        return '<span class="lg"><i style="background:' + s.color + '"></i>' + s.label + " <b>" + n(days[len - 1][s.key] || 0) + "</b></span>";
+      }).join("");
+
+      var idx = [], step = Math.max(1, Math.round(len / 6));
+      for (var i = 0; i < len; i += step) idx.push(i);
+      if (idx[idx.length - 1] !== len - 1) idx.push(len - 1);
+      var xlabs = idx.map(function (i) {
+        var pos = xAt(i) / W * 100;
+        var tf = i === 0 ? "translateX(0)" : i === len - 1 ? "translateX(-100%)" : "translateX(-50%)";
+        return '<span style="left:' + pos.toFixed(2) + "%;transform:" + tf + '">' + fmtDay(days[i].day) + "</span>";
+      }).join("");
+
+      el.innerHTML = '<div class="lg-row">' + legend + '<span class="lg-max">peak ' + n(top) + "</span></div>"
+        + '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" class="lc">'
+        + grid
+        + layers.map(function (l) { return l.area; }).join("")
+        + layers.map(function (l) { return l.line; }).join("")
+        + hits
+        + "</svg>"
+        + '<div class="xlab">' + xlabs + "</div>";
+    }
 
     function barChart(el, rows, valueKey, labelKey, rotate, tip) {
       var max = Math.max(1, ...rows.map(function (x) { return x[valueKey]; }));
@@ -246,13 +337,25 @@
         ].map(statCard).join("");
       } else { gpnl.style.display = "none"; }
 
-      document.getElementById("signupCap").textContent = "Registered signups per day in range";
-      barChart(document.getElementById("signupBars"), a.daily_signups || [], "registered", "day", (a.daily_signups || []).length > 14,
-        function (x) { return x.day + ': ' + (x.registered || 0) + ' registered, ' + x.signups + ' incl. guests'; });
-      // relabel day → short date
-      Array.prototype.forEach.call(document.querySelectorAll('#signupBars .bar-lbl'), function (el, i) {
-        var d = (a.daily_signups || [])[i]; if (d) el.textContent = fmtDate(d.day + 'T00:00:00Z');
-      });
+      // Active users per day (fills from the Aug 2026 build)
+      lineChart(document.getElementById("dauChart"), a.daily_active || [], [
+        { key: "active", label: "Active", color: "#0EA5E9", fill: true },
+        { key: "registered_active", label: "Registered", color: "#00628C" },
+        { key: "guest_active", label: "Guest", color: "#94A3B8" }
+      ]);
+
+      // Signups per day
+      document.getElementById("signupCap").textContent = "Registered vs total (incl. guests) per day";
+      lineChart(document.getElementById("signupChart"), a.daily_signups || [], [
+        { key: "registered", label: "Registered", color: "#0D9668", fill: true },
+        { key: "signups", label: "Total incl. guests", color: "#94A3B8" }
+      ]);
+
+      // New subscribers per day
+      lineChart(document.getElementById("premiumChart"), a.daily_premium || [], [
+        { key: "new_subs", label: "New subs", color: "#0D9668", fill: true },
+        { key: "cancellations", label: "Cancellations", color: "#FF6B6B" }
+      ]);
 
       var ev = a.premium_events || [];
       document.getElementById("premiumEvents").innerHTML = ev.length
@@ -277,11 +380,11 @@
 
       // daily
       document.getElementById("dailyCap").textContent = fmtDate(d.range_start) + " – " + fmtDate(d.range_end);
-      var daily = (w.daily || []).map(function (x) { return { v: x, label: fmtDate(x.day + 'T00:00:00Z') }; });
-      barChart(document.getElementById("dayBars"),
-        (w.daily || []).map(function (x) { return { day: x.day, pageviews: x.pageviews, visitors: x.visitors, clicks: x.clicks, label: fmtDate(x.day + 'T00:00:00Z') }; }),
-        "pageviews", "label", (w.daily || []).length > 14,
-        function (x) { return x.day + ': ' + x.pageviews + ' views, ' + x.visitors + ' visitors, ' + x.clicks + ' clicks'; });
+      lineChart(document.getElementById("dayChart"), w.daily || [], [
+        { key: "visitors", label: "Visitors", color: "#0EA5E9", fill: true },
+        { key: "pageviews", label: "Pageviews", color: "#94A3B8" },
+        { key: "clicks", label: "Download clicks", color: "#F5A623" }
+      ]);
 
       // channels (clickable)
       var ch = w.channels || [];
