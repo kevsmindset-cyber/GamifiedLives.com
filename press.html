@@ -1,291 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Press Kit — Gamified Lives</title>
-  <meta name="description" content="Gamified Lives press kit — one-line pitch, feature list, founder bio, contact, and brand assets.">
-  <link rel="canonical" href="https://gamifiedlives.com/press.html">
-  <meta property="og:title" content="Press Kit — Gamified Lives">
-  <meta property="og:description" content="Everything a journalist, podcaster, or creator needs to cover Gamified Lives.">
-  <meta property="og:url" content="https://gamifiedlives.com/press.html">
-  <meta property="og:image" content="https://gamifiedlives.com/images/og-image.png">
-  <style>
-    :root {
-      --primary: #0EA5E9; --primary-dark: #00628C; --primary-light: #34B5FA;
-      --coral: #FF6B6B; --gold: #F5A623; --emerald: #0D9668;
-      --bg: #F6F6F7; --card: #FFFFFF; --section: #F0F1F2;
-      --text: #0F172A; --text-2: #5A5C5D; --text-3: #94A3B8;
-      --shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
-      --r-card: 24px; --r-pill: 9999px;
-      --grad: linear-gradient(135deg, #00628C 0%, #34B5FA 100%);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      background: var(--bg); color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
-      font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-
-    .nav {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(246, 246, 247, 0.85);
-      backdrop-filter: saturate(140%) blur(16px);
-      -webkit-backdrop-filter: saturate(140%) blur(16px);
-      border-bottom: 1px solid rgba(15,23,42,0.04);
-      padding: 14px clamp(20px, 4vw, 40px);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; letter-spacing: -0.015em; }
-    .nav-logo-mark {
-      width: 28px; height: 28px; border-radius: 8px;
-      background: var(--grad); display: grid; place-items: center;
-      color: white; font-weight: 900; font-size: 15px;
-      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.35);
-    }
-    .nav-back {
-      font-size: 14px; font-weight: 600; color: var(--text-2);
-      padding: 8px 14px; border-radius: var(--r-pill);
-    }
-    .nav-back:hover { background: rgba(15,23,42,0.05); color: var(--text); }
-
-    .hero { padding: 64px 0 32px; text-align: center; }
-    .eyebrow {
-      display: inline-block;
-      font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--primary-dark);
-      background: rgba(14, 165, 233, 0.12);
-      padding: 6px 14px; border-radius: var(--r-pill);
-      margin-bottom: 20px;
-    }
-    h1 { font-size: clamp(36px, 5.5vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 14px; }
-    .lede { font-size: 17px; color: var(--text-2); max-width: 600px; margin: 0 auto; }
-
-    main { padding-bottom: 80px; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
-
-    .card {
-      background: var(--card);
-      border-radius: var(--r-card);
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-    .card-eyebrow {
-      font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--primary-dark); margin-bottom: 10px;
-    }
-    .card h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 12px; color: var(--text); }
-    .card p { font-size: 15px; color: var(--text-2); margin-bottom: 10px; }
-    .card p:last-child { margin-bottom: 0; }
-    .card ul { margin: 8px 0 0 18px; color: var(--text-2); font-size: 15px; }
-    .card ul li { margin-bottom: 6px; }
-    .card a { color: var(--primary-dark); font-weight: 600; }
-
-    .full {
-      grid-column: 1 / -1;
-    }
-
-    .logo-block {
-      display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
-      margin-top: 16px;
-    }
-    .logo-chip {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--section);
-      padding: 14px 18px;
-      border-radius: 14px;
-    }
-    .logo-chip .mark {
-      width: 32px; height: 32px; border-radius: 8px;
-      display: grid; place-items: center;
-      color: white; font-weight: 900; font-size: 15px;
-      box-shadow: 0 4px 10px rgba(14, 165, 233, 0.35);
-    }
-    .logo-chip.g  .mark { background: var(--grad); }
-    .logo-chip.b  .mark { background: #0F172A; }
-    .logo-chip.w  .mark { background: white; color: var(--primary-dark); border: 1px solid rgba(15,23,42,0.06); }
-    .logo-chip span.lbl { font-weight: 700; font-size: 14px; color: var(--text); }
-
-    .color-swatches {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-    @media (max-width: 540px) { .color-swatches { grid-template-columns: repeat(2, 1fr); } }
-    .swatch {
-      border-radius: 16px;
-      padding: 14px;
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      min-height: 88px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-    }
-    .swatch .hex { font-size: 11px; opacity: 0.9; font-weight: 600; margin-top: 2px; }
-
-    .contact-block {
-      background: #0F172A;
-      color: white;
-      border-radius: var(--r-card);
-      padding: 36px;
-      text-align: center;
-      margin-top: 32px;
-    }
-    .contact-block h3 { font-size: 24px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
-    .contact-block p { color: rgba(255,255,255,0.78); margin-bottom: 20px; font-size: 15px; }
-    .contact-block a {
-      display: inline-block;
-      background: white;
-      color: var(--primary-dark);
-      padding: 12px 22px;
-      border-radius: 9999px;
-      font-weight: 800;
-      font-size: 14px;
-      margin: 4px;
-    }
-
-    footer {
-      background: var(--section);
-      padding: 40px clamp(20px, 4vw, 40px) 32px;
-      text-align: center;
-    }
-    .footer-logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 12px; }
-    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 16px; }
-    .footer-links a { font-size: 13px; color: var(--text-2); }
-    .footer-links a:hover { color: var(--text); }
-    .footer-meta { font-size: 12px; color: var(--text-3); }
-  </style>
-  <script defer src="/analytics.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Press Kit — Gamified Lives</title>
+<meta name="description" content="Gamified Lives press kit — one-line pitch, fact sheet, founder bio, brand assets, screenshots, and contact.">
+<link rel="canonical" href="https://gamifiedlives.com/press.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Press Kit — Gamified Lives">
+<meta property="og:description" content="Pitch, facts, assets, and a founder who answers his own email.">
+<meta property="og:url" content="https://gamifiedlives.com/press.html">
+<link rel="stylesheet" href="assets/marketing/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://gamifiedlives.com/"},{"@type":"ListItem","position":2,"name":"Press","item":"https://gamifiedlives.com/press.html"}]}
+</script>
 </head>
 <body>
-  <nav class="nav">
-    <a class="nav-logo" href="/">
-      <span class="nav-logo-mark">G</span>
-      <span>Gamified Lives</span>
-    </a>
-    <a class="nav-back" href="/">← Back to home</a>
-  </nav>
 
-  <section class="hero">
-    <div class="wrap">
-      <span class="eyebrow">Press</span>
-      <h1>Press Kit</h1>
-      <p class="lede">Everything a journalist, podcaster, or creator needs to write about Gamified Lives. Links, quotes, brand assets, and founder contact.</p>
+<nav class="nav">
+  <a class="brand" href="/"><span class="mark">G</span><span>Gamified Lives</span></a>
+  <a class="btn btn-grad" href="https://apps.apple.com/us/app/gamified-lives/id6761446121">Get it free</a>
+</nav>
+
+<header style="padding:64px 24px 36px;text-align:center">
+  <div style="max-width:720px;margin:0 auto">
+    <span class="eyebrow">Press</span>
+    <h1 style="font-size:clamp(36px,5.5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin-bottom:14px">Press Kit</h1>
+    <p class="sub" style="font-size:17px;max-width:600px;margin:0 auto">Everything a journalist, podcaster, or creator needs to cover Gamified Lives — pitch, facts, assets, and a founder who answers his own email.</p>
+  </div>
+</header>
+
+<main style="max-width:960px;margin:0 auto;padding:0 clamp(20px,4vw,40px) 80px">
+  <div class="grid">
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">One line</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px">The pitch</h2>
+      <p style="font-size:15px;color:var(--ink2);line-height:1.55;margin:0 0 10px">Gamified Lives is a forgiveness-first self-improvement RPG. It rewards the comeback instead of punishing the slip — miss a day and the Phoenix Bonus pays 2× XP for coming back — across six life domains (Health, Sleep, Wealth, Mind, Growth, Recovery) in one app instead of six.</p>
+      <p style="font-size:15px;color:var(--ink2);line-height:1.55;margin:0"><strong style="color:var(--ink)">Shortest version:</strong> the habit RPG that never zeroes you out — with an AI coach that actually calls you.</p>
     </div>
-  </section>
-
-  <main class="wrap">
-    <div class="grid">
-      <div class="card">
-        <div class="card-eyebrow">One line</div>
-        <h2>The pitch</h2>
-        <p>Gamified Lives is an RPG habit tracker that verifies you actually did the habit. Goals become quests, habits become XP, and six life domains (Health, Sleep, Wealth, Mind, Growth, Recovery) live in one app instead of six.</p>
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Fact sheet</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px">Key facts</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink2);line-height:1.5">
+        <span><strong style="color:var(--ink)">Founder:</strong> Kevin Castaneda (solo, self-funded)</span>
+        <span><strong style="color:var(--ink)">Platform:</strong> iOS (App Store) — iOS only today</span>
+        <span><strong style="color:var(--ink)">Pricing:</strong> Free tier · Premium $9.99/mo or $75.99/yr, 7-day trial</span>
+        <span><strong style="color:var(--ink)">AI:</strong> our own AI coach, avatar generation &amp; photo verification</span>
+        <span><strong style="color:var(--ink)">Launched:</strong> 2026 · currently v1.0.7</span>
+        <span><strong style="color:var(--ink)">Location:</strong> United States</span>
       </div>
-
-      <div class="card">
-        <div class="card-eyebrow">Fact sheet</div>
-        <h2>Key facts</h2>
-        <ul>
-          <li><strong>Founder:</strong> Kevin Castaneda (solo)</li>
-          <li><strong>Platform:</strong> iOS first, Android planned</li>
-          <li><strong>Pricing:</strong> Free forever tier · Premium $9.99/mo or $75.99/yr</li>
-          <li><strong>Tech:</strong> React Native, Supabase, Anthropic Claude Haiku, OpenAI GPT Image 1.5, RevenueCat</li>
-          <li><strong>Launched:</strong> 2026</li>
-          <li><strong>Location:</strong> United States</li>
-        </ul>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">What's different</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px">Why people cover it</h2>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--ink2);line-height:1.5">
+        <span><strong style="color:var(--ink)">Forgiveness-first.</strong> Phoenix Bonus (2× XP after a slip), Resilience Score (0–100, five tiers), and Time Played instead of a fragile streak.</span>
+        <span><strong style="color:var(--ink)">A coach that calls.</strong> Real AI voice check-ins when you go quiet — not another notification.</span>
+        <span><strong style="color:var(--ink)">Six domains, one app.</strong> Absorbs the budget, sleep, mood, and sobriety trackers into one gamified system.</span>
+        <span><strong style="color:var(--ink)">Goal auto-progress.</strong> Log a $50 save — the “Save $5,000” goal moves by itself.</span>
+        <span><strong style="color:var(--ink)">Real verification.</strong> Photo, sensors, timers — proof, not the honor system.</span>
       </div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Founder</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px">About Kevin</h2>
+      <p style="font-size:15px;color:var(--ink2);line-height:1.55;margin:0 0 10px">Kevin Castaneda is a solo founder and the only person shipping Gamified Lives — code, design, copy, and support emails. He built it after abandoning every habit app he tried, always the day after a miss.</p>
+      <p style="font-size:15px;color:var(--ink2);line-height:1.55;margin:0">Longer bio or interview: <a href="mailto:press@gamifiedlives.com" style="font-weight:600">press@gamifiedlives.com</a></p>
+    </div>
 
-      <div class="card">
-        <div class="card-eyebrow">What's different</div>
-        <h2>Why people cover it</h2>
-        <ul>
-          <li><strong>Real verification.</strong> Photo, HealthKit, NFC, timer — proof, not the honor system.</li>
-          <li><strong>Phoenix Bonus.</strong> 2× XP for 24 hours after a streak break — rewards coming back, doesn't punish missing a day.</li>
-          <li><strong>Life Domains.</strong> Absorbs Cal.AI / MacroFactor / Sleep Cycle / Rocket Money / Daylio / I Am Sober into one app.</li>
-          <li><strong>Goal auto-progress.</strong> Log a $50 save — the "Save $5,000" goal moves by itself.</li>
-          <li><strong>AI that isn't a gimmick.</strong> Voice coach calls, smart food scanning with macros, cross-domain insights.</li>
-        </ul>
-      </div>
+    <div class="card" style="grid-column:1/-1">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Boilerplate</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px">Copy-paste description</h2>
+      <p style="font-size:15px;color:var(--ink2);line-height:1.6;margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--sect);border-radius:16px;padding:18px 20px">Gamified Lives is a self-improvement RPG for iOS that turns real habits into quests and real progress into XP. Unlike streak-based apps, it's forgiveness-first: missing a day costs nothing, and coming back within 24 hours earns a 2× Phoenix Bonus. It tracks six life domains — Health, Sleep, Wealth, Mind, Growth, and Recovery — each gamified into a skill you level, and includes an AI coach that checks in with a real voice call when you go quiet. Built by solo founder Kevin Castaneda. Free on the App Store; Premium is $9.99/month or $75.99/year.</p>
+    </div>
 
-      <div class="card">
-        <div class="card-eyebrow">Founder</div>
-        <h2>About Kevin</h2>
-        <p>Kevin is a solo founder and the only person shipping Gamified Lives. He writes code, designs, writes copy, and replies to support emails. The app is self-funded.</p>
-        <p>For a longer bio or interview, email <a href="mailto:press@gamifiedlives.com">press@gamifiedlives.com</a>.</p>
-      </div>
-
-      <div class="card full">
-        <div class="card-eyebrow">Brand</div>
-        <h2>Logo marks</h2>
-        <p>Use the gradient mark on light backgrounds, the solid navy on light colored surfaces, and the outlined mark on dark backgrounds. Don't recolor. Don't squish. Don't gradient swap.</p>
-        <div class="logo-block">
-          <span class="logo-chip g"><span class="mark">G</span><span class="lbl">Primary (gradient)</span></span>
-          <span class="logo-chip b"><span class="mark">G</span><span class="lbl">Dark (navy)</span></span>
-          <span class="logo-chip w"><span class="mark">G</span><span class="lbl">Light (outline)</span></span>
-        </div>
-      </div>
-
-      <div class="card full">
-        <div class="card-eyebrow">Palette</div>
-        <h2>Brand colors</h2>
-        <div class="color-swatches">
-          <div class="swatch" style="background: #0EA5E9;">Sky<br><span class="hex">#0EA5E9</span></div>
-          <div class="swatch" style="background: #00628C;">Navy<br><span class="hex">#00628C</span></div>
-          <div class="swatch" style="background: #FF6B6B;">Coral<br><span class="hex">#FF6B6B</span></div>
-          <div class="swatch" style="background: #F5A623; color: #5A3D0A;">Gold<br><span class="hex">#F5A623</span></div>
-          <div class="swatch" style="background: #0D9668;">Emerald<br><span class="hex">#0D9668</span></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-eyebrow">Screenshots</div>
-        <h2>App shots</h2>
-        <p>Hi-res product screenshots available on request. We'd rather send you the exact shots you need than bury you in a zip of 40 images.</p>
-        <p>Email <a href="mailto:press@gamifiedlives.com">press@gamifiedlives.com</a> with what angle you're covering and we'll send matching assets within 24 hours.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-eyebrow">Coverage</div>
-        <h2>Community</h2>
-        <ul>
-          <li><strong>Reddit:</strong> <a href="https://reddit.com/r/gamifiedlives" target="_blank" rel="noopener">r/gamifiedlives</a></li>
-          <li><strong>TikTok:</strong> <a href="https://tiktok.com/@gamified.lives" target="_blank" rel="noopener">@gamified.lives</a></li>
-          <li><strong>Website:</strong> <a href="https://gamifiedlives.com">gamifiedlives.com</a></li>
-        </ul>
+    <div class="card" style="grid-column:1/-1">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Brand</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px">Logo marks</h2>
+      <p style="font-size:15px;color:var(--ink2);line-height:1.55;margin:0 0 16px">Use the gradient mark on light backgrounds, solid navy on light colored surfaces, and the light mark on dark backgrounds. Don't recolor, squish, or gradient-swap.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <span style="display:inline-flex;align-items:center;gap:10px;background:var(--sect);padding:14px 18px;border-radius:14px"><span class="mark" style="width:32px;height:32px">G</span><span style="font-weight:700;font-size:14px">Primary (gradient)</span></span>
+        <span style="display:inline-flex;align-items:center;gap:10px;background:var(--sect);padding:14px 18px;border-radius:14px"><span style="width:32px;height:32px;border-radius:8px;background:#0F172A;display:grid;place-items:center;color:#fff;font-weight:900;font-size:15px">G</span><span style="font-weight:700;font-size:14px">Dark (navy)</span></span>
+        <span style="display:inline-flex;align-items:center;gap:10px;background:var(--sect);padding:14px 18px;border-radius:14px"><span style="width:32px;height:32px;border-radius:8px;background:#fff;display:grid;place-items:center;color:var(--navy);font-weight:900;font-size:15px;box-shadow:inset 0 0 0 1px rgba(15,23,42,.08)">G</span><span style="font-weight:700;font-size:14px">Light (outline)</span></span>
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--ink3)">[logo pack .zip download — link when supplied]</span>
       </div>
     </div>
 
-    <div class="contact-block">
-      <h3>Want to talk?</h3>
-      <p>Press inquiries, podcast guest spots, beta demos, interview requests — any of it.</p>
-      <a href="mailto:press@gamifiedlives.com">press@gamifiedlives.com</a>
-      <a href="mailto:hi@gamifiedlives.com">hi@gamifiedlives.com</a>
+    <div class="card" style="grid-column:1/-1">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Palette</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:16px">Brand colors</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px">
+        <div style="border-radius:16px;padding:14px;color:#fff;font-size:12px;font-weight:700;min-height:88px;display:flex;flex-direction:column;justify-content:flex-end;background:#0EA5E9">Sky<span style="font-size:11px;opacity:.9;font-weight:600;margin-top:2px">#0EA5E9</span></div>
+        <div style="border-radius:16px;padding:14px;color:#fff;font-size:12px;font-weight:700;min-height:88px;display:flex;flex-direction:column;justify-content:flex-end;background:#00628C">Navy<span style="font-size:11px;opacity:.9;font-weight:600;margin-top:2px">#00628C</span></div>
+        <div style="border-radius:16px;padding:14px;color:#fff;font-size:12px;font-weight:700;min-height:88px;display:flex;flex-direction:column;justify-content:flex-end;background:#FF6B6B">Coral<span style="font-size:11px;opacity:.9;font-weight:600;margin-top:2px">#FF6B6B</span></div>
+        <div style="border-radius:16px;padding:14px;color:#5A3D0A;font-size:12px;font-weight:700;min-height:88px;display:flex;flex-direction:column;justify-content:flex-end;background:#F5A623">Gold<span style="font-size:11px;opacity:.9;font-weight:600;margin-top:2px">#F5A623</span></div>
+        <div style="border-radius:16px;padding:14px;color:#fff;font-size:12px;font-weight:700;min-height:88px;display:flex;flex-direction:column;justify-content:flex-end;background:#0D9668">Emerald<span style="font-size:11px;opacity:.9;font-weight:600;margin-top:2px">#0D9668</span></div>
+        <div style="border-radius:16px;padding:14px;color:#fff;font-size:12px;font-weight:700;min-height:88px;display:flex;flex-direction:column;justify-content:flex-end;background:#8B5CF6">Purple<span style="font-size:11px;opacity:.9;font-weight:600;margin-top:2px">#8B5CF6</span></div>
+      </div>
     </div>
-  </main>
 
-  <footer>
-    <div class="footer-logo">
-      <span class="nav-logo-mark">G</span>
-      <span>Gamified Lives</span>
+    <div class="card" style="grid-column:1/-1">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Screenshots</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:16px">App shots</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+        <img src="assets/marketing/today.jpg" alt="Today home screen — daily quests and Time Played" style="display:block;width:100%;border-radius:20px;box-shadow:var(--shadow)">
+        <img src="assets/marketing/goals.jpg" alt="Goals — colored goal cards feeding daily quests" style="display:block;width:100%;border-radius:20px;box-shadow:var(--shadow)">
+        <img src="assets/marketing/coach.jpg" alt="Coach tab — ask anything or get a call" style="display:block;width:100%;border-radius:20px;box-shadow:var(--shadow)">
+        <img src="assets/marketing/character.jpg" alt="Character — AI avatar and furnishable room" style="display:block;width:100%;border-radius:20px;box-shadow:var(--shadow)">
+        <img src="assets/marketing/squad.jpg" alt="Squad — accountability group with today's shared goal" style="display:block;width:100%;border-radius:20px;box-shadow:var(--shadow)">
+      </div>
+      <p style="font-size:14px;color:var(--ink2);line-height:1.55;margin:16px 0 0">Need a specific angle? Email <a href="mailto:press@gamifiedlives.com" style="font-weight:600">press@gamifiedlives.com</a> and matching hi-res assets arrive within 24 hours.</p>
     </div>
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/blog">Blog</a>
-      <a href="/about.html">About</a>
-      <a href="/roadmap.html">Roadmap</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
+
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Links</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px">Where it lives</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink2)">
+        <span><strong style="color:var(--ink)">App Store:</strong> <a href="https://apps.apple.com/us/app/gamified-lives/id6761446121" style="font-weight:600">Gamified Lives on iOS</a></span>
+        <span><strong style="color:var(--ink)">Website:</strong> <a href="https://gamifiedlives.com" style="font-weight:600">gamifiedlives.com</a></span>
+        <span><strong style="color:var(--ink)">Blog:</strong> <a href="https://gamifiedlives.com/blog" style="font-weight:600">gamifiedlives.com/blog</a></span>
+      </div>
     </div>
-    <div class="footer-meta">© 2026 Gamified Lives · Built by Kevin Castaneda</div>
-  </footer>
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Community</div>
+      <h2 style="font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px">Where people talk</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink2)">
+        <span><strong style="color:var(--ink)">Reddit:</strong> <a href="https://reddit.com/r/gamifiedlives" style="font-weight:600">r/gamifiedlives</a></span>
+        <span><strong style="color:var(--ink)">TikTok:</strong> <a href="https://tiktok.com/@gamified.lives" style="font-weight:600">@gamified.lives</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="center" style="background:#0F172A;color:#fff;border-radius:24px;padding:36px;margin-top:32px">
+    <h3 style="font-size:24px;font-weight:800;margin-bottom:8px;letter-spacing:-.02em">Want to talk?</h3>
+    <p style="color:rgba(255,255,255,.78);margin:0 0 20px;font-size:15px">Press inquiries, podcast guest spots, demos, interview requests — any of it.</p>
+    <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="mailto:press@gamifiedlives.com" style="background:#fff;color:var(--navy);padding:12px 22px;font-size:14px">press@gamifiedlives.com</a>
+      <a class="btn" href="mailto:hi@gamifiedlives.com" style="background:rgba(255,255,255,.12);color:#fff;padding:12px 22px;font-size:14px">hi@gamifiedlives.com</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="brand" style="display:inline-flex"><span class="mark">G</span><span>Gamified Lives</span></div>
+  <div class="links">
+    <a href="/">Home</a><a href="blog/">Blog</a><a href="about.html">About</a><a href="pricing.html">Pricing</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+  </div>
+  <div class="fine">© 2026 Gamified Lives · Built by Kevin Castaneda</div>
+</footer>
+<script defer src="analytics.js"></script>
 </body>
 </html>
