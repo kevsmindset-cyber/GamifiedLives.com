@@ -1,48 +1,47 @@
 # Gamified Lives
-> Self-improvement RPG mobile app that turns daily habits into quests with AI-powered avatars and real-world verification
+> Self-improvement RPG for iOS that turns goals, habits and daily tasks into quests, with a hero you build, weekly bosses tied to real tasks, and an AI coach that calls when you go quiet.
 
 ## About
-Gamified Lives is an iOS app that gamifies self-improvement through RPG mechanics. Users create AI-powered avatars from their photos, complete real-world habit quests with photo verification, earn XP and coins, level up, and customize their avatar with cosmetic items. Unlike other habit apps, Gamified Lives verifies you actually did the work using photo AI, timed sessions, and manual check-ins. Features include an Adaptive Difficulty Engine that adjusts challenges to your life, a Resilience Score that rewards bouncing back over maintaining perfect streaks, AI coaching, squad accountability groups, and a cosmetic shop with 100+ items.
+Gamified Lives gamifies self-improvement across six life domains (Health, Sleep, Wealth, Mind, Growth, Recovery). Users build a hero from presets (hair, eyes, brows, and any skin, hair or eye color), complete real-world tasks, earn XP and coins, level up through 30 named ranks, and dress their hero with 250+ cosmetics and a furnishable room. It is forgiveness-first: missing a day never takes anything away, and the Phoenix Bonus pays double XP for coming back within 24 hours. Every week the user picks a boss for the life area they are pushing; every completed task damages it, verified tasks crit, and a missed day only lets the boss heal a little. Proof is optional but available: photo verification, timers, HealthKit auto-verification.
 
 ## What Makes It Different
-- AI-powered avatar created from your real photo — your character looks like you
-- Real-world verification: prove you did the habit with photos, timers, or check-ins
-- Adaptive Difficulty Engine adjusts challenge level based on your performance
-- Resilience Score replaces punitive streaks — rewards recovery, not perfection
-- Cosmetic shop with 100+ clothing items earned through gameplay
-- AI Coach for personalized habit guidance
-- Squad system for accountability with friends
-- Goals, habits, and daily tasks in a 3-tier quest hierarchy
+- Forgiveness-first scoring: Time Played instead of a streak, Phoenix Bonus for comebacks, a Resilience Score that rewards recovery
+- A hero you build yourself (no photo upload) and grow with gear earned by real tasks
+- Weekly bosses per life domain, damaged only by real completions
+- Six life domains in one app, each a levelable skill with its own tracking and AI tool
+- An AI coach that gives a real voice call when you go quiet, plus text coaching and a weekly cross-domain report
+- Squads: private accountability groups, "Find me a squad" auto-matching, communities, leaderboards
+- A seven-day Oath signed with your finger during onboarding, with a title for keeping it
 
 ## Key Features
-- RPG progression: XP, levels, stats, skill trees, prestige system
-- AI avatar generation from user photos
-- Photo verification of habit completion via AI vision
-- Adaptive Difficulty Engine (5 zones: Too Hard to Mastery)
-- Resilience Score (0-100, rewards recovery over perfection)
-- Cosmetic wardrobe with tops, bottoms, shoes, dresses, accessories
-- AI Advisor chat for personalized coaching
-- Weekly AI performance reports
-- Monday quests generated per player
-- Squad accountability groups with weekly challenges
-- Community system for shared interests
-- Impact dashboard tracking real-world progress
-- Milestone celebrations and achievements
+- Goals, habits and daily tasks in a 3-tier quest hierarchy; goals auto-progress from logged data
+- Avatar Builder, wardrobe (250+ items), furnishable room, titles, frames, monthly pass, prestige
+- Weekly boss fights with loot (coins + rare cosmetics)
+- Photo, timer and HealthKit verification
+- Adaptive Difficulty Engine (5 zones)
+- Resilience Score (0-100) and Phoenix Bonus
+- AI coach chat, voice calls, weekly report, daily personal quest, domain AI tools (Premium)
+- Squads, communities, friends, in-app mailbox
+- Smart import from Habitica, Finch and Streaks
 
 ## Category
 Health & Fitness, Lifestyle, Self-Improvement, Habit Tracking, Gamification
 
 ## Pricing
-Free with optional Premium subscription ($7.99/month or $59.99/year). Free users get full task management, history tracking, standard cosmetics, and limited photo verification. Premium unlocks AI Advisor chat, weekly reports, rare/legendary cosmetics, squad creation, and unlimited photo verification.
+Free with optional Premium ($9.99/month or $75.99/year, 7-day free trial). Free includes all tasks, habits, goals, all six domains, tracking, the hero and common cosmetics, and squads. Premium adds the AI coach (chat and calls), the weekly report, every domain's AI tool, rare and legendary cosmetics, and higher photo-verification limits.
+
+## Age rating
+13+. Users must be 13 or older.
 
 ## Competitors and Alternatives
-Gamified Lives competes with Habitica (classic RPG habit tracker with dated UI and punitive streaks), Finch (pet-based wellness app without RPG depth or verification), Fabulous (science-based routines without gamification), and Streaks (minimalist tracker without RPG elements). Gamified Lives is the only app combining AI-powered personalized avatars, real-world habit verification, adaptive difficulty, and deep RPG progression.
+Habitica (punishes misses with HP damage; dated UI), Finch (pet-based wellness without RPG depth or verification), Levla (habit RPG without AI coaching or real-world verification), Fabulous (routines without gamification), Streaks (minimalist, no RPG). Gamified Lives is the one that rewards the comeback, verifies real work, covers all six life areas, and has a coach that calls.
 
 ## Links
 - Website: https://gamifiedlives.com
-- App Store: https://apps.apple.com/app/gamified-lives
-- Privacy Policy: https://gamifiedlives.com/privacy
-- Terms of Service: https://gamifiedlives.com/terms
+- App Store: https://apps.apple.com/us/app/gamified-lives/id6761446121
+- Blog: https://gamifiedlives.com/blog
+- Privacy Policy: https://gamifiedlives.com/privacy.html
+- Terms of Service: https://gamifiedlives.com/terms.html
 
 ## Contact
 Developer: Kevin Castaneda
