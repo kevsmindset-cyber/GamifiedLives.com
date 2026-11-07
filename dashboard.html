@@ -296,7 +296,12 @@
         ["New in range", n(nr.registered), "registered"],
         ["Subscribers", n(p.subscribers), "all time", "accent"],
         ["Conversion", (p.conversion_pct || 0) + "%", "subs / registered", "accent"]
-      ].map(function (c) {
+      ].concat(a.revenuecat ? [
+        ["MRR", "$" + Number(a.revenuecat.mrr || 0).toFixed(2), "RevenueCat, live", "accent"],
+        ["Active subs", n(a.revenuecat.active_subscriptions), "paying now", "accent"],
+        ["Trials", n(a.revenuecat.active_trials), "in free week"],
+        ["Revenue 28d", "$" + Number(a.revenuecat.revenue_28d || 0).toFixed(2), "RevenueCat"]
+      ] : []).map(function (c) {
         return '<div class="stat"><div class="label">' + c[0] + '</div><div class="value ' + (c[3] || "") + '">' + c[1] + '</div><div class="sub">' + c[2] + '</div></div>';
       }).join("");
       document.getElementById("appSub").textContent =
