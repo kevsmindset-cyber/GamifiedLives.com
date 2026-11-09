@@ -360,7 +360,7 @@
     setTimeout(function(){if(!fired)showAll()},1500);// safety: bail to all-visible if IO never fires
   }else{showAll()}
   // Email capture. To collect emails, create a form endpoint (e.g. Formspree) and paste its URL below.
-  var ENDPOINT='';
+  var ENDPOINT='https://mtujvdqhlolfojqxyzwh.supabase.co/functions/v1/subscribe';
   var form=document.querySelector('[data-plan-form]'),ok=document.querySelector('[data-plan-success]');
   if(form){form.addEventListener('submit',function(ev){
     ev.preventDefault();
