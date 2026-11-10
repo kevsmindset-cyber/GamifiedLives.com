@@ -145,6 +145,27 @@
         <div class="cap">Guests = started via "Continue without account". Converted = later signed in for a real account (origin stamped, so it survives conversion).</div>
         <div class="cards" id="guestCards"></div>
       </div>
+      <div class="panel" id="cohortPanel" style="display:none">
+        <h3>Weekly install cohorts</h3>
+        <div class="cap">Of the people who installed each week, the share who came back the next day and a week later. The line to watch after each release.</div>
+        <div id="cohortTable"></div>
+      </div>
+      <div class="panel" id="funnelPanel" style="display:none">
+        <h3>Onboarding funnel</h3>
+        <div class="cap">Furthest step reached by users who installed in the last 30 days (1.1.2+ builds only).</div>
+        <div id="funnelBars"></div>
+      </div>
+      <div class="panel" id="adoptionPanel" style="display:none">
+        <h3>First-week features</h3>
+        <div class="cap">Who used the new loop, and whether users who did come back more (D7, users old enough to count).</div>
+        <div id="adoptionTable"></div>
+      </div>
+      <div class="panel" id="splitPanel" style="display:none">
+        <h3>Retention by version and by source</h3>
+        <div class="cap">D1 / D7 split by the version a user first opened, and by where they said they heard about us.</div>
+        <div id="versionTable"></div>
+        <div id="sourceTable" style="margin-top:14px"></div>
+      </div>
       <div class="panel">
         <h3>Active users per day</h3>
         <div class="cap">Users who opened the app each day. Dense from the Aug 2026 build onward — earlier points are signup + last-seen days only.</div>
@@ -367,6 +388,41 @@
       ]);
 
       var ev = a.premium_events || [];
+      // ── Measurement pack ──
+      var pc = function (num, den) { return den ? Math.round(100 * num / den) + "%" : "—"; };
+      var rtable = function (rows, nameKey, nameLabel) {
+        return '<table><thead><tr><th>' + nameLabel + '</th><th class="num">Users</th><th class="num">D1</th><th class="num">D7</th></tr></thead><tbody>'
+          + rows.map(function (r) { return '<tr><td class="cap">' + String(r[nameKey]).replace(/_/g, " ") + '</td><td class="num">' + n(r.users) + '</td><td class="num">' + pc(r.retained_d1, r.eligible_d1) + '</td><td class="num">' + pc(r.retained_d7, r.eligible_d7) + '</td></tr>'; }).join("")
+          + '</tbody></table>';
+      };
+      var cohorts = a.cohorts || [];
+      if (cohorts.length) { document.getElementById("cohortPanel").style.display = "block"; document.getElementById("cohortTable").innerHTML = rtable(cohorts.slice().reverse().map(function (c) { return Object.assign({}, c, { name: fmtDay(c.week) }); }), "name", "Install week"); }
+      var funnel = a.funnel || [];
+      if (funnel.some(function (f) { return f.step > 0; })) {
+        var LABELS = ["installed","age gate","source","name","build pick","avatar builder","first win","domains","quest","blockers","resilience","values","try the loop","quest map","welcome","time capsule","import","day 1","hero grow","oath","paywall","home"];
+        var total = funnel.reduce(function (s, f) { return s + (f.users || 0); }, 0);
+        // reached step k = users whose furthest step >= k
+        var reached = LABELS.map(function (_, k) { return funnel.filter(function (f) { return f.step >= k; }).reduce(function (s, f) { return s + f.users; }, 0); });
+        document.getElementById("funnelPanel").style.display = "block";
+        document.getElementById("funnelBars").innerHTML = LABELS.map(function (lbl, k) {
+          var w = total ? Math.round(100 * reached[k] / total) : 0;
+          return '<div style="display:flex;align-items:center;gap:10px;margin:4px 0;font-size:12px"><div class="cap" style="width:110px;text-align:right">' + lbl + '</div><div style="flex:1;height:10px;background:#F0F1F2;border-radius:9999px;overflow:hidden"><div style="width:' + w + '%;height:10px;background:#0EA5E9"></div></div><div class="num" style="width:70px">' + n(reached[k]) + ' · ' + w + '%</div></div>';
+        }).join("");
+      }
+      var adoption = a.adoption || [];
+      if (adoption.length) {
+        document.getElementById("adoptionPanel").style.display = "block";
+        document.getElementById("adoptionTable").innerHTML = '<table><thead><tr><th>Feature</th><th class="num">Adopters</th><th class="num">D7 adopters</th><th class="num">D7 others</th></tr></thead><tbody>'
+          + adoption.map(function (r) { return '<tr><td class="cap">' + String(r.feature).replace(/_/g, " ") + '</td><td class="num">' + n(r.adopters) + ' / ' + n(r.cohort) + '</td><td class="num">' + pc(r.adopters_retained_d7, r.adopters_eligible_d7) + '</td><td class="num">' + pc(r.others_retained_d7, r.others_eligible_d7) + '</td></tr>'; }).join("")
+          + '</tbody></table>';
+      }
+      var byv = a.by_version || [], bys = a.by_source || [];
+      if (byv.length || bys.length) {
+        document.getElementById("splitPanel").style.display = "block";
+        document.getElementById("versionTable").innerHTML = byv.length ? rtable(byv, "version", "First version") : "";
+        document.getElementById("sourceTable").innerHTML = bys.length ? rtable(bys, "source", "Source") : "";
+      }
+
       document.getElementById("premiumEvents").innerHTML = ev.length
         ? '<table><thead><tr><th>Event</th><th class="num">Count</th></tr></thead><tbody>'
           + ev.map(function (e) { return '<tr><td class="cap">' + (e.event_type || "—").toLowerCase().replace(/_/g, " ") + '</td><td class="num">' + n(e.count) + '</td></tr>'; }).join("")
