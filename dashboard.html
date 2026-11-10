@@ -150,6 +150,16 @@
         <div class="cap">Of the people who installed each week, the share who came back the next day and a week later. The line to watch after each release.</div>
         <div id="cohortTable"></div>
       </div>
+      <div class="panel" id="premiumSrcPanel" style="display:none">
+        <h3>Premium starts by source</h3>
+        <div class="cap">Where Premium starts (trial or paid) come from, and whether those people ever messaged the coach. 1.1.2+ installs only; source is what the user picked in onboarding.</div>
+        <div id="premiumSrcTable"></div>
+      </div>
+      <div class="panel" id="notifPanel" style="display:none">
+        <h3>Reminder opt-in</h3>
+        <div class="cap">Whether people allowed notifications (1.1.2+ builds only). "Not answered" = never tapped Enable; "switched off" = allowed in iOS but turned off in Settings.</div>
+        <div class="cards" id="notifCards"></div>
+      </div>
       <div class="panel" id="funnelPanel" style="display:none">
         <h3>Onboarding funnel</h3>
         <div class="cap">Furthest step reached by users who installed in the last 30 days (1.1.2+ builds only).</div>
@@ -397,6 +407,23 @@
       };
       var cohorts = a.cohorts || [];
       if (cohorts.length) { document.getElementById("cohortPanel").style.display = "block"; document.getElementById("cohortTable").innerHTML = rtable(cohorts.slice().reverse().map(function (c) { return Object.assign({}, c, { name: fmtDay(c.week) }); }), "name", "Install week"); }
+      var psrc = a.premium_by_source || [];
+      if (psrc.length) {
+        document.getElementById("premiumSrcPanel").style.display = "block";
+        document.getElementById("premiumSrcTable").innerHTML = '<table><thead><tr><th>Source</th><th class="num">Users</th><th class="num">Saw paywall</th><th class="num">Started</th><th class="num">Started + used coach</th><th class="num">Used coach</th></tr></thead><tbody>'
+          + psrc.map(function (r) { return '<tr><td class="cap">' + String(r.source).replace(/_/g, " ") + '</td><td class="num">' + n(r.users) + '</td><td class="num">' + n(r.saw_paywall) + '</td><td class="num">' + n(r.started) + ' · ' + pc(r.started, r.saw_paywall) + '</td><td class="num">' + n(r.started_and_used_coach) + '</td><td class="num">' + n(r.used_coach) + '</td></tr>'; }).join("")
+          + '</tbody></table>';
+      }
+      var notif = a.notif || [];
+      if (notif.length) {
+        var NL = { granted: "Allowed", denied: "Denied", undetermined: "Not answered", off: "Switched off" };
+        var nTotal = notif.reduce(function (s, r) { return s + (r.users || 0); }, 0);
+        document.getElementById("notifPanel").style.display = "block";
+        document.getElementById("notifCards").innerHTML = ["granted", "undetermined", "denied", "off"].map(function (k) {
+          var r = notif.filter(function (x) { return x.status === k; })[0] || { users: 0 };
+          return '<div class="stat"><div class="label">' + NL[k] + '</div><div class="value">' + pc(r.users, nTotal) + '</div><div class="sub">' + n(r.users) + ' of ' + n(nTotal) + ' users</div></div>';
+        }).join("");
+      }
       var funnel = a.funnel || [];
       if (funnel.some(function (f) { return f.step > 0; })) {
         var LABELS = ["installed","age gate","source","name","build pick","avatar builder","first win","domains","quest","blockers","resilience","values","try the loop","quest map","welcome","time capsule","import","day 1","hero grow","oath","paywall","home"];
